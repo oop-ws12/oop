@@ -31,7 +31,7 @@ public class Main {
 	}
 	
 	public static void test() throws ParseException {
-		MusikGruppe g1 = new MusikGruppe("Oberkrainer", "Volksmusik");
+		MusikGruppe g1 = new MusikGruppe("Unterkrainer", "Volksmusik");
 		
 		for(Event e : getEvents())
 			g1.addEvent(e);
@@ -94,7 +94,7 @@ public class Main {
 	
 	private static void testMusikGruppe(MusikGruppe g1) {
 		assert g1.getAusrichtung() == "Volksmusik";
-		assert g1.getName() == "Oberkrainer";
+		assert g1.getName() == "Unterkrainer";
 	}
 
 	private static void testListEvents(MusikGruppe g1) throws ParseException {
