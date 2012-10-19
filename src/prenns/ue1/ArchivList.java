@@ -11,23 +11,23 @@ import java.util.List;
  * zu einem gegeben Zeitpunkt liefern kann
  * 
  * @author Alexander Prennsberger
- * @param <E> type
+ * @param <E> value
  */
 public class ArchivList<E> implements Archiv<E> {
 
 	public class Entry {
 
-		private E type;
+		private E value;
 		private Date created;
 		private Date deleted;
 
-		public Entry(E type) {
-			this.type = type;
+		public Entry(E value) {
+			this.value = value;
 		}
 
-		public Entry(E type, Date created) {
+		public Entry(E value, Date created) {
 
-			this.type = type;
+			this.value = value;
 			this.created = created;
 		}
 
@@ -39,8 +39,8 @@ public class ArchivList<E> implements Archiv<E> {
 			this.deleted = deleted;
 		}
 
-		public E getType() {
-			return type;
+		public E getValue() {
+			return value;
 		}
 
 		public Date getCreated() {
@@ -68,7 +68,7 @@ public class ArchivList<E> implements Archiv<E> {
 			
 			if(ent.getCreated().compareTo(zeitpunkt) <= 0) {
 				
-				result.add(ent.getType());
+				result.add(ent.getValue());
 			}
 		}
 		
@@ -76,7 +76,7 @@ public class ArchivList<E> implements Archiv<E> {
 			
 			if(entr.getCreated().compareTo(zeitpunkt) <= 0) {
 				
-				result.add(entr.getType());
+				result.add(entr.getValue());
 			}
 		}
 		
@@ -95,6 +95,7 @@ public class ArchivList<E> implements Archiv<E> {
 	 * @param time
 	 * @return true if elem was added, false otherwise
 	 */
+	@Override
 	public boolean add(E elem, Date time) {
 
 		return current.add(new Entry(elem, time));
@@ -116,7 +117,11 @@ public class ArchivList<E> implements Archiv<E> {
 
 	@Override
 	public void clear() {
-		current.clear();
+		
+		for(Entry ent : current) {
+			
+			remove(ent.getValue());
+		}
 	}
 
 	@Override
@@ -141,7 +146,7 @@ public class ArchivList<E> implements Archiv<E> {
 		
 		for(Entry ent : current) {
 			
-			temp.add(ent.getType());
+			temp.add(ent.getValue());
 		}
 		
 		return temp.iterator();	
@@ -150,6 +155,12 @@ public class ArchivList<E> implements Archiv<E> {
 	@Override
 	public boolean remove(Object o) {
 		return current.remove(o);
+	}
+	
+	@Override
+	public boolean remove(E elem, Date time) {
+		
+		return false;
 	}
 
 	@Override
