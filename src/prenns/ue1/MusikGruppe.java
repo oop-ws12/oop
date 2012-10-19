@@ -11,8 +11,8 @@ public class MusikGruppe {
 	private String name;
 	private String ausrichtung;
 	private EventList events;
-	private Archiv<Mitglied> members;
-	private Archiv<Song> repertoire;
+	private ArchivList<Mitglied> members;
+	private ArchivList<Song> repertoire;
 
 	public MusikGruppe(String name, String ausrichtung) {
 
@@ -23,7 +23,7 @@ public class MusikGruppe {
 		repertoire = new ArchivList<Song>();
 
 	}
-	
+
 	public String getName() {
 		return name;
 	}
@@ -43,20 +43,37 @@ public class MusikGruppe {
 	public void newEvent(Event ev) {
 		events.add(ev);
 	}
-	
+
 	public Collection<Event> getEvents(Date von, Date bis) {
 		return events.getEvent(von, bis);
 	}
-	
-	public Collection<Event> getEvents(Date von, Date bis, Class<? extends Event> type) {
+
+	public Collection<Event> getEvents(Date von, Date bis,
+			Class<? extends Event> type) {
 		return events.getEvent(von, bis, type);
 	}
 
 	public void newMember(Mitglied member, Date time) {
 		members.add(member, time);
 	}
-	
+
 	public void addSong(Song lied, Date time) {
 		repertoire.add(lied, time);
+	}
+
+	public Collection<Mitglied> getMembers() {
+		return members.getEntries();
+	}
+
+	public Collection<Mitglied> getMembers(Date time) {
+		return members.getOldEntries(time);
+	}
+
+	public Collection<Song> getSongs() {
+		return repertoire.getEntries();
+	}
+
+	public Collection<Song> getSongs(Date time) {
+		return repertoire.getOldEntries(time);
 	}
 }
