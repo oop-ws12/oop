@@ -11,8 +11,7 @@ import java.util.List;
  * zu einem gegeben Zeitpunkt liefern kann
  * 
  * @author Alexander Prennsberger
- * @param <E>
- *            type
+ * @param <E> type
  */
 public class ArchivList<E> implements Archiv<E> {
 
@@ -50,7 +49,7 @@ public class ArchivList<E> implements Archiv<E> {
 
 	}
 
-	// Liste aktuellen Elemente
+	// Liste der aktuellen Elemente
 	private List<Entry> current;
 	private List<Entry> old;
 
@@ -63,7 +62,25 @@ public class ArchivList<E> implements Archiv<E> {
 	@Override
 	public Collection<E> getOldEntries(Date zeitpunkt) {
 
-		return null;
+		Collection<E> result = new ArrayList<E>();
+		
+		for(Entry ent : current) {
+			
+			if(ent.getCreated().compareTo(zeitpunkt) <= 0) {
+				
+				result.add(ent.getType());
+			}
+		}
+		
+		for(Entry entr : old) {
+			
+			if(entr.getCreated().compareTo(zeitpunkt) <= 0) {
+				
+				result.add(entr.getType());
+			}
+		}
+		
+		return result;
 	}
 
 	@Override
