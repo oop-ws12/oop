@@ -11,7 +11,8 @@ import java.util.List;
  * zu einem gegeben Zeitpunkt liefern kann
  * 
  * @author Alexander Prennsberger
- * @param <E> value
+ * @param <E>
+ *            value
  */
 public class ArchivList<E> implements Archiv<E> {
 
@@ -36,9 +37,9 @@ public class ArchivList<E> implements Archiv<E> {
 		}
 
 		public void setDeleted(Date deleted) {
-			
-			assert(created.compareTo(deleted) >= 0);
-			
+
+			assert (created.compareTo(deleted) >= 0);
+
 			this.deleted = deleted;
 		}
 
@@ -62,27 +63,48 @@ public class ArchivList<E> implements Archiv<E> {
 		this.old = new ArrayList<Entry>();
 	}
 
+	/**
+	 * Liefert alle Eintraege zu einem bestimmten Zeitpunkt
+	 * 
+	 * @return Collection<E> mit Eintraegen, die zu einem bestimmten Zeitpunkt
+	 *         aktuell waren
+	 */
 	@Override
 	public Collection<E> getOldEntries(Date zeitpunkt) {
 
 		Collection<E> result = new ArrayList<E>();
-		
-		for(Entry ent : current) {
-			
-			if(ent.getCreated().compareTo(zeitpunkt) <= 0) {
-				
+
+		for (Entry ent : current) {
+
+			if (ent.getCreated().compareTo(zeitpunkt) <= 0) {
 				result.add(ent.getValue());
 			}
 		}
-		
-		for(Entry entr : old) {
-			
-			if(entr.getCreated().compareTo(zeitpunkt) <= 0) {
-				
+
+		for (Entry entr : old) {
+
+			if (entr.getCreated().compareTo(zeitpunkt) <= 0
+					&& entr.getDeleted().compareTo(zeitpunkt) >= 0) {
 				result.add(entr.getValue());
 			}
 		}
-		
+
+		return result;
+	}
+
+	/**
+	 * Liefert alle Eintraege zum jetzigen Zeitpunkt
+	 * 
+	 * @return Collection<E> mit allen aktuellen Eintraegen
+	 */
+	public Collection<E> getEntries() {
+
+		ArrayList<E> result = new ArrayList<E>();
+
+		for (Entry e : current) {
+			result.add(e.getValue());
+		}
+
 		return result;
 	}
 
@@ -120,9 +142,9 @@ public class ArchivList<E> implements Archiv<E> {
 
 	@Override
 	public void clear() {
-		
-		for(Entry ent : current) {
-			
+
+		for (Entry ent : current) {
+
 			remove(ent.getValue());
 		}
 	}
@@ -144,45 +166,52 @@ public class ArchivList<E> implements Archiv<E> {
 
 	@Override
 	public Iterator<E> iterator() {
-		
+
 		Collection<E> temp = new ArrayList<E>();
-		
-		for(Entry ent : current) {
-			
+
+		for (Entry ent : current) {
+
 			temp.add(ent.getValue());
 		}
-		
-		return temp.iterator();	
+
+		return temp.iterator();
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public boolean remove(Object o) {
+		return this.remove((E) o, new Date());
 	}
 
 	@Override
-	public boolean remove(Object o) {
-		return this.remove((E)o, new Date());
-	}
-	
-	@Override
 	public boolean remove(E elem, Date time) {
-		
-		if(elem == null) {
+
+		if (elem == null) {
 			return false;
 		}
-		
-		for(Entry e : current) {
-			
-			if(e.getValue().equals(elem)) {
-				
+
+		for (Entry e : current) {
+
+			if (e.getValue().equals(elem)) {
+
 				e.setDeleted(time);
 				old.add(e);
 				current.remove(e);
-			}
-			else return false;
+			} else
+				return false;
 		}
 		return true;
 	}
 
 	@Override
 	public boolean removeAll(Collection<?> coll) {
-		return current.removeAll(coll);
+		
+		for(Object o : coll) {
+			if(!remove(o))
+				return false;
+		}
+		
+		return true;
 	}
 
 	@Override

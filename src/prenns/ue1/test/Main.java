@@ -3,6 +3,8 @@ package prenns.ue1.test;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collection;
+
 
 import prenns.ue1.*;
 
@@ -28,9 +30,9 @@ public class Main {
 			grp.newEvent(new Probe("Wopfing", format.parse("05.04.1991 00:00"),
 					format.parse("06.04.1991 00:00"), 12.00));
 			
-			ArrayList<Event> events = new ArrayList<Event>();
+			Collection<Event> events = new ArrayList<Event>();
 			
-			events = grp.getEvent(format.parse("05.01.1991 00:00"), format.parse("31.01.1991 00:00"), Probe.class);
+			events = grp.getEvents(format.parse("05.01.1991 00:00"), format.parse("31.01.1991 00:00"), Probe.class);
 			
 			for(Event e : events) {
 				

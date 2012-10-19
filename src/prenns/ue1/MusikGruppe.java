@@ -1,7 +1,6 @@
 package prenns.ue1;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Collection;
 import java.util.Date;
 
 /**
@@ -11,15 +10,17 @@ public class MusikGruppe {
 
 	private String name;
 	private String ausrichtung;
-	private List<Event> events;
-	private List<Mitglied> members;
+	private EventList events;
+	private Archiv<Mitglied> members;
+	private Archiv<Song> repertoire;
 
 	public MusikGruppe(String name, String ausrichtung) {
 
 		this.name = name;
 		this.ausrichtung = ausrichtung;
-		events = new ArrayList<Event>();
-		members = new ArrayList<Mitglied>();
+		events = new EventList();
+		members = new ArchivList<Mitglied>();
+		repertoire = new ArchivList<Song>();
 
 	}
 	
@@ -42,34 +43,20 @@ public class MusikGruppe {
 	public void newEvent(Event ev) {
 		events.add(ev);
 	}
-
-	public ArrayList<Event> getEvent(Date von, Date bis) {
-
-		return getEvent(von, bis, Event.class);
+	
+	public Collection<Event> getEvents(Date von, Date bis) {
+		return events.getEvent(von, bis);
+	}
+	
+	public Collection<Event> getEvents(Date von, Date bis, Class<? extends Event> type) {
+		return events.getEvent(von, bis, type);
 	}
 
-	public ArrayList<Event> getEvent(Date von, Date bis,
-			Class<? extends Event> type) {
-
-		ArrayList<Event> gesuchte = new ArrayList<Event>();
-
-		for (Event e : events) {
-
-			if (e.getAnfang().compareTo(bis) <= 0
-					&& von.compareTo(e.getEnde()) <= 0) {
-
-				if (e.getClass() == type) {
-
-					gesuchte.add(e);
-				}
-			}
-		}
-
-		return gesuchte;
+	public void newMember(Mitglied member, Date time) {
+		members.add(member, time);
 	}
-
-	public void newMember(Mitglied member) {
-
-		members.add(member);
+	
+	public void addSong(Song lied, Date time) {
+		repertoire.add(lied, time);
 	}
 }
