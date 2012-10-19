@@ -53,12 +53,20 @@ public class MusikGruppe {
 		return events.getEvent(von, bis, type);
 	}
 
-	public void newMember(Mitglied member, Date time) {
-		members.add(member, time);
+	public boolean newMember(Mitglied member, Date time) {
+		return members.add(member, time);
 	}
 
-	public void addSong(Song lied, Date time) {
-		repertoire.add(lied, time);
+	public boolean removeMember(Mitglied member, Date time) {
+		return members.remove(member, time);
+	}
+
+	public boolean newSong(Song lied, Date time) {
+		return repertoire.add(lied, time);
+	}
+	
+	public boolean removeSong(Song lied, Date time) {
+		return repertoire.remove(lied, time);
 	}
 
 	public Collection<Mitglied> getMembers() {

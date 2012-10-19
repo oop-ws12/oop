@@ -192,11 +192,11 @@ public class ArchivList<E> implements Archiv<E> {
 
 		for (Entry e : current) {
 
-			if (e.getValue().equals(elem)) {
+			if (e.getValue().equals(elem) && current.remove(e)) {
 
 				e.setDeleted(time);
 				old.add(e);
-				current.remove(e);
+				
 			} else
 				return false;
 		}
@@ -205,12 +205,12 @@ public class ArchivList<E> implements Archiv<E> {
 
 	@Override
 	public boolean removeAll(Collection<?> coll) {
-		
-		for(Object o : coll) {
-			if(!remove(o))
+
+		for (Object o : coll) {
+			if (!remove(o))
 				return false;
 		}
-		
+
 		return true;
 	}
 

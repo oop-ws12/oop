@@ -21,7 +21,7 @@ public class EventList extends ArrayList<Event>  {
 			if (e.getAnfang().compareTo(bis) <= 0
 					&& von.compareTo(e.getEnde()) <= 0) {
 
-				if (e.getClass() == type) {
+				if (type.isInstance(e)) {
 
 					gesuchte.add(e);
 				}
