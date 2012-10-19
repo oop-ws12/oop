@@ -36,6 +36,9 @@ public class ArchivList<E> implements Archiv<E> {
 		}
 
 		public void setDeleted(Date deleted) {
+			
+			assert(created.compareTo(deleted) >= 0);
+			
 			this.deleted = deleted;
 		}
 
@@ -154,13 +157,27 @@ public class ArchivList<E> implements Archiv<E> {
 
 	@Override
 	public boolean remove(Object o) {
-		return current.remove(o);
+		return this.remove((E)o, new Date());
 	}
 	
 	@Override
 	public boolean remove(E elem, Date time) {
 		
-		return false;
+		if(elem == null) {
+			return false;
+		}
+		
+		for(Entry e : current) {
+			
+			if(e.getValue().equals(elem)) {
+				
+				e.setDeleted(time);
+				old.add(e);
+				current.remove(e);
+			}
+			else return false;
+		}
+		return true;
 	}
 
 	@Override
