@@ -158,19 +158,15 @@ public class ArchivList<E> implements Archiv<E> {
 
 			Entry<E> e = iterator.next();
 
-			if (e.getValue().equals(elem)) {
+			if (e.getValue().equals(elem) && old.add(e)) {
 
-				old.add(e);
 				e.setDeleted(time);
 				iterator.remove();
-
-			} else
-				return false;
-
+				return true;
+			} 
 		}
-
-		return true;
-
+		return false;
+		
 	}
 
 	@Override

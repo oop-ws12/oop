@@ -60,7 +60,7 @@ public class Main {
 
 		Collection<Mitglied> members = new ArrayList<Mitglied>();
 		
-		boolean test = grp.removeMember(m1, format.parse("08.11.2013"));
+		boolean test = grp.removeMember(m2, format.parse("08.11.2013"));
 
 		System.out.println(test);
 
@@ -70,7 +70,18 @@ public class Main {
 
 			System.out.println(m);
 		}
+		
+		System.out.println("Members am 05.06.2010:");
+		
+		Collection<Mitglied> oldMembers = new ArrayList<Mitglied>();
 
+		oldMembers = grp.getMembers(format.parse("05.06.2010"));
+		
+		for (Mitglied m : oldMembers) {
+
+			System.out.println(m);
+		}
+		
 	}
 
 }
