@@ -1,4 +1,4 @@
-package prenns.ue1;
+package prenns.MusicSystem;
 
 import java.util.Date;
 
@@ -15,10 +15,6 @@ public class Auftritt extends Event {
 		this.gage = gage;
 	}
 
-	public double getGage() {
-		return gage;
-	}
-	
 	@Override
 	public double getBilanz() {
 		return gage;

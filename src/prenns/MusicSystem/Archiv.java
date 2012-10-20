@@ -1,4 +1,4 @@
-package prenns.ue1;
+package prenns.MusicSystem;
 
 import java.util.Collection;
 import java.util.Date;

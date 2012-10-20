@@ -1,11 +1,11 @@
-package prenns.ue1.test;
+package prenns.MusicSystem.test;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import prenns.ue1.*;
+import prenns.MusicSystem.*;
 
 public class Main {
 
@@ -21,7 +21,7 @@ public class Main {
 			MusikGruppe grp = new MusikGruppe("ACDC", "Rock");
 
 			EventTest(grp);
-			//ArchivTest(grp);
+			ArchivTest(grp);
 
 		} catch (ParseException e) {
 			System.out.println(e.getMessage());
@@ -44,9 +44,12 @@ public class Main {
 
 		events = grp.getEvents(format.parse("05.01.1991"),
 				format.parse("31.01.1992"), Event.class);
+
+		double bilanz = grp.getBilanz(format.parse("01.01.1991"),
+				format.parse("31.12.1991"), Probe.class);
 		
-		double bilanz = grp.getBilanz(format.parse("01.01.1991"), format.parse("31.12.1991"), Probe.class);
-		
+		System.out.println(bilanz);
+
 		assert (bilanz == -24.0);
 		assert (events.size() == 3);
 	}

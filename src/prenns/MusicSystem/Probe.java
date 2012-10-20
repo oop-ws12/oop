@@ -1,4 +1,4 @@
-package prenns.ue1;
+package prenns.MusicSystem;
 
 import java.util.Date;
 
@@ -13,10 +13,6 @@ public class Probe extends Event {
 	
 		super(ort, anfang, ende);
 		this.miete = miete;
-	}
-	
-	public double getMiete() {
-		return miete;	
 	}
 	
 	@Override

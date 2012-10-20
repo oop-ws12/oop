@@ -1,4 +1,4 @@
-package prenns.ue1;
+package prenns.MusicSystem;
 
 import java.util.Collection;
 import java.util.Date;
@@ -22,22 +22,6 @@ public class MusikGruppe {
 		members = new ArchivList<Mitglied>();
 		repertoire = new ArchivList<Song>();
 
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getAusrichtung() {
-		return ausrichtung;
-	}
-
-	public void setAusrichtung(String ausrichtung) {
-		this.ausrichtung = ausrichtung;
 	}
 
 	public void newEvent(Event ev) {
@@ -64,7 +48,7 @@ public class MusikGruppe {
 	public boolean newSong(Song lied, Date time) {
 		return repertoire.add(lied, time);
 	}
-	
+
 	public boolean removeSong(Song lied, Date time) {
 		return repertoire.remove(lied, time);
 	}
@@ -84,12 +68,18 @@ public class MusikGruppe {
 	public Collection<Song> getSongs(Date time) {
 		return repertoire.getOldEntries(time);
 	}
-	
+
 	public double getBilanz(Date von, Date bis) {
 		return events.getBilanz(von, bis);
 	}
-	
+
 	public double getBilanz(Date von, Date bis, Class<? extends Event> type) {
 		return events.getBilanz(von, bis, type);
+	}
+
+	@Override
+	public String toString() {
+
+		return "Name= " + name + ", " + "Ausrichtung= " + ausrichtung;
 	}
 }
