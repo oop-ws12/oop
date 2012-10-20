@@ -16,51 +16,14 @@ import java.util.List;
  */
 public class ArchivList<E> implements Archiv<E> {
 
-	public class Entry {
-
-		private E value;
-		private Date created;
-		private Date deleted;
-
-		public Entry(E value) {
-			this.value = value;
-		}
-
-		public Entry(E value, Date created) {
-
-			this.value = value;
-			this.created = created;
-		}
-
-		public Date getDeleted() {
-			return deleted;
-		}
-
-		public void setDeleted(Date deleted) {
-
-			assert (created.compareTo(deleted) >= 0);
-
-			this.deleted = deleted;
-		}
-
-		public E getValue() {
-			return value;
-		}
-
-		public Date getCreated() {
-			return created;
-		}
-
-	}
-
 	// Liste der aktuellen Elemente
-	private List<Entry> current;
-	private List<Entry> old;
+	private List<Entry<E>> current;
+	private List<Entry<E>> old;
 
 	public ArchivList() {
 
-		this.current = new ArrayList<Entry>();
-		this.old = new ArrayList<Entry>();
+		this.current = new ArrayList<Entry<E>>();
+		this.old = new ArrayList<Entry<E>>();
 	}
 
 	/**
@@ -74,14 +37,14 @@ public class ArchivList<E> implements Archiv<E> {
 
 		Collection<E> result = new ArrayList<E>();
 
-		for (Entry ent : current) {
+		for (Entry<E> ent : current) {
 
 			if (ent.getCreated().compareTo(zeitpunkt) <= 0) {
 				result.add(ent.getValue());
 			}
 		}
 
-		for (Entry entr : old) {
+		for (Entry<E> entr : old) {
 
 			if (entr.getCreated().compareTo(zeitpunkt) <= 0
 					&& entr.getDeleted().compareTo(zeitpunkt) >= 0) {
@@ -101,7 +64,7 @@ public class ArchivList<E> implements Archiv<E> {
 
 		ArrayList<E> result = new ArrayList<E>();
 
-		for (Entry e : current) {
+		for (Entry<E> e : current) {
 			result.add(e.getValue());
 		}
 
@@ -110,7 +73,7 @@ public class ArchivList<E> implements Archiv<E> {
 
 	@Override
 	public boolean add(E elem) {
-		return current.add(new Entry(elem));
+		return current.add(new Entry<E>(elem));
 	}
 
 	/**
@@ -123,17 +86,17 @@ public class ArchivList<E> implements Archiv<E> {
 	@Override
 	public boolean add(E elem, Date time) {
 
-		return current.add(new Entry(elem, time));
+		return current.add(new Entry<E>(elem, time));
 	}
 
 	@Override
 	public boolean addAll(Collection<? extends E> coll) {
 
-		Collection<Entry> temp = new ArrayList<Entry>();
+		Collection<Entry<E>> temp = new ArrayList<Entry<E>>();
 
 		for (E elem : coll) {
 
-			temp.add(new Entry(elem));
+			temp.add(new Entry<E>(elem));
 		}
 
 		return current.addAll(temp);
@@ -143,7 +106,7 @@ public class ArchivList<E> implements Archiv<E> {
 	@Override
 	public void clear() {
 
-		for (Entry ent : current) {
+		for (Entry<E> ent : current) {
 
 			remove(ent.getValue());
 		}
@@ -169,7 +132,7 @@ public class ArchivList<E> implements Archiv<E> {
 
 		Collection<E> temp = new ArrayList<E>();
 
-		for (Entry ent : current) {
+		for (Entry<E> ent : current) {
 
 			temp.add(ent.getValue());
 		}
@@ -190,17 +153,24 @@ public class ArchivList<E> implements Archiv<E> {
 			return false;
 		}
 
-		for (Entry e : current) {
+		for (Iterator<Entry<E>> iterator = current.iterator(); iterator
+				.hasNext();) {
 
-			if (e.getValue().equals(elem) && current.remove(e)) {
+			Entry<E> e = iterator.next();
 
-				e.setDeleted(time);
+			if (e.getValue().equals(elem)) {
+
 				old.add(e);
-				
+				e.setDeleted(time);
+				iterator.remove();
+
 			} else
 				return false;
+
 		}
+
 		return true;
+
 	}
 
 	@Override
