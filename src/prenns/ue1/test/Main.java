@@ -21,10 +21,10 @@ public class Main {
 			MusikGruppe grp = new MusikGruppe("ACDC", "Rock");
 
 			EventTest(grp);
-			ArchivTest(grp);
+			//ArchivTest(grp);
 
 		} catch (ParseException e) {
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		}
 
 	}
@@ -44,7 +44,10 @@ public class Main {
 
 		events = grp.getEvents(format.parse("05.01.1991"),
 				format.parse("31.01.1992"), Event.class);
-
+		
+		double bilanz = grp.getBilanz(format.parse("01.01.1991"), format.parse("31.12.1991"), Probe.class);
+		
+		assert (bilanz == -24.0);
 		assert (events.size() == 3);
 	}
 
@@ -59,10 +62,10 @@ public class Main {
 		grp.newMember(m3, format.parse("22.05.1998"));
 
 		Collection<Mitglied> members = new ArrayList<Mitglied>();
-		
-		boolean test = grp.removeMember(m2, format.parse("08.11.2013"));
 
-		System.out.println(test);
+		boolean test = grp.removeMember(m3, format.parse("08.11.2012"));
+
+		assert (test == true);
 
 		members = grp.getMembers();
 
@@ -70,18 +73,18 @@ public class Main {
 
 			System.out.println(m);
 		}
-		
+
 		System.out.println("Members am 05.06.2010:");
-		
+
 		Collection<Mitglied> oldMembers = new ArrayList<Mitglied>();
 
 		oldMembers = grp.getMembers(format.parse("05.06.2010"));
-		
+
 		for (Mitglied m : oldMembers) {
 
 			System.out.println(m);
 		}
-		
+
 	}
 
 }

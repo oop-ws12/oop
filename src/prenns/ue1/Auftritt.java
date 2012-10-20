@@ -18,6 +18,11 @@ public class Auftritt extends Event {
 	public double getGage() {
 		return gage;
 	}
+	
+	@Override
+	public double getBilanz() {
+		return gage;
+	}
 
 	@Override
 	public String toString() {

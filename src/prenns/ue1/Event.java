@@ -49,5 +49,6 @@ public abstract class Event {
 		return "ort=" + ort + ", anfang=" + anfang + ", ende=" + ende;
 	}
 	
+	public abstract double getBilanz();
 	
 }	

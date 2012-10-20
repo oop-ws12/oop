@@ -22,9 +22,10 @@ public class Entry<E> {
 		return deleted;
 	}
 
-	public void setDeleted(Date deleted) {
+	public void setDeleted(Date deleted)throws IllegalArgumentException {
 
-		assert (created.compareTo(deleted) >= 0);
+		if (created.compareTo(deleted) >= 0)
+			throw new IllegalArgumentException("Objekt hat zu diesem Zeitpunkt noch nicht existiert!");
 
 		this.deleted = deleted;
 	}

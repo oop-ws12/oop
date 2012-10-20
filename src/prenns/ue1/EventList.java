@@ -30,4 +30,28 @@ public class EventList extends ArrayList<Event>  {
 
 		return gesuchte;
 	}
+	
+	public double getBilanz(Date von, Date bis) {
+	
+		ArrayList<Event> events = this.getEvent(von, bis);
+		double summe = 0.00;
+		
+		for(Event e : events) {	
+			summe += e.getBilanz();
+		}
+		
+		return summe;
+	}
+	
+	public double getBilanz(Date von, Date bis, Class<? extends Event> type) {
+		
+		ArrayList<Event> events = this.getEvent(von, bis, type);
+		double result = 0.00;
+		
+		for(Event e : events) {
+			result += e.getBilanz();
+		}
+		
+		return result;
+	}
 }

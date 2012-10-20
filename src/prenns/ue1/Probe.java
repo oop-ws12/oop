@@ -18,6 +18,11 @@ public class Probe extends Event {
 	public double getMiete() {
 		return miete;	
 	}
+	
+	@Override
+	public double getBilanz() {
+		return -miete;
+	}
 
 	@Override
 	public String toString() {

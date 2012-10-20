@@ -84,4 +84,12 @@ public class MusikGruppe {
 	public Collection<Song> getSongs(Date time) {
 		return repertoire.getOldEntries(time);
 	}
+	
+	public double getBilanz(Date von, Date bis) {
+		return events.getBilanz(von, bis);
+	}
+	
+	public double getBilanz(Date von, Date bis, Class<? extends Event> type) {
+		return events.getBilanz(von, bis, type);
+	}
 }
