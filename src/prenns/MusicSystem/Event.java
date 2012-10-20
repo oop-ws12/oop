@@ -5,7 +5,7 @@ import java.util.Date;
 /**
  * @author Alexander Prennsberger
  */
-public class Event {
+public abstract class Event {
 
 	private String ort;
 	private Date anfang;
@@ -23,24 +23,12 @@ public class Event {
 					"Anfangsdatum ist groesser als Enddatum!");
 	}
 	
-	/**
-	 *  Kopierkonstruktor
-	 *  @param e zu kopierendes Element
-	 */
-	public Event(Event e) {
-		
-		this.ort = e.ort;
-		this.anfang = e.anfang;
-		this.ende = e.ende;
-	}
-	
-	public double getBilanz(){
-		return 0.00;
-	}
 
-	public void verschiebeAuf(Date time) {		
-		anfang = time;
-			
+	public abstract double getBilanz();
+
+	public void verschiebeAuf(Date begin, Date end) {		
+		anfang = begin;
+		ende = end;
 	}
 	
 	public String getOrt() {

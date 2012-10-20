@@ -5,9 +5,8 @@ import java.util.Date;
 
 @SuppressWarnings("serial")
 public class EventList extends ArrayList<Event>  {
-
-	private EventStack stack = new EventStack();
 	
+	EventStack stack = new EventStack();
 	
 	public ArrayList<Event> getEvent(Date von, Date bis) {
 
@@ -49,17 +48,10 @@ public class EventList extends ArrayList<Event>  {
 		}
 		
 		return result;
-	}
-
-	public void verschiebeEvent(Event e, Date time) {
-		
-		Event temp = new Event(e);
-		
-		stack.push(temp);
-		
-		e.verschiebeAuf(time);
+	}	
 	
+	public boolean bearbeite(Event e) {
+		return false;
 	}
-	
 }
 
