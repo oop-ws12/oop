@@ -22,4 +22,9 @@ public class Auftritt extends Event {
 	public double abrechnung() {
 		return gage;
 	}
+
+	@Override
+	public String toString() {
+		return "Auftritt [gage=" + getGage() + ", ort=" + getOrt() + "]";
+	}
 }

@@ -10,8 +10,7 @@ public class MusikGruppeTest extends UnitTest {
 	private static final DateFormat date = new SimpleDateFormat("d.M.y H:m");
 
 	@Override
-	public void start() {		
-		desc("Erzeuge Musikgruppe Oberkrainer mit Ausrichtung Volksmusik");
+	public void start() {
 		MusikGruppe g1 = new MusikGruppe("Oberkrainer", "Volksmusik");
 
 		try {
@@ -30,15 +29,12 @@ public class MusikGruppeTest extends UnitTest {
 	private Iterable<Event> getEvents() throws ParseException {
 		List<Event> e = new ArrayList<Event>();
 		
-		desc("Fuege hinzu: Probe in Wopfing am 10.02.2012 19:00 mit Kosten 20");
 		e.add(new Probe("Wopfing", date.parse("10.02.2012 19:00"), 
 				date.parse("10.02.2012 22:00"), 20));
 
-		desc("Fuege hinzu: Probe in Wr. Neustadt am 20.02.2012 19:00 mit Kosten 20");
 		e.add(new Probe("Wr. Neustadt", date.parse("20.02.2012 19:00"), 
 				date.parse("20.02.2012 22:00"), 20));
 
-		desc("Fuege hinzu: Auftritt in Wopfing am 21.02.2012 18:00 mit Gage 555");
 		e.add(new Auftritt("Wopfing", date.parse("21.02.2012 18:00"), 
 				date.parse("21.02.2012 24:00"), 555));
 

@@ -22,4 +22,10 @@ public class Probe extends Event {
 	public double abrechnung() {
 		return -raumMiete;
 	}
+
+	@Override
+	public String toString() {
+		return "Probe [raummiete=" + getRaumMiete() + ", ort=" + getOrt() + "]";
+	}
+
 }

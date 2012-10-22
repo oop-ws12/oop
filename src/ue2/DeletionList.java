@@ -207,7 +207,7 @@ public class DeletionList<T> implements DeletionCollection<T> {
 	public Object[] toArray() {
 		Object[] items = new Object[size()];
 		for (int i = 0; i < entries.size(); ++i) {
-			items[i] = entries.get(i);
+			items[i] = entries.get(i).getValue();
 		}
 		return items;
 	}

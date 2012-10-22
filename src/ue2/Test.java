@@ -13,6 +13,15 @@ public class Test {
 			u.start();
 		}
 
+		System.out.println("\n\nSpezifikationen\n\n");
+
+		List<SpecificationTest> spec = new ArrayList<SpecificationTest>();
+		spec.add(new EventPlanungSpec());
+
+		for (SpecificationTest u : spec) {
+			u.start();
+		}
+
 		System.out.println("OK");
 	}
 }

@@ -34,4 +34,9 @@ public class Mitglied {
 		this.telefon = telefon;
 		this.instrument = instrument;
 	}
+
+	@Override
+	public String toString() {
+		return "Mitglied [name=" + name + ", instrument=" + instrument + "]";
+	}
 }

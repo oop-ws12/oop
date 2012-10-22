@@ -27,15 +27,15 @@ public class DeletionListTest extends UnitTest {
 		l.add("s4", z2);
 
 		ok(l.list().size() == 4);
-		ok( l.list(z1).size() == 3);
+		ok(l.list(z1).size() == 3);
 
 		ok(l.remove("s4"));
-		ok( l.list().size() == 3);
-		ok( l.list(z1).size() == 3);
+		ok(l.list().size() == 3);
+		ok(l.list(z1).size() == 3);
 
 		l.remove("s1");
-		ok( l.list().size() == 2);
-		ok( l.list(z1).size() == 3);
+		ok(l.list().size() == 2);
+		ok(l.list(z1).size() == 3);
 	}
 
 }
