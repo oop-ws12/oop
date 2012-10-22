@@ -5,7 +5,7 @@ import java.util.Date;
 public class Auftritt extends Event {
 	private double gage;
 	
-	public Auftritt(String ort, Date beginn, Date end, double gage) {
+	public Auftritt(Ort ort, Date beginn, Date end, double gage) {
 		super(ort, beginn, end);
 		this.gage = gage;
 	}

@@ -18,28 +18,31 @@ public class Ort {
 		return name;
 	}
 
-	public boolean addInfra(Art type, String anfahrt) {
+	public boolean addInfra(EventType type, String anfahrt) {
 
 		return infra.add(new Infrastruktur(type, anfahrt));
 	}
-
-	public Collection<Infrastruktur> getInfra() {
-
-		return new ArrayList<Infrastruktur>(infra);
-	}
-
-	public Collection<Infrastruktur> getIdealInfra() {
+	
+	/**
+	 * Gibt die wichtigsten Infrastrukturen im Ort zurueck
+	 * @return Collection mit den wichtigsten Infrastrukturen
+	 */
+	public Collection<Infrastruktur> getImportantInfra() {
 
 		Collection<Infrastruktur> result = new ArrayList<Infrastruktur>();
-
-		for (Infrastruktur inf : infra) {
-
-			if (inf.getType().equals("PROBERAUM")) {
-				result.add(inf);
-			}
-		}
 		
+	
 		return result;
 	}
+	
+	/**
+	 * Prueft ob der Ort eine geeignet Infrastruktur fuer das uebergebene Event besitzt
+	 * @param type Type des Events (Auftritt/Probe)
+	 * @return true falls der Ort eine geeignete Infrastuktur bestitzt, false sonst
+	 */
+	public boolean hasIdealInfra(EventType type) {
 
+
+		return false;
+	}
 }

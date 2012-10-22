@@ -5,7 +5,7 @@ import java.util.Date;
 public class Probe extends Event {
 	private double raumMiete;
 
-	public Probe(String ort, Date beginn, Date end, double raumMiete) {
+	public Probe(Ort ort, Date beginn, Date end, double raumMiete) {
 		super(ort, beginn, end);
 		this.raumMiete = raumMiete;
 	}

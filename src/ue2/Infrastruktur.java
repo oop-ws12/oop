@@ -1,23 +1,21 @@
 package ue2;
 
-
 public class Infrastruktur {
-	
-	private Art type;
+
+	private EventType type;
 	private String anfahrt;
-	
-	public Infrastruktur(Art type, String anfahrt) {
-		
+
+	public Infrastruktur(EventType type, String anfahrt) {
+
 		this.type = type;
 		this.anfahrt = anfahrt;
 	}
 
-	public Art getType() {
+	public EventType getType() {
 		return type;
 	}
 
 	public String getAnfahrt() {
 		return anfahrt;
-	}	
-	
+	}
 }
