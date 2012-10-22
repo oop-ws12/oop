@@ -6,7 +6,6 @@ import java.util.Date;
 @SuppressWarnings("serial")
 public class EventList extends ArrayList<Event>  {
 	
-	EventStack stack = new EventStack();
 	
 	public ArrayList<Event> getEvent(Date von, Date bis) {
 

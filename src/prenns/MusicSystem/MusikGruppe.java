@@ -29,11 +29,13 @@ public class MusikGruppe {
 	}
 
 	public Collection<Event> getEvents(Date von, Date bis) {
+
 		return events.getEvent(von, bis);
 	}
 
 	public Collection<Event> getEvents(Date von, Date bis,
 			Class<? extends Event> type) {
+
 		return events.getEvent(von, bis, type);
 	}
 
