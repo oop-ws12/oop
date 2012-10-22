@@ -12,8 +12,7 @@ import java.util.List;
 /**
  * Eine Liste von Events.
  */
-@SuppressWarnings("serial")
-public class EventList extends ArrayList<Event> {
+public class EventList extends DeletionList<Event> {
 	/**
 	 * Listet Events eines bestimmten Typs zu einem bestimmten Zeitraum.
 	 * 

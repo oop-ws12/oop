@@ -52,6 +52,10 @@ public class MusikGruppe {
 		return events.list(von, bis, type);
 	}
 
+	public Entry<Event> getEventEntry(Event event) {
+		return events.find(event);
+	}
+
 	public boolean addMember(Mitglied member, Date time) {
 		return mitglieder.add(member, time);
 	}

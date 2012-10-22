@@ -17,6 +17,7 @@ public class Test {
 
 		List<SpecificationTest> spec = new ArrayList<SpecificationTest>();
 		spec.add(new EventPlanungSpec());
+		spec.add(new ChangeEventSpec());
 
 		for (SpecificationTest u : spec) {
 			u.start();

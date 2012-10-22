@@ -10,12 +10,19 @@ public class Auftritt extends Event {
 		this.gage = gage;
 	}
 
+	public Auftritt(Auftritt o) {
+		super(o);
+		this.gage = o.gage;
+	}
+
 	public double getGage() {
 		return gage;
 	}
 
 	public void setGage(double gage) {
+		this.observers.before(changed);
 		this.gage = gage;
+		this.observers.fire(changed);
 	}
 
 	@Override
@@ -30,6 +37,6 @@ public class Auftritt extends Event {
 
 	@Override
 	public Event copy() {
-		return new Auftritt(getOrt(), getBeginn(), getEnde(), getGage());
+		return new Auftritt(this);
 	}
 }

@@ -11,7 +11,7 @@ public class DeletedEntry<T extends Model<T>> extends Entry<T> {
 	private Date deletedOn;
 
 	public DeletedEntry(Entry<T> value, Date deleted) {
-		super(value.getValue(), value.getInsertOn());
+		super(value);
 		deletedOn = deleted;
 
 		assert getInsertOn().compareTo(deletedOn) <= 0;

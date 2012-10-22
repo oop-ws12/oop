@@ -45,17 +45,11 @@ public class DeletionList<T extends Model<T>> implements DeletionCollection<T> {
 		this.deleted = new ArrayList<DeletedEntry<T>>();
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	public boolean add(T value) {
 		return add((T) value, new Date());
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	public boolean add(T value, Date time) {
 		if (value == null) {
@@ -65,17 +59,11 @@ public class DeletionList<T extends Model<T>> implements DeletionCollection<T> {
 		return entries.add(new Entry<T>(value, time));
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	public Collection<Entry<T>> list() {
 		return entries;
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	public Collection<Entry<T>> list(Date when) {
 		List<Entry<T>> all = new ArrayList<Entry<T>>();
@@ -95,9 +83,6 @@ public class DeletionList<T extends Model<T>> implements DeletionCollection<T> {
 		return all;
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	public boolean remove(Object value) {
 		try {
@@ -107,9 +92,6 @@ public class DeletionList<T extends Model<T>> implements DeletionCollection<T> {
 		}
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	public boolean remove(T value, Date time) {
 		if (value == null) {
 			return false;
@@ -125,9 +107,6 @@ public class DeletionList<T extends Model<T>> implements DeletionCollection<T> {
 		return false;
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	public boolean addAll(Collection<? extends T> c) {
 		for (T item : c) {
@@ -138,9 +117,6 @@ public class DeletionList<T extends Model<T>> implements DeletionCollection<T> {
 		return true;
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	public void clear() {
 		for (Entry<T> item : entries) {
@@ -148,41 +124,26 @@ public class DeletionList<T extends Model<T>> implements DeletionCollection<T> {
 		}
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	public boolean contains(Object o) {
 		return entries.contains(o);
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	public boolean containsAll(Collection<?> c) {
 		return entries.containsAll(c);
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	public boolean isEmpty() {
 		return entries.isEmpty();
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	public Iterator<T> iterator() {
 		return new DeletionListIterator(entries.iterator());
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	public boolean removeAll(Collection<?> c) {
 		for (Object o : c) {
@@ -194,17 +155,11 @@ public class DeletionList<T extends Model<T>> implements DeletionCollection<T> {
 		return true;
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	public int size() {
 		return entries.size();
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	public Object[] toArray() {
 		Object[] items = new Object[size()];
@@ -214,19 +169,30 @@ public class DeletionList<T extends Model<T>> implements DeletionCollection<T> {
 		return items;
 	}
 
-	/**
-	 * Not supported.
-	 */
 	@Override
 	public <E> E[] toArray(E[] a) {
-		throw new UnsupportedOperationException();
+		return entries.toArray(a);
 	}
 
-	/**
-	 * Not supported.
-	 */
 	@Override
 	public boolean retainAll(Collection<?> c) {
-		throw new UnsupportedOperationException();
+		return entries.retainAll(c);
+	}
+
+	@Override
+	public Entry<T> find(T item) {
+		for (Entry<T> t : entries) {
+			if (t.getValue() == item) {
+				return t;
+			}
+		}
+
+		for (Entry<T> t : deleted) {
+			if (t.getValue() == item) {
+				return t;
+			}
+		}
+
+		return null;
 	}
 }
