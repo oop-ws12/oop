@@ -1,13 +1,7 @@
 package ue2;
 
-public abstract class TestCase {
-	protected void group(String d) {
-		System.out.println("Teste " + d);
-	}
-
-	protected void desc(String d) {
-		System.out.println("  " + d);
-	}
+public abstract class SpecificationTest extends AbstractTest {
+	protected abstract String getSpecification();
 
 	protected void ok(boolean cond, String d) {
 		System.out.print("  Test: " + d + ": ");
@@ -17,6 +11,12 @@ public abstract class TestCase {
 			System.out.println("Fehler");
 			throw new RuntimeException();
 		}
+	}
+
+	@Override
+	public void start() {
+		System.out.println("Spezifikation: " + getSpecification());
+		test();
 	}
 
 	public abstract void test();

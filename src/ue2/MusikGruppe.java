@@ -1,8 +1,7 @@
 package ue2;
 
-import ue1.lists.DeletionCollection;
-import ue1.lists.DeletionList;
-import ue1.lists.EventList;
+import java.util.Collection;
+import java.util.Date;
 
 /**
  * Stellt eine Musikgruppe dar.
@@ -40,15 +39,56 @@ public class MusikGruppe {
 		this.ausrichtung = ausrichtung;
 	}
 
-	public DeletionCollection<Mitglied> getMitglieder() {
+	public void addEvent(Event ev) {
+		events.add(ev);
+	}
+
+	public Collection<Event> getEvents(Date von, Date bis) {
+		return events.list(von, bis);
+	}
+
+	public Collection<Event> getEvents(Date von, Date bis,
+			Class<? extends Event> type) {
+		return events.list(von, bis, type);
+	}
+
+	public boolean addMember(Mitglied member, Date time) {
+		return mitglieder.add(member, time);
+	}
+
+	public boolean removeMember(Mitglied member, Date time) {
+		return mitglieder.remove(member, time);
+	}
+
+	public boolean addSong(Lied lied, Date time) {
+		return repertoire.add(lied, time);
+	}
+
+	public boolean removeSong(Lied lied, Date time) {
+		return repertoire.remove(lied, time);
+	}
+
+	public Collection<Mitglied> getMembers() {
 		return mitglieder;
 	}
 
-	public DeletionCollection<Lied> getRepertoire() {
+	public Collection<Entry<Mitglied>> getMembers(Date time) {
+		return mitglieder.list(time);
+	}
+
+	public Collection<Lied> getSongs() {
 		return repertoire;
 	}
 
-	public EventList getEvents() {
-		return events;
+	public Collection<Entry<Lied>> getSongs(Date time) {
+		return repertoire.list(time);
+	}
+
+	public double getBilanz(Date von, Date bis) {
+		return events.summe(von, bis);
+	}
+
+	public double getBilanz(Date von, Date bis, Class<? extends Event> type) {
+		return events.summe(von, bis, type);
 	}
 }
