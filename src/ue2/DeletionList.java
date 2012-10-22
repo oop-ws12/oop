@@ -13,7 +13,7 @@ import java.util.List;
  * @param <T>
  *            Type
  */
-public class DeletionList<T> implements DeletionCollection<T> {
+public class DeletionList<T extends Model<T>> implements DeletionCollection<T> {
 	public class DeletionListIterator implements Iterator<T> {
 		private Iterator<Entry<T>> entries;
 
@@ -48,9 +48,8 @@ public class DeletionList<T> implements DeletionCollection<T> {
 	/**
 	 * {@inheritDoc}
 	 */
-	@SuppressWarnings("unchecked")
 	@Override
-	public boolean add(Object value) {
+	public boolean add(T value) {
 		return add((T) value, new Date());
 	}
 
@@ -99,10 +98,13 @@ public class DeletionList<T> implements DeletionCollection<T> {
 	/**
 	 * {@inheritDoc}
 	 */
-	@SuppressWarnings("unchecked")
 	@Override
 	public boolean remove(Object value) {
-		return remove((T) value, new Date());
+		try {
+			return remove((T) value, new Date());
+		} catch (ClassCastException e) {
+			return false;
+		}
 	}
 
 	/**

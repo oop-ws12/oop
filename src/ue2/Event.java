@@ -5,7 +5,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-public abstract class Event {
+public abstract class Event extends Model<Event> {
 	private int score;
 	private Map<Mitglied, String> votes;
 

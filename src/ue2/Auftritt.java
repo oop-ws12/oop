@@ -27,4 +27,9 @@ public class Auftritt extends Event {
 	public String toString() {
 		return "Auftritt [gage=" + getGage() + ", ort=" + getOrt() + "]";
 	}
+
+	@Override
+	public Event copy() {
+		return new Auftritt(getOrt(), getBeginn(), getEnde(), getGage());
+	}
 }

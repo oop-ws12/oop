@@ -7,7 +7,7 @@ import java.util.Date;
  * 
  * @param <T>
  */
-public class DeletedEntry<T> extends Entry<T> {
+public class DeletedEntry<T extends Model<T>> extends Entry<T> {
 	private Date deletedOn;
 
 	public DeletedEntry(Entry<T> value, Date deleted) {

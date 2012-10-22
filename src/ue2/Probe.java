@@ -28,4 +28,9 @@ public class Probe extends Event {
 		return "Probe [raummiete=" + getRaumMiete() + ", ort=" + getOrt() + "]";
 	}
 
+	@Override
+	public Event copy() {
+		return new Probe(getOrt(), getBeginn(), getEnde(), getRaumMiete());
+	}
+
 }

@@ -11,11 +11,6 @@ public abstract class UnitTest extends AbstractTest {
 	}
 
 	protected void ok(boolean cond, String text) {
-		if (cond) {
-			System.out.print(".");
-		} else {
-			System.out.println("Fehler");
-			throw new RuntimeException();
-		}
+		ok(cond);
 	}
 }
