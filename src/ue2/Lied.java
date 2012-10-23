@@ -13,7 +13,7 @@ public class Lied extends Model<Lied> {
 	public Lied(String name, int duration) {
 		this.name = name;
 		this.duration = duration;
-		this.varianten = new HashMap<String, Integer>();+
+		this.varianten = new HashMap<String, Integer>();
 		this.varianten.put(name, duration);
 	}
 	

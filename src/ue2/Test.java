@@ -20,11 +20,14 @@ public class Test {
 		spec.add(new SpecEventPlanung());
 		spec.add(new SpecChangeEvent());
 		spec.add(new SpecEventInform());
+		spec.add(new SpecLiedVarianten());
+		
 		spec.add(new SpecOrtverwaltung());
 		spec.add(new SpecFinanzverwaltung());
 
 		for (SpecificationTest u : spec) {
 			u.start();
+			System.out.println("\n\n---------------\n");
 		}
 
 		System.out.println("OK");
