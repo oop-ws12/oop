@@ -22,6 +22,7 @@ public class Test {
 		spec.add(new SpecEventInform());
 		spec.add(new SpecOrtverwaltung());
 		spec.add(new SpecFinanzverwaltung());
+		spec.add(new SpecErsatzMitglieder());
 
 		for (SpecificationTest u : spec) {
 			u.start();

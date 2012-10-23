@@ -16,14 +16,16 @@ class SpecEventPlanung extends SpecificationTest {
 	}
 
 	@Override
-	public void test() throws ParseException {
+	public void test() throws ParseException, GesperrtException {
 		MusikGruppe g = getDefaultMusikGruppe();
 		ArrayList<Mitglied> members = new ArrayList<Mitglied>(g.getMembers());
-		
-		Event e = new Auftritt(new Ort("Wien"), date.parse("01.02.2012"), date.parse("02.02.2012"), new BigDecimal(120));
+
+		Event e = new Auftritt(new Ort("Wien"), date.parse("01.02.2012"),
+				date.parse("02.02.2012"), new BigDecimal(120), g.getMembers(),
+				date.parse("23.01.2012"), date.parse("31.01.2012"), 2);
 		desc("Erzeuge: " + e.toString());
 		ok(!e.isCanceled(), "Event findet statt");
-		
+
 		desc("Member " + members.get(0).toString() + " votet dafuer.");
 		e.addVote(members.get(0), true, "OK");
 		ok(e.getVotes().size() == 1, "Anzahl der Votes = 1");
@@ -36,7 +38,7 @@ class SpecEventPlanung extends SpecificationTest {
 		e.addVote(members.get(1), false, "Keine Zeit");
 		e.addVote(members.get(2), false, "Nope");
 		e.addVote(members.get(3), false, "Nono");
-		
+
 		ok(e.getVotes().size() == 4, "Anzahl der Votes = 4");
 		ok(e.isCanceled(), "Event wurde abgesagt");
 	}

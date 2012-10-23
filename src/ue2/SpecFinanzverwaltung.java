@@ -40,7 +40,7 @@ public class SpecFinanzverwaltung extends SpecificationTest {
 				"Bilanzergebnis fuer Jahr 2012 is 555 Gewinn");
 
 		desc("Bilanz fuer alle Werbekosten im Jahr 2012");
-		ok(g1.getSonstigeBilanz(date.parse("01.01.2012"),
+		ok(g1.getBilanz(date.parse("01.01.2012"),
 				date.parse("31.12.2012"), "Werbekosten").compareTo(
 				new BigDecimal(-200)) == 0, "-200 Kosten fuer Werbeung im Jahr 2012");
 

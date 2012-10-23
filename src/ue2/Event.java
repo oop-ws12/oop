@@ -1,5 +1,7 @@
 package ue2;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
@@ -17,15 +19,16 @@ public abstract class Event extends Model<Event> implements Finanzen {
 	private Date beginn;
 	private Date ende;
 	private Ort ort;
-
+	private Collection<Mitglied> setup;
 	
-	public Event(Ort ort, Date beginn, Date end) {
+	public Event(Ort ort, Date beginn, Date end, Collection<Mitglied> setup) {
 		this.score = 0;
 		this.votes = new HashMap<Mitglied, String>();
 
 		this.ort = ort;
 		this.beginn = beginn;
 		this.ende = end;
+		this.setup = setup;
 	}
 
 	public Event(Event o) {
@@ -34,6 +37,7 @@ public abstract class Event extends Model<Event> implements Finanzen {
 		this.ende = new Date(o.ende.getTime());
 		this.score = o.score;
 		this.votes = new HashMap<Mitglied, String>(o.votes);
+		this.setup = new ArrayList<Mitglied>(o.setup);
 	}
 	
 	/**
@@ -57,6 +61,10 @@ public abstract class Event extends Model<Event> implements Finanzen {
 	
 	public int getScore() {
 		return score;
+	}
+	
+	public Collection<Mitglied> getSetup() {
+		return setup;
 	}
 
 	public Map<Mitglied, String> getVotes() {

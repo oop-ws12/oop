@@ -111,16 +111,48 @@ public class MusikGruppe {
 		return finanzen.add(f);
 	}
 	
+	/**
+	 * Summiert alle Finanzen im angegebenen Zeitraum
+	 * @param von
+	 * @param bis
+	 * @return
+	 */
 	public BigDecimal getBilanz(Date von, Date bis) {
 		return finanzen.summe(von, bis);
 	}
 	
-	public BigDecimal getEventBilanz(Date von, Date bis, Class<? extends Event> type) {
+	/**
+	 * Summiert die Bilanz bestimmter Events (Auftritte oder Proben) im angegebenen Zeitraum
+	 * @param von
+	 * @param bis
+	 * @param type Probe oder Auftritt
+	 * @return
+	 */
+	public BigDecimal getBilanz(Date von, Date bis, Class<? extends Event> type) {
 		return finanzen.summe(von, bis, type);
 	}
 	
-	public BigDecimal getSonstigeBilanz(Date von, Date bis, String art) {
+	/**
+	 * Summiert bestimmte Allgemeinen Finanzen im angegebenen Zeitraum
+	 * @param von
+	 * @param bis
+	 * @param art Filter
+	 * @return
+	 */
+	public BigDecimal getBilanz(Date von, Date bis, String art) {
 		return finanzen.summe(von, bis, art);
+	}
+	
+	/**
+	 * Macht aus einem permanenten Mitglied ein Ersatzmitglied
+	 * @param m
+	 */
+	public void toErsatz(Mitglied m) {
+		m.setErsatz(true);
+	}
+	
+	public void toPermanent(Mitglied m) {
+		m.setErsatz(false);
 	}
 	
 }

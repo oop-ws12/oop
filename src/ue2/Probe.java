@@ -1,6 +1,7 @@
 package ue2;
 
 import java.math.BigDecimal;
+import java.util.Collection;
 import java.util.Date;
 
 /**
@@ -10,9 +11,14 @@ public class Probe extends Event {
 	
 	private BigDecimal raumMiete;
 
-	public Probe(Ort ort, Date beginn, Date end, BigDecimal raumMiete) {
-		super(ort, beginn, end);
+	public Probe(Ort ort, Date beginn, Date end, BigDecimal raumMiete, Collection<Mitglied> setup) {
+		
+		super(ort, beginn, end, setup);
 		this.raumMiete = raumMiete;
+		
+		for(Mitglied m : setup) {
+			m.addProbe(this);
+		}
 	}
 
 	public Probe(Probe o) {
