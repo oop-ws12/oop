@@ -45,18 +45,15 @@ public class DeletionList<T> implements DeletionCollection<T> {
 		this.deleted = new ArrayList<DeletedEntry<T>>();
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@SuppressWarnings("unchecked")
 	@Override
 	public boolean add(Object value) {
-		return add((T) value, new Date());
+		return false;
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
+	public boolean add(T value) {
+		return add(value, new Date());
+	}
+
 	@Override
 	public boolean add(T value, Date time) {
 		if (value == null) {
@@ -66,17 +63,11 @@ public class DeletionList<T> implements DeletionCollection<T> {
 		return entries.add(new Entry<T>(value, time));
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	public Collection<Entry<T>> list() {
 		return entries;
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	public Collection<Entry<T>> list(Date when) {
 		List<Entry<T>> all = new ArrayList<Entry<T>>();
@@ -96,13 +87,13 @@ public class DeletionList<T> implements DeletionCollection<T> {
 		return all;
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@SuppressWarnings("unchecked")
 	@Override
 	public boolean remove(Object value) {
-		return remove((T) value, new Date());
+		return false;
+	}
+	
+	public boolean remove(T value) {
+		remove(value, new Date());
 	}
 
 	/**

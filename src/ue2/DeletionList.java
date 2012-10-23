@@ -92,11 +92,11 @@ class DeletionList<T extends Model<T>> implements DeletionCollection<T>, Observa
 
 	@Override
 	public boolean remove(Object value) {
-		try {
-			return remove((T) value, new Date());
-		} catch (ClassCastException e) {
-			return false;
-		}
+		return false;
+	}
+	
+	public boolean remove(T value) {
+		return remove((T) value, new Date());
 	}
 
 	public boolean remove(T value, Date time) {
