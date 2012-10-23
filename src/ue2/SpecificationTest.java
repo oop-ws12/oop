@@ -4,6 +4,9 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
+/**
+ * Testet eine Spezifikation.
+ */
 public abstract class SpecificationTest extends AbstractTest {
 	protected static final DateFormat date = new SimpleDateFormat("d.M.y");
 

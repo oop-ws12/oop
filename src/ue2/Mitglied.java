@@ -1,6 +1,6 @@
 package ue2;
 
-public class Mitglied {
+public class Mitglied extends Model<Mitglied> implements Observer<ChangedEvent<Event>> {
 	private String name;
 	private String telefon;
 	private String instrument;
@@ -38,5 +38,19 @@ public class Mitglied {
 	@Override
 	public String toString() {
 		return "Mitglied [name=" + name + ", instrument=" + instrument + "]";
+	}
+
+	@Override
+	public Mitglied copy() {
+		return new Mitglied(name, telefon, instrument);
+	}
+
+	@Override
+	public void before(ChangedEvent<Event> event) {
+	}
+
+	@Override
+	public void fired(ChangedEvent<Event> event) {
+		// Event wurde geandert
 	}
 }

@@ -16,7 +16,9 @@ public class Test {
 		System.out.println("\n\nSpezifikationen\n\n");
 
 		List<SpecificationTest> spec = new ArrayList<SpecificationTest>();
-		spec.add(new EventPlanungSpec());
+		spec.add(new SpecEventPlanung());
+		spec.add(new SpecChangeEvent());
+		spec.add(new SpecEventInform());
 
 		for (SpecificationTest u : spec) {
 			u.start();

@@ -3,7 +3,7 @@ package ue2;
 import java.text.ParseException;
 import java.util.ArrayList;
 
-public class EventPlanungSpec extends SpecificationTest {
+class SpecEventPlanung extends SpecificationTest {
 
 	@Override
 	protected String getSpecification() {

@@ -52,12 +52,30 @@ public class MusikGruppe {
 		return events.list(von, bis, type);
 	}
 
+	public Entry<Event> getEventEntry(Event event) {
+		return events.find(event);
+	}
+
+	public boolean addMember(Mitglied member) {
+		return addMember(member, new Date());
+	}
+	
 	public boolean addMember(Mitglied member, Date time) {
-		return mitglieder.add(member, time);
+		if(mitglieder.add(member, time)) {
+			events.addObserver(member);
+			return true;
+		}
+		
+		return false;
 	}
 
 	public boolean removeMember(Mitglied member, Date time) {
-		return mitglieder.remove(member, time);
+		if(mitglieder.remove(member, time)) {
+			events.removeObserver(member);
+			return true;
+		}
+		
+		return false;
 	}
 
 	public boolean addSong(Lied lied, Date time) {

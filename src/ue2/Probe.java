@@ -2,6 +2,9 @@ package ue2;
 
 import java.util.Date;
 
+/**
+ * Stellt eine Probe der MusikGruppe dar.
+ */
 public class Probe extends Event {
 	private double raumMiete;
 
@@ -10,12 +13,19 @@ public class Probe extends Event {
 		this.raumMiete = raumMiete;
 	}
 
+	public Probe(Probe o) {
+		super(o);
+		this.raumMiete = o.raumMiete;
+	}
+
 	public double getRaumMiete() {
 		return raumMiete;
 	}
 
 	public void setRaumMiete(double raumMiete) {
+		this.observers.before(changed);
 		this.raumMiete = raumMiete;
+		this.observers.fire(changed);
 	}
 
 	@Override
@@ -26,6 +36,11 @@ public class Probe extends Event {
 	@Override
 	public String toString() {
 		return "Probe [raummiete=" + getRaumMiete() + ", ort=" + getOrt() + "]";
+	}
+
+	@Override
+	public Event copy() {
+		return new Probe(this);
 	}
 
 }

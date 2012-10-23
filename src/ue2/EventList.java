@@ -8,12 +8,10 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
-
 /**
- * Eine Liste von Events.
+ * Eine Liste von Events der MusikGruppe.
  */
-@SuppressWarnings("serial")
-public class EventList extends ArrayList<Event> {
+public class EventList extends DeletionList<Event> {
 	/**
 	 * Listet Events eines bestimmten Typs zu einem bestimmten Zeitraum.
 	 * 

@@ -1,6 +1,8 @@
 package ue2;
 
-public class Lied {
+// TODO: Kopierkonstruktor
+
+public class Lied extends Model<Lied> {
 	private String name;
 	private int duration;
 
@@ -20,5 +22,10 @@ public class Lied {
 	}
 	public void setDuration(int duration) {
 		this.duration = duration;
+	}
+
+	@Override
+	public Lied copy() {
+		return new Lied(name, duration);
 	}
 }

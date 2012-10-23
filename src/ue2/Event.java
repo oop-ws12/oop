@@ -5,7 +5,12 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-public abstract class Event {
+/**
+ * Stellt ein Event der MusikGruppe dar.
+ */
+public abstract class Event extends Model<Event> {
+	protected ChangedEvent<Event> changed = new ChangedEvent<Event>(this);
+
 	private int score;
 	private Map<Mitglied, String> votes;
 
@@ -21,6 +26,14 @@ public abstract class Event {
 		this.beginn = beginn;
 		this.ende = end;
 	}
+
+	public Event(Event o) {
+		this.ort = o.ort;
+		this.beginn = new Date(o.beginn.getTime());
+		this.ende = new Date(o.ende.getTime());
+		this.score = o.score;
+		this.votes = new HashMap<Mitglied, String>(o.votes);
+	}
 	
 	/**
 	 * Stimmt fuer/gegen das Event.
@@ -34,11 +47,17 @@ public abstract class Event {
 	 */
 	public void addVote(Mitglied m, boolean positive, String comment) {
 		if (!votes.containsKey(m)) {
+			this.observers.before(changed);
 			votes.put(m, comment);
 			score += positive ? 1 : -1;
+			this.observers.fire(changed);
 		}
 	}
 	
+	public int getScore() {
+		return score;
+	}
+
 	public Map<Mitglied, String> getVotes() {
 		return Collections.unmodifiableMap(votes);
 	}
@@ -57,7 +76,9 @@ public abstract class Event {
 	}
 
 	public void setBeginn(Date beginn) {
+		this.observers.before(changed);
 		this.beginn = beginn;
+		this.observers.fire(changed);
 	}
 
 	public Date getEnde() {
@@ -65,7 +86,9 @@ public abstract class Event {
 	}
 
 	public void setEnde(Date ende) {
+		this.observers.before(changed);
 		this.ende = ende;
+		this.observers.fire(changed);
 	}
 
 	public String getOrt() {
@@ -73,9 +96,18 @@ public abstract class Event {
 	}
 
 	public void setOrt(String ort) {
+		this.observers.before(changed);
 		this.ort = ort;
+		this.observers.fire(changed);
 	}
 	
+	public void setZeitraum(Date begin, Date ende) {
+		this.observers.before(changed);
+		this.beginn = begin;
+		this.ende = ende;
+		this.observers.fire(changed);
+	}
+
 	/**
 	 * Liefert die Gesamtkosten bzw. den Gewinn des Events.
 	 * @return Gesamtkosten/Gewinn

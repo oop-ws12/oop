@@ -7,7 +7,7 @@ import java.util.Date;
  * Liste welche Abrufen der Elemente (auch geloeschte) zu einem bestimmten
  * Zeitpunkt unterstuetzt.
  */
-public interface DeletionCollection<E> extends Collection<E> {
+public interface DeletionCollection<E extends Model<E>> extends Collection<E> {
 	/**
 	 * Fuegt ein Element zu einem gegebenen Einfuegezeitpunkt hinzu.
 	 * 
@@ -41,4 +41,12 @@ public interface DeletionCollection<E> extends Collection<E> {
 	 * @return
 	 */
 	public Collection<Entry<E>> list(Date when);
+
+	/**
+	 * Liefert den Eintrag zu dem gesuchten Item.
+	 * 
+	 * @param item
+	 * @return
+	 */
+	public Entry<E> find(E item);
 }
