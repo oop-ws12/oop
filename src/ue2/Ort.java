@@ -39,4 +39,9 @@ public class Ort {
 		
 		return false;
 	}
+
+	@Override
+	public String toString() {
+		return "Ort [" + name + "]";
+	}
 }

@@ -140,10 +140,13 @@ public class ArchivList<E> implements Archiv<E> {
 		return temp.iterator();
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public boolean remove(Object o) {
 		return this.remove((E) o, new Date());
+	}
+	
+	public boolean remove(T o) {
+		remove(o, new Date());
 	}
 
 	@Override

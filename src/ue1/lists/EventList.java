@@ -13,7 +13,6 @@ import ue1.Event;
 /**
  * Eine Liste von Events.
  */
-@SuppressWarnings("serial")
 public class EventList extends ArrayList<Event> {
 	/**
 	 * Listet Events eines bestimmten Typs zu einem bestimmten Zeitraum.

@@ -3,12 +3,8 @@ package prenns.MusicSystem;
 import java.util.ArrayList;
 import java.util.Date;
 
-@SuppressWarnings("serial")
 public class EventList extends ArrayList<Event>  {
-	
-	
 	public ArrayList<Event> getEvent(Date von, Date bis) {
-
 		return getEvent(von, bis, Event.class);
 	}
 
