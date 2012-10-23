@@ -3,25 +3,15 @@ package ue2;
 import java.util.ArrayList;
 import java.util.Collection;
 
-public class Ortverwaltung {
+public class Ortverwaltung extends ArrayList<Ort> {
 
-	private Collection<Ort> orte;
-
-	public Ortverwaltung() {
-
-		this.orte = new ArrayList<Ort>();
-	}
-
-	public boolean addOrt(String name) {
-
-		return orte.add(new Ort(name));
-	}
+	private static final long serialVersionUID = 948533179790990384L;
 
 	public Collection<Ort> getIdealOrte(EventType type) {
 
 		Collection<Ort> result = new ArrayList<Ort>();
 
-		for (Ort o : orte) {
+		for (Ort o : this) {
 
 			if (o.hasIdealInfra(type)) {
 
@@ -30,10 +20,5 @@ public class Ortverwaltung {
 		}
 
 		return result;
-	}
-
-	public Collection<Infrastruktur> getImportantInfra(Ort ort) {
-		
-		return null;
 	}
 }

@@ -1,5 +1,6 @@
 package ue2;
 
+import java.math.BigDecimal;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -29,14 +30,18 @@ public class MusikGruppeTest extends UnitTest {
 	private Iterable<Event> getEvents() throws ParseException {
 		List<Event> e = new ArrayList<Event>();
 		
-		e.add(new Probe("Wopfing", date.parse("10.02.2012 19:00"), 
-				date.parse("10.02.2012 22:00"), 20));
+		Ort o1 = new Ort("Wopfing");
+		Ort o2 = new Ort("Wr. Neustadt");
+		BigDecimal d1 = new BigDecimal(20);
+		
+		e.add(new Probe(o1, date.parse("10.02.2012 19:00"), 
+				date.parse("10.02.2012 22:00"), d1));
 
-		e.add(new Probe("Wr. Neustadt", date.parse("20.02.2012 19:00"), 
-				date.parse("20.02.2012 22:00"), 20));
+		e.add(new Probe(o2, date.parse("20.02.2012 19:00"), 
+				date.parse("20.02.2012 22:00"), d1));
 
-		e.add(new Auftritt("Wopfing", date.parse("21.02.2012 18:00"), 
-				date.parse("21.02.2012 24:00"), 555));
+		e.add(new Auftritt(o1, date.parse("21.02.2012 18:00"), 
+				date.parse("21.02.2012 24:00"), new BigDecimal(555)));
 
 		return e;
 	}
@@ -63,10 +68,10 @@ public class MusikGruppeTest extends UnitTest {
 
 	private void testSumme(MusikGruppe g1) throws ParseException {
 		ok(g1.getBilanz(date.parse("01.02.2012 19:00"),
-				date.parse("30.02.2012 19:00")) == 515,
+				date.parse("30.02.2012 19:00")).compareTo(new BigDecimal(515)) == 0,
 				"Der Gesamtgewinn/Verlust 01.02.2012 19:00-30.02.2012 19:00 ist 515 Gewinn.");
-		ok(g1.getBilanz(date.parse("01.02.2012 19:00"),
-				date.parse("30.02.2012 19:00"), Probe.class) == -40,
+		ok(g1.getEventBilanz(date.parse("01.02.2012 19:00"),
+				date.parse("30.02.2012 19:00"), Probe.class).compareTo(new BigDecimal(-40)) == 0,
 				"Die Gesamtkosten der Proben zw. 01.02.2012 19:00-30.02.2012 19:00 betraegt 40.");
 	}
 }

@@ -8,6 +8,7 @@ public class Test {
 		List<UnitTest> unit = new ArrayList<UnitTest>();
 		unit.add(new DeletionListTest());
 		unit.add(new MusikGruppeTest());
+		unit.add(new OrtTest());
 		
 		for (UnitTest u : unit) {
 			u.start();
@@ -19,6 +20,8 @@ public class Test {
 		spec.add(new SpecEventPlanung());
 		spec.add(new SpecChangeEvent());
 		spec.add(new SpecEventInform());
+		spec.add(new SpecOrtverwaltung());
+		spec.add(new SpecFinanzverwaltung());
 
 		for (SpecificationTest u : spec) {
 			u.start();

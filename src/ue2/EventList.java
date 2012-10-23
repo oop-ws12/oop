@@ -46,31 +46,4 @@ public class EventList extends DeletionList<Event> {
 		return list(begin, end, Event.class);
 	}
 
-	/**
-	 * Berechnet die Gesamtkosten/Gewinn des gegebenen Zeitraumes.
-	 * 
-	 * @param begin
-	 * @param end
-	 * @return Gesamtkosten/Gewinn
-	 */
-	public double summe(Date begin, Date end) {
-		return summe(begin, end, Event.class);
-	}
-
-	/**
-	 * Berechnet die Gesamtkosten/Gewinn des gegebenen Zeitraumes fuer eine
-	 * bestimmte Art von Event.
-	 * 
-	 * @param begin
-	 * @param end
-	 * @return Gesamtkosten/Gewinn
-	 */
-	public double summe(Date begin, Date end, Class<? extends Event> type) {
-		double summe = 0;
-
-		for (Event e : list(begin, end, type))
-			summe += e.abrechnung();
-
-		return summe;
-	}
 }

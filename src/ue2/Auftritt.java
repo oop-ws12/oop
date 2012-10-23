@@ -1,5 +1,6 @@
 package ue2;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 /**
@@ -7,9 +8,9 @@ import java.util.Date;
  * 
  */
 public class Auftritt extends Event {
-	private double gage;
+	private BigDecimal gage;
 	
-	public Auftritt(Ort ort, Date beginn, Date end, double gage) {
+	public Auftritt(Ort ort, Date beginn, Date end, BigDecimal gage) {
 		super(ort, beginn, end);
 		this.gage = gage;
 	}
@@ -19,18 +20,18 @@ public class Auftritt extends Event {
 		this.gage = o.gage;
 	}
 
-	public double getGage() {
+	public BigDecimal getGage() {
 		return gage;
 	}
 
-	public void setGage(double gage) {
+	public void setGage(BigDecimal gage) {
 		this.observers.before(changed);
 		this.gage = gage;
 		this.observers.fire(changed);
 	}
 
 	@Override
-	public double abrechnung() {
+	public BigDecimal getWert() {
 		return gage;
 	}
 

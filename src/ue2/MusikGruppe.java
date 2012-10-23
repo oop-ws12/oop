@@ -1,5 +1,6 @@
 package ue2;
 
+import java.math.BigDecimal;
 import java.util.Collection;
 import java.util.Date;
 
@@ -13,6 +14,7 @@ public class MusikGruppe {
 	private EventList events;
 	private DeletionList<Mitglied> mitglieder;
 	private DeletionList<Lied> repertoire;
+	private Finanzverwaltung finanzen;
 
 	public MusikGruppe(String name, String ausrichtung) {
 		this.name = name;
@@ -21,6 +23,7 @@ public class MusikGruppe {
 		this.events = new EventList();
 		this.mitglieder = new DeletionList<Mitglied>();
 		this.repertoire = new DeletionList<Lied>();
+		this.finanzen = new Finanzverwaltung();
 	}
 
 	public String getName() {
@@ -39,8 +42,10 @@ public class MusikGruppe {
 		this.ausrichtung = ausrichtung;
 	}
 
-	public void addEvent(Event ev) {
-		events.add(ev);
+	public boolean addEvent(Event ev) {
+		
+		return events.add(ev) && finanzen.add(ev);
+
 	}
 
 	public Collection<Event> getEvents(Date von, Date bis) {
@@ -101,12 +106,21 @@ public class MusikGruppe {
 	public Collection<Entry<Lied>> getSongs(Date time) {
 		return repertoire.list(time);
 	}
-
-	public double getBilanz(Date von, Date bis) {
-		return events.summe(von, bis);
+	
+	public boolean addFinanz(AllgemeinFinanzen f) {
+		return finanzen.add(f);
 	}
-
-	public double getBilanz(Date von, Date bis, Class<? extends Event> type) {
-		return events.summe(von, bis, type);
+	
+	public BigDecimal getBilanz(Date von, Date bis) {
+		return finanzen.summe(von, bis);
 	}
+	
+	public BigDecimal getEventBilanz(Date von, Date bis, Class<? extends Event> type) {
+		return finanzen.summe(von, bis, type);
+	}
+	
+	public BigDecimal getSonstigeBilanz(Date von, Date bis, String art) {
+		return finanzen.summe(von, bis, art);
+	}
+	
 }
