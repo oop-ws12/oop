@@ -1,5 +1,8 @@
 package ue2;
 
+/**
+ * Testet eine Einheit.
+ */
 public abstract class UnitTest extends AbstractTest {
 	protected void ok(boolean cond) {
 		if (cond) {

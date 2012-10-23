@@ -1,15 +1,15 @@
 package ue2;
 
 
-public class ChangeEventSpec extends SpecificationTest {
+public class SpecChangeEvent extends SpecificationTest {
 
 	@Override
 	protected String getSpecification() {
 		return "Entfernen oder Aendern einer Probe oder eines Auftritts\n" + 
 				"ist vor allem zur Korrektur falscher Daten notwendig.\n" + 
 				"Dabei sollen die entfernten oder geaederten Daten nicht\n" + 
- "verlorengehen, sondern bei Bedarf wieder rekonstruiert werden\n"
-				+ "koennen.";
+				"verlorengehen, sondern bei Bedarf wieder rekonstruiert werden\n" +
+				"koennen.";
 	}
 
 	@Override

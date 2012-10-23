@@ -8,9 +8,8 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
-
 /**
- * Eine Liste von Events.
+ * Eine Liste von Events der MusikGruppe.
  */
 public class EventList extends DeletionList<Event> {
 	/**

@@ -2,6 +2,10 @@ package ue2;
 
 import java.util.Date;
 
+/**
+ * Stellt einen Auftritt der Musikgruppe dar.
+ * 
+ */
 public class Auftritt extends Event {
 	private double gage;
 	

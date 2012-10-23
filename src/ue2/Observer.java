@@ -1,15 +1,20 @@
 package ue2;
 
+/**
+ * Stellt ein beobachtendes Objekt dar.
+ * 
+ * @param <T>
+ */
 public interface Observer<T extends EventArgs> {
 	/**
-	 * Invoked before the Event is fired.
+	 * Wird aufgerufen bevor das Event ausloest.
 	 * 
 	 * @param event
 	 */
 	void before(T event);
 
 	/**
-	 * Invoked when the Event is fired.
+	 * Wird aufgerufen wenn das Event ausloest.
 	 * 
 	 * @param event
 	 */

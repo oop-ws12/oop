@@ -13,8 +13,8 @@ import java.util.List;
  * @param <T>
  *            Type
  */
-public class DeletionList<T extends Model<T>> implements DeletionCollection<T> {
-	public class DeletionListIterator implements Iterator<T> {
+class DeletionList<T extends Model<T>> implements DeletionCollection<T>, Observable<ChangedEvent<T>> {
+	class DeletionListIterator implements Iterator<T> {
 		private Iterator<Entry<T>> entries;
 
 		public DeletionListIterator(Iterator<Entry<T>> entries) {
@@ -38,11 +38,13 @@ public class DeletionList<T extends Model<T>> implements DeletionCollection<T> {
 	}
 
 	private List<Entry<T>> entries;
-	private List<DeletedEntry<T>> deleted;
+	private List<Entry<T>.DeletedEntry> deleted;
+	private ObserverList<ChangedEvent<T>> observers;
 
 	public DeletionList() {
 		this.entries = new ArrayList<Entry<T>>();
-		this.deleted = new ArrayList<DeletedEntry<T>>();
+		this.deleted = new ArrayList<Entry<T>.DeletedEntry>();
+		this.observers = new ObserverList<ChangedEvent<T>>();
 	}
 
 	@Override
@@ -56,7 +58,12 @@ public class DeletionList<T extends Model<T>> implements DeletionCollection<T> {
 			return false;
 		}
 
-		return entries.add(new Entry<T>(value, time));
+		if(entries.add(new Entry<T>(value, time))) {
+			value.addObserver(observers);
+			return true;
+		}
+		
+		return false;
 	}
 
 	@Override
@@ -74,7 +81,7 @@ public class DeletionList<T extends Model<T>> implements DeletionCollection<T> {
 			}
 		}
 
-		for (DeletedEntry<T> d : deleted) {
+		for (Entry<T>.DeletedEntry d : deleted) {
 			if (d.getInsertOn().compareTo(when) <= 0
 					&& d.getDeletedOn().compareTo(when) >= 0) {
 				all.add(d);
@@ -99,7 +106,8 @@ public class DeletionList<T extends Model<T>> implements DeletionCollection<T> {
 
 		for (Entry<T> t : entries) {
 			if (t.getValue().equals(value) && entries.remove(t)) {
-				deleted.add(new DeletedEntry<T>(t, time));
+				t.getValue().removeObserver(observers);
+				deleted.add(t.new DeletedEntry(t, time));
 				return true;
 			}
 		}
@@ -194,5 +202,15 @@ public class DeletionList<T extends Model<T>> implements DeletionCollection<T> {
 		}
 
 		return null;
+	}
+
+	@Override
+	public void addObserver(Observer<ChangedEvent<T>> observer) {
+		observers.add(observer);
+	}
+
+	@Override
+	public void removeObserver(Observer<ChangedEvent<T>> observer) {
+		observers.remove(observer);
 	}
 }

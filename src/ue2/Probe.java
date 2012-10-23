@@ -2,6 +2,9 @@ package ue2;
 
 import java.util.Date;
 
+/**
+ * Stellt eine Probe der MusikGruppe dar.
+ */
 public class Probe extends Event {
 	private double raumMiete;
 

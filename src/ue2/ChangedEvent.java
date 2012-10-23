@@ -1,5 +1,10 @@
 package ue2;
 
+/**
+ * Dieses EventArgs stellt eine Aenderung eines Objektes dar.
+ * 
+ * @param <T>
+ */
 public class ChangedEvent<T> implements EventArgs {
 	private T object;
 

@@ -1,5 +1,7 @@
 package ue2;
 
+// TODO: Kopierkonstruktor
+
 public class Lied extends Model<Lied> {
 	private String name;
 	private int duration;

@@ -5,7 +5,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class DeletionListTest extends UnitTest {
+class DeletionListTest extends UnitTest {
 	private static final DateFormat date = new SimpleDateFormat("d.M.y");
 
 	@Override

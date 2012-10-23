@@ -5,6 +5,9 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Stellt ein Event der MusikGruppe dar.
+ */
 public abstract class Event extends Model<Event> {
 	protected ChangedEvent<Event> changed = new ChangedEvent<Event>(this);
 

@@ -10,8 +10,23 @@ import java.util.List;
  * 
  * @param <T>
  */
-public class Entry<T extends Model<T>> implements Observer<ChangedEvent<T>> {
-	public class Revision {
+class Entry<T extends Model<T>> implements Observer<ChangedEvent<T>> {
+	class DeletedEntry extends Entry<T> {
+		private Date deletedOn;
+
+		public DeletedEntry(Entry<T> value, Date deleted) {
+			super(value);
+			deletedOn = deleted;
+
+			assert getInsertOn().compareTo(deletedOn) <= 0;
+		}
+
+		public Date getDeletedOn() {
+			return deletedOn;
+		}
+	}
+
+	class Revision {
 		private Date date;
 		private T value;
 		public Revision(Date date, T value) {
