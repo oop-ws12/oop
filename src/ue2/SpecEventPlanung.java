@@ -1,5 +1,6 @@
 package ue2;
 
+import java.math.BigDecimal;
 import java.text.ParseException;
 import java.util.ArrayList;
 
@@ -19,7 +20,7 @@ class SpecEventPlanung extends SpecificationTest {
 		MusikGruppe g = getDefaultMusikGruppe();
 		ArrayList<Mitglied> members = new ArrayList<Mitglied>(g.getMembers());
 		
-		Event e = new Auftritt(new Ort("Wien"), date.parse("01.02.2012"), date.parse("02.02.2012"), 120);
+		Event e = new Auftritt(new Ort("Wien"), date.parse("01.02.2012"), date.parse("02.02.2012"), new BigDecimal(120));
 		desc("Erzeuge: " + e.toString());
 		ok(!e.isCanceled(), "Event findet statt");
 		

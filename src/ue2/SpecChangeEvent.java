@@ -1,5 +1,7 @@
 package ue2;
 
+import java.math.BigDecimal;
+
 
 public class SpecChangeEvent extends SpecificationTest {
 
@@ -20,7 +22,7 @@ public class SpecChangeEvent extends SpecificationTest {
 		Ort neustadt = new Ort("Wiener Neustadt");
 
 		Event f = new Auftritt(wien, date.parse("20.03.2012"),
-				date.parse("21.03.2012"), 220);
+				date.parse("21.03.2012"), new BigDecimal(220));
 		desc("Erzeuge Auftritt " + f);
 
 		desc("Fuege Event zur Liste hinzu, ab nun Ueberwacht die Liste das Event auf Aenderungen.");

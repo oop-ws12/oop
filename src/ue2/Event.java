@@ -8,7 +8,7 @@ import java.util.Map;
 /**
  * Stellt ein Event der MusikGruppe dar.
  */
-public abstract class Event extends Model<Event> {
+public abstract class Event extends Model<Event> implements Finanzen {
 	protected ChangedEvent<Event> changed = new ChangedEvent<Event>(this);
 
 	private int score;
@@ -17,6 +17,7 @@ public abstract class Event extends Model<Event> {
 	private Date beginn;
 	private Date ende;
 	private Ort ort;
+
 	
 	public Event(Ort ort, Date beginn, Date end) {
 		this.score = 0;
@@ -107,10 +108,14 @@ public abstract class Event extends Model<Event> {
 		this.ende = ende;
 		this.observers.fire(changed);
 	}
-
-	/**
-	 * Liefert die Gesamtkosten bzw. den Gewinn des Events.
-	 * @return Gesamtkosten/Gewinn
-	 */
-	public abstract double abrechnung();
+	
+	@Override
+	public String getArt() {
+		return toString();
+	}
+	
+	@Override
+	public Date getZeitpunkt() {
+		return ende;
+	}
 }
