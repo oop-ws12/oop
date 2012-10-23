@@ -20,6 +20,7 @@ public class Test {
 		spec.add(new SpecEventPlanung());
 		spec.add(new SpecChangeEvent());
 		spec.add(new SpecEventInform());
+		spec.add(new SpecOrtverwaltung());
 
 		for (SpecificationTest u : spec) {
 			u.start();

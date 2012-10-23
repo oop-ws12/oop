@@ -14,7 +14,6 @@ public class OrtTest extends UnitTest {
 		
 		wien.addInfra(EventType.PROBE, "Mustergasse 10", "Proberaum");
 		wien.addInfra(EventType.AUFTRITT, "Am Ring 2", "Halle");
-		
 		neustadt.addInfra(EventType.PROBE, "Porsche Ring 8", "Probekeller");
 		graz.addInfra(EventType.AUFTRITT, "Musterstrasse 5", "Stadion");
 		
