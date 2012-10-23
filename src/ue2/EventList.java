@@ -27,7 +27,7 @@ public class EventList extends DeletionList<Event> {
 		for (Event e : this) {
 			boolean inRange = begin.compareTo(e.getEnde()) <= 0
 					&& e.getBeginn().compareTo(end) <= 0;
-			if (type.isInstance(e) && inRange) {
+			if (type.isAssignableFrom(e.getClass()) && inRange) {
 				filtered.add(e);
 			}
 		}
