@@ -8,6 +8,7 @@ public class Test {
 		List<UnitTest> unit = new ArrayList<UnitTest>();
 		unit.add(new DeletionListTest());
 		unit.add(new MusikGruppeTest());
+		unit.add(new OrtTest());
 		
 		for (UnitTest u : unit) {
 			u.start();

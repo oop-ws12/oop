@@ -18,21 +18,9 @@ public class Ort {
 		return name;
 	}
 
-	public boolean addInfra(EventType type, String anfahrt) {
+	public boolean addInfra(EventType type, String anfahrt, String beschreibung) {
 
-		return infra.add(new Infrastruktur(type, anfahrt));
-	}
-	
-	/**
-	 * Gibt die wichtigsten Infrastrukturen im Ort zurueck
-	 * @return Collection mit den wichtigsten Infrastrukturen
-	 */
-	public Collection<Infrastruktur> getImportantInfra() {
-
-		Collection<Infrastruktur> result = new ArrayList<Infrastruktur>();
-		
-	
-		return result;
+		return infra.add(new Infrastruktur(type, anfahrt, beschreibung));
 	}
 	
 	/**
@@ -42,7 +30,13 @@ public class Ort {
 	 */
 	public boolean hasIdealInfra(EventType type) {
 
-
+		for(Infrastruktur i : infra) {
+			
+			if(i.getType().equals(type)) {
+				return true;
+			}
+		}
+		
 		return false;
 	}
 }

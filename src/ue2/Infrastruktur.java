@@ -3,19 +3,26 @@ package ue2;
 public class Infrastruktur {
 
 	private EventType type;
-	private String anfahrt;
+	private String adresse;
+	private String beschreibung;
 
-	public Infrastruktur(EventType type, String anfahrt) {
+	public Infrastruktur(EventType type, String adresse, String beschreibung) {
 
 		this.type = type;
-		this.anfahrt = anfahrt;
+		this.adresse = adresse;
+		this.beschreibung = beschreibung;
 	}
 
 	public EventType getType() {
 		return type;
 	}
 
-	public String getAnfahrt() {
-		return anfahrt;
+	public String getAdresse() {
+		return adresse;
 	}
+
+	public String getBeschreibung() {
+		return beschreibung;
+	}
+	
 }
