@@ -29,13 +29,16 @@ public class MusikGruppeTest extends UnitTest {
 	private Iterable<Event> getEvents() throws ParseException {
 		List<Event> e = new ArrayList<Event>();
 		
-		e.add(new Probe("Wopfing", date.parse("10.02.2012 19:00"), 
+		Ort o1 = new Ort("Wopfing");
+		Ort o2 = new Ort("Wr. Neustadt");
+		
+		e.add(new Probe(o1, date.parse("10.02.2012 19:00"), 
 				date.parse("10.02.2012 22:00"), 20));
 
-		e.add(new Probe("Wr. Neustadt", date.parse("20.02.2012 19:00"), 
+		e.add(new Probe(o2, date.parse("20.02.2012 19:00"), 
 				date.parse("20.02.2012 22:00"), 20));
 
-		e.add(new Auftritt("Wopfing", date.parse("21.02.2012 18:00"), 
+		e.add(new Auftritt(o1, date.parse("21.02.2012 18:00"), 
 				date.parse("21.02.2012 24:00"), 555));
 
 		return e;

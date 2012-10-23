@@ -16,9 +16,9 @@ public abstract class Event extends Model<Event> {
 
 	private Date beginn;
 	private Date ende;
-	private String ort;
+	private Ort ort;
 	
-	public Event(String ort, Date beginn, Date end) {
+	public Event(Ort ort, Date beginn, Date end) {
 		this.score = 0;
 		this.votes = new HashMap<Mitglied, String>();
 
@@ -91,11 +91,11 @@ public abstract class Event extends Model<Event> {
 		this.observers.fire(changed);
 	}
 
-	public String getOrt() {
+	public Ort getOrt() {
 		return ort;
 	}
 
-	public void setOrt(String ort) {
+	public void setOrt(Ort ort) {
 		this.observers.before(changed);
 		this.ort = ort;
 		this.observers.fire(changed);
