@@ -16,6 +16,10 @@ public class ObserverList<T extends EventArgs> extends ArrayList<Observer<T>> im
 		}
 	}
 
+	/**
+	 * Loest ein Event aus.
+	 * @param event
+	 */
 	public void fire(T event) {
 		for (Observer<T> observer : this) {
 			observer.fired(event);

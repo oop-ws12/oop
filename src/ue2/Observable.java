@@ -6,13 +6,13 @@
 public interface Observable<T extends EventArgs> {
 	/**
 	 * Fuegt einen Beobachter hinzu.
-	 * @param observer
+	 * @param observer != null
 	 */
 	void addObserver(Observer<T> observer);
 
 	/**
-	 * Loescht einen Beobachter.
-	 * @param observer
+	 * Loest einen Beobachter.
+	 * @param observer != null
 	 */
 	void removeObserver(Observer<T> observer);
 }
