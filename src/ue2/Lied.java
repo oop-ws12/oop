@@ -1,4 +1,3 @@
-package ue2;
 
 import java.util.Collections;
 import java.util.HashMap;

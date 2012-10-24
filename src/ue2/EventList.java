@@ -1,7 +1,6 @@
 /**
  * 
  */
-package ue2;
 
 import java.util.ArrayList;
 import java.util.Collection;

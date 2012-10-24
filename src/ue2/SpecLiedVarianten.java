@@ -1,4 +1,3 @@
-package ue2;
 
 public class SpecLiedVarianten extends SpecificationTest {
 

@@ -1,4 +1,3 @@
-package ue2;
 
 /**
  * Stellt ein Objekt dar das beobachtbar ist.

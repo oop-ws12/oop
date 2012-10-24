@@ -1,4 +1,3 @@
-package ue2;
 
 import java.math.BigDecimal;
 
@@ -9,7 +8,7 @@ public class SpecErsatzMitglieder extends SpecificationTest {
 		return "Die Musikgruppe hat neben permanenten Mitgliedern auch Ersatzmitglieder, die nur im Bedarfsfall zum Einsatz kommen.\n"
 				+ "Pro Probe und Auftritt kann sich die Zusammensetzung unterscheiden und ist im System festzuhalten.\n"
 				+ " Es kann auch zu Verschiebungen kommen, wobei ein permanentes Mitglied zu einem Ersatzmitglied wird und umgekehrt.\n"
-				+ "Ersatzmitglieder, die nicht an einer Mindestzahl an Proben pro Zeiteinheit teilnehmen, werden für Auftritte gesperrt.\n";
+				+ "Ersatzmitglieder, die nicht an einer Mindestzahl an Proben pro Zeiteinheit teilnehmen, werden fuer Auftritte gesperrt.\n";
 	}
 
 	@Override

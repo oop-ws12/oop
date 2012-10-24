@@ -1,4 +1,3 @@
-package ue2;
 
 /**
  * Dieses EventArgs stellt eine Aenderung eines Objektes dar.

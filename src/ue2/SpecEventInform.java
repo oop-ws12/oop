@@ -1,4 +1,3 @@
-package ue2;
 
 
 class SpecEventInform extends SpecificationTest {

@@ -1,4 +1,3 @@
-package ue2;
 
 /**
  * Stellt die Basisklasse aller Objekte dar die folgende Eigenschaften haben:
