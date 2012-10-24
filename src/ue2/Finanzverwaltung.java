@@ -40,7 +40,7 @@ public class Finanzverwaltung extends ArrayList<Finanzen> {
 
 		for (Finanzen f : this) {
 
-			if (type.isInstance(f)) {
+			if (type.isAssignableFrom(f.getClass())) {
 
 				Event e = (Event) f;
 
