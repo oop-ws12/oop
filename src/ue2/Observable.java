@@ -1,5 +1,7 @@
 
 /**
+ * GUT: Entkoppelt das eigentliche zu beobachtende Objekt von der tatsaechlichen Implementierung.
+ * 
  * Stellt ein Objekt dar das beobachtbar ist.
  * @param <T>
  */

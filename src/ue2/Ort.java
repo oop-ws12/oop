@@ -26,6 +26,9 @@ public class Ort {
 	}
 
 	/**
+	 * SCHLECHT: Es sollten nicht die einzelnen Parameter uebergeben werden, 
+	 * sondern gleich eine Infrastruktur Instanz.
+	 * 
 	 * Deklariert eine Infrastruktur im Ort.
 	 * @param type != null
 	 * @param anfahrt != null

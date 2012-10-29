@@ -3,6 +3,9 @@ import java.util.Collection;
 import java.util.Date;
 
 /**
+ * GUT: Implementiert das Collection Interface und kann auch anderen Stellen verwendet werden,
+ * wo eine Collection erwartet wird.
+ * 
  * Liste welche Abrufen der Elemente (auch geloeschte) zu einem bestimmten
  * Zeitpunkt unterstuetzt.
  */

@@ -1,7 +1,6 @@
 
 /**
  * Stellt eine Infrastruktur dar
- *
  */
 public class Infrastruktur {
 

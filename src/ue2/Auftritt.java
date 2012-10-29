@@ -5,7 +5,6 @@ import java.util.Date;
 
 /**
  * Stellt einen Auftritt der Musikgruppe dar.
- * 
  */
 public class Auftritt extends Event {
 
