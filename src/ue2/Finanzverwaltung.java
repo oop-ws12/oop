@@ -55,6 +55,11 @@ public class Finanzverwaltung extends ArrayList<Finanzen> {
 	}
 
 	/**
+	 * SCHLECHT: Muss bei der Berechnung der AllgemeinFinanzen
+	 * extra noch die Events ausschliessen.
+	 * Besser waere nur eine Methode zur Berechnung aller Finanzen mit 
+	 * einem bestimmten Filter.
+	 * 
 	 * Berechnet die Gesamtkosten/Gewinn fuer bestimmte Allgemeinfinanzen
 	 * 
 	 * @param begin != null
