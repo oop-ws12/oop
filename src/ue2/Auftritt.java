@@ -12,16 +12,14 @@ public class Auftritt extends Event {
 	private BigDecimal gage;
 
 	/**
-	 * Konstruktor von Auftritt
-	 * @param ort
-	 * @param beginn
-	 * @param end
-	 * @param gage
+	 * Initialisiert eine Auftritt
+	 * 
+	 * @param gage != null
 	 * @param setup Zusammensetzung der Mitglieder, die am Auftritt teilnehmen
-	 * @param probeAnfang Anfang des Zeitraums in welchem die Anzhahl der Probenteilnahmen geprueft wird
-	 * @param probeEnde   Ende des Zeitraums fuer Probenteilnahmen
+	 * @param probeAnfang != null Anfang des Zeitraums in welchem die Anzhahl der Probenteilnahmen geprueft wird
+	 * @param probeEnde != null && probeEnde > probeAnfang  Ende des Zeitraums fuer Probenteilnahmen
 	 * @param anzahlAnProben Mitglied muss gewisse Anzahl an Proben in definiertem Zeitraum absolviert haben
-	 * @throws GesperrtException
+	 * @throws GesperrtException, falls Mitglied fuer den Auftritt gesperrt ist
 	 */
 	public Auftritt(Ort ort, Date beginn, Date end, BigDecimal gage,
 			Collection<Mitglied> setup, Date probeAnfang, Date probeEnde,
@@ -42,7 +40,11 @@ public class Auftritt extends Event {
 				throw new GesperrtException(m);
 		}
 	}
-
+	
+	/**
+	 * Kopiert einen uebergebenen Auftritt
+	 * @param o != null, zu kopierender Auftritt
+	 */
 	public Auftritt(Auftritt o) {
 		super(o);
 		this.gage = o.gage;
@@ -51,7 +53,11 @@ public class Auftritt extends Event {
 	public BigDecimal getGage() {
 		return gage;
 	}
-
+	
+	/**
+	 * Setzt die Gage
+	 * @param gage != null
+	 */
 	public void setGage(BigDecimal gage) {
 		this.observers.before(changed);
 		this.gage = gage;

@@ -14,10 +14,10 @@ public class EventList extends DeletionList<Event> {
 	/**
 	 * Listet Events eines bestimmten Typs zu einem bestimmten Zeitraum.
 	 * 
-	 * @param begin
-	 * @param end
-	 * @param type
-	 * @return
+	 * @param begin != null
+	 * @param end != null && end > begin
+	 * @param type != null
+	 * @return Collection<Event>
 	 */
 	public Collection<Event> list(Date begin, Date end,
 			Class<? extends Event> type) {
@@ -37,9 +37,9 @@ public class EventList extends DeletionList<Event> {
 	/**
 	 * Listet alle Events in einem bestimmten Zeitraum.
 	 * 
-	 * @param begin
-	 * @param end
-	 * @return
+	 * @param begin != null	
+	 * @param end != null && end > begin
+	 * @return Collection<Event>
 	 */
 	public Collection<Event> list(Date begin, Date end) {
 		return list(begin, end, Event.class);

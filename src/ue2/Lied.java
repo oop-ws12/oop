@@ -3,12 +3,23 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Stellt ein Lied dar, welches mehrere Varianten besitzen kann
+ *
+ */
+
 public class Lied extends Model<Lied> {
 	private String name;
 	private int duration;
 	
 	private Map<String, Integer> varianten;
 
+	/**
+	 * Initialisiert das Lied
+	 * 
+	 * @param name != null	
+	 * @param duration != null, Dauer des Lieds
+	 */
 	public Lied(String name, int duration) {
 		this.name = name;
 		this.duration = duration;
@@ -25,6 +36,12 @@ public class Lied extends Model<Lied> {
 	public int getDuration() {
 		return duration;
 	}
+	
+	/**
+	 * Setzt die Dauer des Liedes
+	 * 
+	 * @param duration != null && duration != 0
+	 */
 	public void setDuration(int duration) {
 		this.duration = duration;
 	}
@@ -32,7 +49,13 @@ public class Lied extends Model<Lied> {
 	public Map<String, Integer> getVarianten() {
 		return Collections.unmodifiableMap(varianten);
 	}
-
+	
+	/**
+	 * Fuegt eine neue Variante dieses Liedes hinzu
+	 * 
+	 * @param name != null
+	 * @param duration != null && duration != 0
+	 */
 	public void addVariante(String name, int duration) {
 		this.varianten.put(name, duration);
 	}

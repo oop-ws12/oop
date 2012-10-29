@@ -12,7 +12,14 @@ public class AllgemeinFinanzen implements Finanzen {
 	private Date zeitpunkt;
 	private BigDecimal wert;
 	private String art;
-
+	
+	/**
+	 * Initialisiert die AllgemeinFinanz
+	 * 
+	 * @param zeitpunkt != null, Faelligkeit
+	 * @param wert != null
+	 * @param art != null
+	 */
 	public AllgemeinFinanzen(Date zeitpunkt, BigDecimal wert, String art) {
 
 		this.zeitpunkt = zeitpunkt;

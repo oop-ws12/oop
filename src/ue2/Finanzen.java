@@ -2,6 +2,12 @@
 import java.math.BigDecimal;
 import java.util.Date;
 
+/**
+ * Eigenschaft, dass das Objekt sich um eine Finanz handelt
+ * und mit einem Zahlenwert beschrieben werden kann.
+ *
+ */
+
 public interface Finanzen {
 	
 	public BigDecimal getWert();

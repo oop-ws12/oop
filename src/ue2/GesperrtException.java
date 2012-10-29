@@ -1,3 +1,7 @@
+/**
+ * Eine Exception falls eine Mitglied gesperrt ist
+ *
+ */
 
 public class GesperrtException extends Exception {
 
@@ -5,6 +9,11 @@ public class GesperrtException extends Exception {
 
 	private Mitglied m;
 
+	/**
+	 * Initialisiert die Exception
+	 *
+	 * @param m != null, gesperrtes Mitglied
+	 */
 	public GesperrtException(Mitglied m) {
 		this.m = m;
 	}

@@ -5,7 +5,7 @@ import java.util.Date;
 
 /**
  * Stellt eine Liste von Finanzen (Kosten/Einnahmen) dar
- * 
+ * und bietet Moeglichkeiten zur Verwaltung dieser (aufsummieren)
  */
 public class Finanzverwaltung extends ArrayList<Finanzen> {
 
@@ -16,8 +16,8 @@ public class Finanzverwaltung extends ArrayList<Finanzen> {
 	 * Berechnet die Gesamtkosten/Gewinn des gegebenen Zeitraumes aller
 	 * Finanzen.
 	 * 
-	 * @param begin
-	 * @param end
+	 * @param begin != null
+	 * @param end != null && end > begin
 	 * @return Gesamtkosten/Gewinn
 	 */
 	public BigDecimal summe(Date begin, Date end) {
@@ -28,10 +28,9 @@ public class Finanzverwaltung extends ArrayList<Finanzen> {
 	/**
 	 * Berechnet die Gesamtkosten/Gewinn des gegebenen Zeitraumes fuer Events
 	 * 
-	 * @param begin
-	 * @param end
-	 * @param type
-	 *            Filter, Welche Finanzart aufsummiert werden soll
+	 * @param begin != null
+	 * @param end != null && end > begin
+	 * @param type != null, Type muss vom Typ Event sein Filter, Welche Finanzart aufsummiert werden soll
 	 * @return Gesamtkosten/Gewinn
 	 */
 	public BigDecimal summe(Date begin, Date end, Class<? extends Event> type) {
@@ -58,12 +57,12 @@ public class Finanzverwaltung extends ArrayList<Finanzen> {
 	/**
 	 * Berechnet die Gesamtkosten/Gewinn fuer bestimmte Allgemeinfinanzen
 	 * 
-	 * @param begin
-	 * @param end
+	 * @param begin != null
+	 * @param end != null && end > begin
 	 * @param art
 	 *            Filter fuer aufsummieren bestimmter Allgemeinfinanzen, "all"
 	 *            fuer alle
-	 * @return
+	 * @return BigDecimal Ergebnis der Summierung
 	 */
 	public BigDecimal summe(Date begin, Date end, String art) {
 

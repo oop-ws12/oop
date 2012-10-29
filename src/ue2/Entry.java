@@ -7,12 +7,23 @@ import java.util.List;
 /**
  * Stellt einen Eintrag in einer Liste dar mit Einfuegezeitpunkt dar.
  * 
- * @param <T>
+ * @param <T> != null
  */
 class Entry<T extends Model<T>> implements Observer<ChangedEvent<T>> {
+	
+	/**
+	 * Stellt einen geloeschten Eintrag dar
+	 *
+	 */
 	class DeletedEntry extends Entry<T> {
 		private Date deletedOn;
 
+		/**
+		 * Initialisiert den geloeschten Eintrag
+		 * 
+		 * @param value != null
+		 * @param deleted != null && deleted >= insertOn
+		 */
 		public DeletedEntry(Entry<T> value, Date deleted) {
 			super(value);
 			deletedOn = deleted;
@@ -24,10 +35,23 @@ class Entry<T extends Model<T>> implements Observer<ChangedEvent<T>> {
 			return deletedOn;
 		}
 	}
-
+	
+	/**
+	 * Stellt eine Rivision des Eintrages dar
+	 * Wurde ein Eintrag geaendert kann er mehrere Revisionen besitzen
+	 *
+	 */
 	class Revision {
+		
 		private Date date;
 		private T value;
+		
+		/**
+		 * Initialisiert die Rivision
+		 * 
+		 * @param date != null
+		 * @param value != null
+		 */
 		public Revision(Date date, T value) {
 			this.date = date;
 			this.value = value;
@@ -45,6 +69,12 @@ class Entry<T extends Model<T>> implements Observer<ChangedEvent<T>> {
 
 	private List<Revision> revisions;
 
+	/**
+	 * Initialisiert den Eintrag
+	 * 
+	 * @param value != null
+	 * @param insert != null
+	 */
 	public Entry(T value, Date insert) {
 		this.revisions = new ArrayList<Revision>();
 		this.value = value;
@@ -53,6 +83,11 @@ class Entry<T extends Model<T>> implements Observer<ChangedEvent<T>> {
 		value.addObserver(this);
 	}
 
+	/**
+	 * Konstruktor zum Kopieren eines Eintrags
+	 * 
+	 * @param o != null
+	 */
 	public Entry(Entry<T> o) {
 		this.revisions = o.getRevisions();
 		this.value = o.getValue();

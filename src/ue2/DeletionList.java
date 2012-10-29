@@ -9,13 +9,24 @@ import java.util.List;
  * Eine Liste welche geloeschte Elemente zu einem gegebenen Zeitpunkt
  * wiederherstellen kann.
  * 
- * @param <T>
- *            Type
+ * @param <T> Type != null
+ *           
  */
 class DeletionList<T extends Model<T>> implements DeletionCollection<T>, Observable<ChangedEvent<T>> {
+	
+	/**
+	 * Iterator fuer die DeletionList
+	 *
+	 */
 	class DeletionListIterator implements Iterator<T> {
+		
 		private Iterator<Entry<T>> entries;
 
+		/**
+		 * Initialisiert den DeletionListIterator
+		 * 
+		 * @param entries != null
+		 */
 		public DeletionListIterator(Iterator<Entry<T>> entries) {
 			this.entries = entries;
 		}
@@ -40,6 +51,9 @@ class DeletionList<T extends Model<T>> implements DeletionCollection<T>, Observa
 	private List<Entry<T>.DeletedEntry> deleted;
 	private ObserverList<ChangedEvent<T>> observers;
 
+	/**
+	 * Initialisiert die DeletionList
+	 */
 	public DeletionList() {
 		this.entries = new ArrayList<Entry<T>>();
 		this.deleted = new ArrayList<Entry<T>.DeletedEntry>();
@@ -88,16 +102,27 @@ class DeletionList<T extends Model<T>> implements DeletionCollection<T>, Observa
 		}
 		return all;
 	}
-
+	
 	@Override
 	public boolean remove(Object value) {
 		return false;
 	}
 	
+	/**
+	 * Loescht das uebergebene Element aus der DeletionList
+	 * @param value != null
+	 * @return true, falls die List nach Aufruf der Methode geaendert wurde, false sonst
+	 */
 	public boolean remove(T value) {
 		return remove((T) value, new Date());
 	}
 
+	/**
+	 * Loescht ein Element zu einem gegebenen Zeitpunkt aus der Liste
+	 * @param value != null
+	 * @param time != null
+	 * @return true, falls List nach Aufruf der Mehtode geaendert wurde, false sonst
+	 */
 	public boolean remove(T value, Date time) {
 		if (value == null) {
 			return false;

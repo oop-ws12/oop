@@ -3,6 +3,12 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 
+/**
+ * Stellt ein Mitglied dar, welches ein Ersatzmitglied sein kann oder 
+ * gesperrt sein kann
+ * 
+ */
+
 public class Mitglied extends Model<Mitglied> implements
 		Observer<ChangedEvent<Event>> {
 
@@ -25,6 +31,11 @@ public class Mitglied extends Model<Mitglied> implements
 		return name;
 	}
 
+	/**
+	 * Setzt den Namen des Mitglieds
+	 * 
+	 * @param name != null
+	 */
 	public void setName(String name) {
 		this.name = name;
 	}
@@ -33,6 +44,11 @@ public class Mitglied extends Model<Mitglied> implements
 		return telefon;
 	}
 
+	/**
+	 * Setzt die Telefonnummer des Mitglieds
+	 * 
+	 * @param telefon != null
+	 */
 	public void setTelefon(String telefon) {
 		this.telefon = telefon;
 	}
@@ -61,6 +77,12 @@ public class Mitglied extends Model<Mitglied> implements
 		this.probenBesucht = new EventList();
 	}
 
+	/**
+	 * Fuegt eine neue Probe hinzu
+	 * 
+	 * @param b != null Probe
+	 * @return true, falls nach Aufruf der Methode die Liste geaendert wurde, false sonst
+	 */
 	public boolean addProbe(Probe b) {
 
 		return probenBesucht.add(b);
@@ -70,10 +92,10 @@ public class Mitglied extends Model<Mitglied> implements
 	 * Prueft, ob das Mitglied eine bestimme Anzahl an Proben, in dem
 	 * angegebenen Zeitraum besucht hat
 	 * 
-	 * @param von
-	 * @param bis
-	 * @param anzahl
-	 * @return true
+	 * @param von != null
+	 * @param bis != null && bis > von
+	 * @param anzahl != null
+	 * @return true falls uebergebene Anzahl an Proben im uebergebenem Zeitraum besucht, false sonst
 	 */
 	public boolean hatProbenBesucht(Date von, Date bis, int anzahl) {
 
