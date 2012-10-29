@@ -103,6 +103,12 @@ class DeletionList<T extends Model<T>> implements DeletionCollection<T>, Observa
 		return all;
 	}
 	
+	/**
+	 * SCHLECHT: 
+	 * Remove Methode aus dem Interface Collection<T> wird zwar ueberschrieben,
+	 * jedoche unimplementiert gelassen. Kann nicht implementiert werden, da ein Cast benoetigt wird.
+	 * Dieser ist jedoch unsicher.
+	 */
 	@Override
 	public boolean remove(Object value) {
 		return false;
