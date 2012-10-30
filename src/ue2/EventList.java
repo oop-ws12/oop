@@ -8,6 +8,9 @@ import java.util.Date;
 import java.util.List;
 
 /**
+ * SCHLECHT: Klasse wurde als public deklariert, wird aber nicht
+ * benoetig, um die Oeffentliche API zur Verwaltung der Musikgruppe, zu nutzen.
+ * 
  * Eine Liste von Events der MusikGruppe.
  */
 public class EventList extends DeletionList<Event> {
