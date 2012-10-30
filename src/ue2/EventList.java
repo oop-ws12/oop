@@ -8,6 +8,10 @@ import java.util.Date;
 import java.util.List;
 
 /**
+ * GUT: Eine eigne Klasse, welche die normale DeletionList 
+ * erweitert und sich um die Ausgabe von Events mit in einem
+ * bestimmten Zeitraum kuemmert.
+ * 
  * Eine Liste von Events der MusikGruppe.
  */
 public class EventList extends DeletionList<Event> {
