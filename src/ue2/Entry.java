@@ -13,7 +13,6 @@ class Entry<T extends Model<T>> implements Observer<ChangedEvent<T>> {
 	
 	/**
 	 * Stellt einen geloeschten Eintrag dar
-	 *
 	 */
 	class DeletedEntry extends Entry<T> {
 		private Date deletedOn;

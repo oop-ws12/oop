@@ -7,7 +7,6 @@ import java.util.Map;
  * Stellt ein Lied dar, welches mehrere Varianten besitzen kann
  *
  */
-
 public class Lied extends Model<Lied> {
 	private String name;
 	private int duration;

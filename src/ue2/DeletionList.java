@@ -10,7 +10,6 @@ import java.util.List;
  * wiederherstellen kann.
  * 
  * @param <T> Type != null
- *           
  */
 class DeletionList<T extends Model<T>> implements DeletionCollection<T>, Observable<ChangedEvent<T>> {
 	
