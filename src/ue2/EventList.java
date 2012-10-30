@@ -10,6 +10,10 @@ import java.util.List;
 /**
  * SCHLECHT: Klasse wurde als public deklariert, wird aber nicht
  * benoetig, um die Oeffentliche API zur Verwaltung der Musikgruppe, zu nutzen.
+ *
+ * GUT: Eine eigne Klasse, welche die normale DeletionList 
+ * erweitert und sich um die Ausgabe von Events mit in einem
+ * bestimmten Zeitraum kuemmert.
  * 
  * Eine Liste von Events der MusikGruppe.
  */
