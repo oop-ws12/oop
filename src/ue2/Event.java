@@ -7,6 +7,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
+ * GUT: Eigenschaften, die sowohl Auftritte als auchProben gemeinsam haben
+ * werden in der Oberklasse Event implementiert.
+ * 
  * Stellt ein Event der MusikGruppe dar.
  */
 public abstract class Event extends Model<Event> implements Finanzen {
