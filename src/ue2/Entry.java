@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * Stellt einen Eintrag in einer Liste dar mit Einfuegezeitpunkt dar.
  * 
- * @param <T> != null
+ * @param <T> 
  */
 class Entry<T extends Model<T>> implements Observer<ChangedEvent<T>> {
 	
