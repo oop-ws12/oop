@@ -64,9 +64,134 @@ public class Test {
 		testClearBox();
 		testDarkBox();
 		testFreeBox();
+		testRepeated();
+		testScaled();
 		
 		System.out.println();
 		System.out.println("All tests ok.");
+	}
+	
+	private static void testScaled() {
+		Pict[][] ps = new Pict[][] {
+				new Pict[] { new DarkBox(3.0d, 3.0d, '1'), new DarkBox(5.0d, 5.0d, '2') },
+				new Pict[] { new DarkBox(4.0d, 5.0d, '3'), new DarkBox(4.0d, 3.0d, '4') },
+		};
+		
+		
+		Scaled<Pict> p1 = new Scaled<Pict>(ps);
+		eq("111 22222\n111 22222\n111 22222\n    22222\n    22222\n33334444 \n33334444 \n33334444 \n3333     \n3333     \n", p1.toString());
+
+		/*
+		 * Sollte so aussehen:
+		 * 
+
+111 22222
+111 22222
+111 22222
+    22222
+    22222
+33334444 
+33334444 
+33334444 
+3333     
+3333     
+
+		 */
+	
+		p1.scale(2);
+		eq("111111  2222222222\n111111  2222222222\n111111  2222222222\n111111  2222222222\n111111  2222222222\n111111  2222222222\n        2222222222\n        2222222222\n        2222222222\n        2222222222\n3333333344444444  \n3333333344444444  \n3333333344444444  \n3333333344444444  \n3333333344444444  \n3333333344444444  \n33333333          \n33333333          \n33333333          \n33333333          \n", p1.toString());
+	
+		/*
+		 * Sollte so aussehen:
+
+111111  2222222222
+111111  2222222222
+111111  2222222222
+111111  2222222222
+111111  2222222222
+111111  2222222222
+        2222222222
+        2222222222
+        2222222222
+        2222222222
+3333333344444444  
+3333333344444444  
+3333333344444444  
+3333333344444444  
+3333333344444444  
+3333333344444444  
+33333333          
+33333333          
+33333333          
+33333333          
+
+		 */
+	}
+
+	private static void testRepeated() {
+		Character[][] data = new Character[][] { toCharacterArray("Test"), toCharacterArray("Hllo") };
+		Repeated<Character> p1 = new Repeated<Character>(data);
+		
+		eq("Test\nHllo\n", p1.toString());
+		
+		Pict[][] ps = new Pict[][] {
+				new Pict[] { new DarkBox(3.0d, 3.0d, '1'), new DarkBox(5.0d, 5.0d, '2') },
+				new Pict[] { new DarkBox(4.0d, 5.0d, '3'), new DarkBox(4.0d, 3.0d, '4') },
+		};
+		Repeated<Pict> p2 = new Repeated<Pict>(ps);
+		eq("111 22222\n111 22222\n111 22222\n    22222\n    22222\n33334444 \n33334444 \n33334444 \n3333     \n3333     \n", p2.toString());
+	
+		/*
+		 * Sollte so aussehen:
+		 
+111 22222
+111 22222
+111 22222
+    22222
+    22222
+33334444 
+33334444 
+33334444 
+3333     
+3333     
+		 */
+		
+		p2.scale(2);
+		eq("111 22222111 22222\n111 22222111 22222\n111 22222111 22222\n    22222    22222\n    22222    22222\n33334444 33334444 \n33334444 33334444 \n33334444 33334444 \n3333     3333     \n3333     3333     \n111 22222111 22222\n111 22222111 22222\n111 22222111 22222\n    22222    22222\n    22222    22222\n33334444 33334444 \n33334444 33334444 \n33334444 33334444 \n3333     3333     \n3333     3333     \n", p2.toString());
+
+		/*
+		 * Sollte so aussehen:
+
+111 22222111 22222
+111 22222111 22222
+111 22222111 22222
+    22222    22222
+    22222    22222
+33334444 33334444 
+33334444 33334444 
+33334444 33334444 
+3333     3333     
+3333     3333     
+111 22222111 22222
+111 22222111 22222
+111 22222111 22222
+    22222    22222
+    22222    22222
+33334444 33334444 
+33334444 33334444 
+33334444 33334444 
+3333     3333     
+3333     3333     
+
+		 */
+	}
+	
+	private static Character[] toCharacterArray(String s) {
+	   Character[] array = new Character[s.length()];
+	   for (int i = 0; i < s.length(); i++) {
+	      array[i] = new Character(s.charAt(i));
+	   }
+	   return array;
 	}
 	
 	private static void testFreeBox() {
@@ -105,14 +230,6 @@ public class Test {
 		
 		Pict p2 = new Box(3.7d, 2.3d, '.', 'o');
 		eq(p2.toString(), "oooo\no..o\noooo\n");
-	}
-	
-	private static void ok(boolean cond) {
-		if(cond) {
-			System.out.print(".");
-		} else {
-			throw new RuntimeException();
-		}
 	}
 	
 	private static void eq(Object o1, Object o2) {
