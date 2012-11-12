@@ -1,21 +1,58 @@
-//Box <-> AbstractBox, Box ist Untertyp von AbstractBox, und umgekehrt
-
 //Box <-> ClearBox ist Untertyp von Box, da alle Zusicherungen uebereinstimmen
 //und ueberall ClearBox eingesetzt werden kann, wo Box erwartet wird
 
 //Box <-> DarkBox ist kein Untertyp von Box, da es moeglich ist die Zeichen im Nachhinein zu aendern
-//wohl aber ein Untertyp von AbstractBox
+//bei einer Box ist es nicht mehr moeglich die Zeichen zu aendern
 
-//Box <-> FreeBox, keine Untertypbeziehung, da komplett andere Initialisierung
-//FreeBox waere Untertyp von AbstractBox, jedoch in Java nicht realisierbar
+//Box <-> FreeBox, keine Untertypbeziehung, Methoden stimmen nicht ueberein
+//FreeBox hat keinen innerChar und keinen borderChar
+//ausserdem ist die Nachbedingug von toString() eine andere, statt die Box zu vergroessern, laesst sie den
+//inhalt unveraendert und haengt den Inhalt ggf einfach noch einaml daneben oder darueber dazu
 
 //Box <-> Repeated<P> und Scaled<P> fuer unbekannte P, keine Untertypbeziehung
+//da in P irgendein Typ sein kann und im Allgemeinen keine Untertypbeziehung gilt
 
-//ClearBox <-> DarkBox, keine Untertypbeziehung
+//Box <-> Repeated<Box>
+//keine Untertypbeziehung, da in der Methode toString() die Zusicherung in Box verletzt werden koennte, dass
+//als Randzeichen keine Leerzeichen verwendet werden durefen. Die Methode fuellt bei zu wenigen Elementen das Bild
+//naemlich mit Leerzeichen aus
 
-//ClearBox <-> FreeBox, keine Untertypbeziehung
+//Box <-> Repeated<Char>
+//keine Untertypbeziehung, da es moeglich sein kann dass das Char ein Leerzeichen ist
+//In Box wird dadurch die Zusicherung verletzt, dass das Zeichen fuer den Rand kein Leerzeichen sein darf
 
-//ClearBox <-> Repeated und Scaled, keine Untertypbeziehung
+//Box <-> Repeated<ClearBox>
+//Keine Untertypbeziehung, da nach der Skaleruing im Rand Leerzeichen vorkommen koennten und das die Zusicherung
+//in Box verletzen wuerde
+
+//Box <-> Repeated<DarkBox>
+//keine Untertypbeziehung, da die Zusicherung in Box verletzt wird, dass die Zeichen nach der Initialsierung
+//konstant sind. Sie koennten in DarkBox veraendert werden
+
+//Box <-> Repeated<FreeBox>
+//keine Untertypbeziehung, da Leerzeichen als Rand verwendet werden koennen
+
+//Box <-> Scaled<Box>
+//es besteht schon eine Untertypbeziehung, da alle Zusicherungen erfuellt sind, denn die Methode scale in Scaled<Box>
+//ruft naemlich die scale Methoden der einzelnen Boxen auf, somit entseht wieder eine Box mit einem Rand und einem Inhalt
+//Wo das Randzeichen niemals ein Leerzeichen sein kann
+//ausserdem ist in Box nicht definiert dass der Rand NUR aus dem gleichen Zeichen bestehen darf, somit koennen verschiedene
+//Zeichen von verschiedenen Boxen der Rand sein, ledliglich ein Leerzeichen darf nicht vorkommen
+
+//Box <-> Scaled<ClearBox>
+//Scaled<ClearBox> ist ein Untertyp von Box, die Zusicherungen sind erfuellt, da die scale Methode die scale Methoden
+//der einzelnen Boxen aufruft, somit kann nie ein Leerzeichen im Rand stehen
+
+//Box <-> Scaled<P> fuer alle anderen Untertypen P von Pict
+//keine Untertypbeziehung, da Zusicherungen von Box verletzt werden, es koennen Zeichen im Nachhinein Zeichen
+//veraendert werden oder Leerzeichen koennen im Rand vorkommen
+
+//ClearBox <-> DarkBox, keine Untertypbeziehung da es bei DarkBox moeglich ist, die Zeichen im Nachhinen zu aendern
+
+//ClearBox <-> FreeBox, keine Untertypbeziehung, da die Methode toString() in FreeBox nach einer Skalierung
+//auch Leerzeichen als Rand hinzufuegen koennte -> Nachbedinung nicht erfuellt
+
+//ClearBox <-> Repeated<P> und Scaled<P> fuer unbekannte P, keine Untertypbeziehung
 
 //DarkBox <-> FreeBox, keine Untertypbeziehung
 

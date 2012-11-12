@@ -34,8 +34,8 @@ public abstract class AbstractBox implements Pict {
 
 	/**
 	 * initializes the AbstractBox with the given width and height
-	 * @param width != null
-	 * @param height != null
+	 * @param width
+	 * @param height
 	 */
 	protected AbstractBox(double width, double height) {
 		this.width = width;

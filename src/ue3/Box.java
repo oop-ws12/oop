@@ -29,9 +29,9 @@ public class Box extends AbstractBox {
 
 
 	/**
-	 * @param width != null
-	 * @param height != null
-	 * @param innerChar != null
+	 * @param width
+	 * @param height
+	 * @param innerChar
 	 * @param borderChar != ' '
 	 */
 	public Box(double width, double height, char innerChar, char borderChar) {
