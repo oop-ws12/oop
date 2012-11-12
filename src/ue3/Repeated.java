@@ -11,7 +11,8 @@ public class Repeated<P> implements Pict {
 	private double width;
 
 	/**
-	 * @param data
+	 * initialize the array with the given data
+	 * @param data != null
 	 */
 	public Repeated(P[][] data) {
 		this.data = data;
@@ -19,7 +20,6 @@ public class Repeated<P> implements Pict {
 		this.width = data[0].length;
 		this.height = data.length;
 	}
-	
 	
 	// returns the picture as String
 	@Override

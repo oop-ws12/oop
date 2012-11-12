@@ -1,4 +1,4 @@
-
+//represents a FreeBox
 public class FreeBox implements Pict {
 	// rectangular text
 	private String[] lines;
@@ -9,10 +9,13 @@ public class FreeBox implements Pict {
 	// height of the image
 	private double height;
 	
+	//initializes the FreeBox, width and height are given by the String text
+	//text != null and text must be rectangular
 	protected FreeBox(String text) {
 		this(text.split("\n"));
 	}
 	
+	//lines != null
 	private FreeBox(String[] lines) {
 		this.width = lines[0].length();
 		this.height = lines.length;
