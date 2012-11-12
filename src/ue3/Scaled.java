@@ -5,7 +5,8 @@ public class Scaled<P extends Pict> implements Pict {
 	private P[][] data;
 	
 	/**
-	 * @param data
+	 * initializes the array with the given data
+	 * @param data != null
 	 */
 	public Scaled(P[][] data) {
 		this.data = data;

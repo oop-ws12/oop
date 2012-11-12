@@ -21,7 +21,6 @@ public abstract class AbstractBox implements Pict {
 		return height;
 	}
 
-
 	/**
 	 * @return the innerChar
 	 */
@@ -33,7 +32,11 @@ public abstract class AbstractBox implements Pict {
 	 */
 	protected abstract char getBorderChar();
 
-	
+	/**
+	 * initializes the AbstractBox with the given width and height
+	 * @param width != null
+	 * @param height != null
+	 */
 	protected AbstractBox(double width, double height) {
 		this.width = width;
 		this.height = height;

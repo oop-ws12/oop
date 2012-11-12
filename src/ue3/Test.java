@@ -1,5 +1,28 @@
+//Box <-> AbstractBox, Box ist Untertyp von AbstractBox, und umgekehrt
+
+//Box <-> ClearBox ist Untertyp von Box, da alle Zusicherungen uebereinstimmen
+//und ueberall ClearBox eingesetzt werden kann, wo Box erwartet wird
+
+//Box <-> DarkBox ist kein Untertyp von Box, da es moeglich ist die Zeichen im Nachhinein zu aendern
+//wohl aber ein Untertyp von AbstractBox
+
+//Box <-> FreeBox, keine Untertypbeziehung, da komplett andere Initialisierung
+//FreeBox waere Untertyp von AbstractBox, jedoch in Java nicht realisierbar
+
+//Box <-> Repeated<P> und Scaled<P> fuer unbekannte P, keine Untertypbeziehung
+
+//ClearBox <-> DarkBox, keine Untertypbeziehung
+
+//ClearBox <-> FreeBox, keine Untertypbeziehung
+
+//ClearBox <-> Repeated und Scaled, keine Untertypbeziehung
+
+//DarkBox <-> FreeBox, keine Untertypbeziehung
+
 public class Test {
+	
 	public static void main(String[] args) {
+		
 		testBox();
 		testClearBox();
 		testDarkBox();

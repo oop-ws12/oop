@@ -13,6 +13,8 @@ public class DarkBox extends AbstractBox {
 		return theChar;
 	}
 	
+	//initializes the DarkBox
+	//innerChar == outerChar
 	public DarkBox(double width, double height, char theChar) {
 		super(width, height);
 		this.theChar = theChar;

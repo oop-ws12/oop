@@ -13,7 +13,8 @@ public class Repeated<P> implements Pict {
 	private Table<P> table;
 
 	/**
-	 * @param data
+	 * initialize the array with the given data
+	 * @param data != null
 	 */
 	public Repeated(P[][] data) {
 		this.data = data;
