@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class Repeated<P> implements Pict {
 	// constant after initialization
@@ -9,6 +12,9 @@ public class Repeated<P> implements Pict {
 	
 	// the width
 	private double width;
+	
+	// the table-formated values
+	private Table<P> table;
 
 	/**
 	 * @param data
@@ -18,13 +24,17 @@ public class Repeated<P> implements Pict {
 		
 		this.width = data[0].length;
 		this.height = data.length;
+		
+		table = new Table<P>(this.data);
 	}
-	
 	
 	// returns the picture as String
 	@Override
 	public String toString() {
-		return "";
+		int w = (int)Math.ceil(width);
+		int h = (int)Math.ceil(height);
+		
+		return table.renderTable(w, h);
 	}
 
 	// 0.1 <= factor <= 10.0; resize the picture

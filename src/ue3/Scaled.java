@@ -21,4 +21,9 @@ public class Scaled<P extends Pict> implements Pict {
 		}
 	}
 
+	@Override
+	public String toString() {
+		Table<P> table = new Table<P>(data);
+		return table.renderTable();
+	}
 }
