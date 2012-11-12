@@ -1,7 +1,3 @@
-import java.util.ArrayList;
-import java.util.List;
-
-
 public class Repeated<P> implements Pict {
 	// constant after initialization
 	// rectangular array

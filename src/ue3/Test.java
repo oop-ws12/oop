@@ -16,6 +16,8 @@ public class Test {
 				new Pict[] { new DarkBox(3.0d, 3.0d, '1'), new DarkBox(5.0d, 5.0d, '2') },
 				new Pict[] { new DarkBox(4.0d, 5.0d, '3'), new DarkBox(4.0d, 3.0d, '4') },
 		};
+		
+		
 		Scaled<Pict> p1 = new Scaled<Pict>(ps);
 		eq("111 22222\n111 22222\n111 22222\n    22222\n    22222\n33334444 \n33334444 \n33334444 \n3333     \n3333     \n", p1.toString());
 

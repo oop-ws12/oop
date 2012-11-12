@@ -1,6 +1,10 @@
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Formats elements as table
+ * @param <P>
+ */
 class Table<P> {
 	private class Entry {
 		private int height;
@@ -47,6 +51,9 @@ class Table<P> {
 	private List<ArrayList<Entry>> objects;
 	private int[] widths;
 
+	/**
+	 * @param o non empty rectangular array
+	 */
 	public Table(P[][] o) {
 		objects = new ArrayList<ArrayList<Entry>>(o.length);
 		for (P[] line : o) {
@@ -63,6 +70,10 @@ class Table<P> {
 		this.widths = calculateWidths();
 	}
 
+	/**
+	 * Render out the table.
+	 * @return
+	 */
 	public String renderTable() {
 		if (objects.size() < 1) {
 			return "";
@@ -74,6 +85,13 @@ class Table<P> {
 		return renderTable(w, h);
 	}
 	
+	/**
+	 * Render out the table.
+	 * 
+	 * @param w >= 0
+	 * @param h >= 0
+	 * @return
+	 */
 	public String renderTable(int w, int h) {
 		if (objects.size() < 1) {
 			return "";
