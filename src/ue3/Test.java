@@ -4,10 +4,10 @@
 //Box <-> DarkBox ist kein Untertyp von Box, da es moeglich ist die Zeichen im Nachhinein zu aendern
 //bei einer Box ist es nicht mehr moeglich die Zeichen zu aendern
 
-//Box <-> FreeBox, keine Untertypbeziehung, Methoden stimmen nicht ueberein
-//FreeBox hat keinen innerChar und keinen borderChar
-//ausserdem ist die Nachbedingug von toString() eine andere, statt die Box zu vergroessern, laesst sie den
+//Box <-> FreeBox, keine Untertypbeziehung
+//die Nachbedingug von toString() ist eine andere, statt die Box zu vergroessern, laesst sie den
 //inhalt unveraendert und haengt den Inhalt ggf einfach noch einaml daneben oder darueber dazu
+//es koennten Leerzeichen im Rand auftreten
 
 //Box <-> Repeated<P> und Scaled<P> fuer unbekannte P, keine Untertypbeziehung
 //da in P irgendein Typ sein kann und im Allgemeinen keine Untertypbeziehung gilt
@@ -22,7 +22,7 @@
 //In Box wird dadurch die Zusicherung verletzt, dass das Zeichen fuer den Rand kein Leerzeichen sein darf
 
 //Box <-> Repeated<ClearBox>
-//Keine Untertypbeziehung, da nach der Skaleruing im Rand Leerzeichen vorkommen koennten und das die Zusicherung
+//Keine Untertypbeziehung, da nach der Skalierung im Rand Leerzeichen vorkommen koennten und das die Zusicherung
 //in Box verletzen wuerde
 
 //Box <-> Repeated<DarkBox>
@@ -32,8 +32,10 @@
 //Box <-> Repeated<FreeBox>
 //keine Untertypbeziehung, da Leerzeichen als Rand verwendet werden koennen
 
+//Diese ganzen Untertypbeziehung gelten somit auch nicht fuer die Untertypen von Box, also ClearBox
+
 //Box <-> Scaled<Box>
-//es besteht schon eine Untertypbeziehung, da alle Zusicherungen erfuellt sind, denn die Methode scale in Scaled<Box>
+//es besteht schon eine Untertypbeziehung,aequivalent, da alle Zusicherungen erfuellt sind, denn die Methode scale in Scaled<Box>
 //ruft naemlich die scale Methoden der einzelnen Boxen auf, somit entseht wieder eine Box mit einem Rand und einem Inhalt
 //Wo das Randzeichen niemals ein Leerzeichen sein kann
 //ausserdem ist in Box nicht definiert dass der Rand NUR aus dem gleichen Zeichen bestehen darf, somit koennen verschiedene
@@ -54,7 +56,70 @@
 
 //ClearBox <-> Repeated<P> und Scaled<P> fuer unbekannte P, keine Untertypbeziehung
 
+//ClearBox <-> Scaled<Box>
+//ClearBox ist ein Untertyp, da alle Zusicherungen erfuellt sind
+
+//ClearBox <-> Scaled<ClearBox>
+//ClearBox ist Untertyp, aufgrund der zutreffenden Zusicherungen
+
+//ClearBox <-> Scaled<P> fuer alle anderen Untertypen P von Pict
+//keine Untertypbeziheungen, da Zusicherungen verletzt werden, Grund wie oben
+
 //DarkBox <-> FreeBox, keine Untertypbeziehung
+//Zusicherungen werden verletzt, in FreeBox muessen nicht alle Zeichen gleich sein
+
+//DarkBox <-> Repeated<P> und Scaled <P> fuer Unbekannte P
+//keine Untertypbeziehung, da P im Allgemeinen irgendein ein Typ sein kann
+
+//DarkBox <-> Repeated<P> fuer alle Untertypen P von Pict
+//Zusicherung wird verlezt, Nachbedingung der Methode toString() in Repeated ist anders als in DarkBox
+//es koennten Leerzeichen auftreten
+
+//DarkBox <-> Repeated<Char>
+//Keine Untertypbeziehung, das Char koennte ein Leerzeichen sein
+
+//DarkBox <-> Scaled<DarkBox>
+//DarkBox ist Untertyp, Zusicherung sind auf beiden Seiten erfuellt
+
+//DarkBox <-> Scaled<P> fuer alle anderen Untertypen P von Pict
+//Zusicherungen werden verletzt, Zeichen muessen nicht alle gleich sein
+
+//FreeBox <-> Repeated<P> und Scaled<P> fuer unbekannte P
+//Keine Untertypbeziehung, Grund wie oben
+
+//FreeBox <-> Repeated<FreeBox>
+//Untertypbeziehung, sogar aequivalent, Schnittstellen und Zusicherungen stimmen uberein
+
+//FreeBox <-> Repeated<Box>
+//Untertypbeziehung, sogar aequivalent, Schnittstellen und Zusicherungen passen
+//da die Methode scale in Repeated<Box> den Inhalt auch nicht vereandert sondern ggfs nur den Inhalt "kopiert" bei der
+//Ausgabe
+
+//FreeBox <-> Repeated<ClearBox> und Repeated<DarkBox>
+//aequivalent, selber Grund wie oben
+
+//FreeBox <-> Repeated<Char>
+//ebenfalls aequivalent
+
+//FreeBox <-> Scaled<FreeBox>
+//aequivalent, da Zusicherung erfuellt sind, der Inhalt wird nie geaendert, ggf wird mit Leerzeichen aufgefuellt
+
+//FreeBox <-> Scaled<P> fuer alle anderen Untertypen P von Pict
+//keine Untertypbeziehung mehr, da die Methode scale, die scale Methoden der einzelen Objekte aufruft, wird
+//der Inhalt der jeweilgen Element im Array veraendert, und das verstoesst gegen die Zusicherung von FreeBox
+
+//Repeated<P> <-> Scaled<P>
+//im Allgemeinen keine Untertypbeziehung da die Nachbedingungen der Methode scale verschieden sind
+
+//Repeated<FreeBox> <-> Scaled<FreeBox>
+//in diesem Fall waeren die zwei Typen sogar aequivalent, da die Zusicherung und Nachbedingungen
+//erfuellt sind, in allen andern Faellen besteht keine Untertypbeziehung zwischen Repeated und  Scaled!
+
+//Repeated<FreeBox> <-> Repeated<P> fuer jeden anderen Untertyp P von Pict
+//aequivalent, da FreeBox mit allen anderen Repeated<P> aequivalent ist und FreeBox mit Repeated<FreeBox> aequivlent ist
+
+
+
 
 public class Test {
 	
