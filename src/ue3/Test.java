@@ -118,7 +118,8 @@
 //Repeated<FreeBox> <-> Repeated<P> fuer jeden anderen Untertyp P von Pict
 //aequivalent, da FreeBox mit allen anderen Repeated<P> aequivalent ist und FreeBox mit Repeated<FreeBox> aequivlent ist
 
-
+//Scaled<Box> <-> Scaled<ClearBox>
+//Scaled<ClearBox> ist Untertyp, da Zusicherungen erfuellt, Grund wie oben
 
 
 public class Test {
