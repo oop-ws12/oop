@@ -5,11 +5,20 @@
  */
 public class OrderedSet<T extends Shorter<T>> extends Set<T> {
 	@Override
-	public boolean insert(T item) {
+	public boolean insert(T item) {		
 		// sortiert einfuegen, sortierung ueber item.shorter(other)
-		return false;
+		return insert(item, getHead());
 	}
 	
-	// der iterator kann von der unterklasse verwendet werden wenn insert gleich sortiert einfuegt
-	// also braucht die methode nicht ueberschrieben werden
+	private boolean insert(T item, Entry e) {
+		if(item == e.getValue()) return false;
+		
+		if(e.getNext() == null || item.shorter(e.getNext().getValue())) {
+			e.insert(new Entry(item));
+			
+			return true;
+		}
+		
+		return insert(item, e.getNext());
+	}
 }

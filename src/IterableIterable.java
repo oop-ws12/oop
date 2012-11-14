@@ -3,7 +3,7 @@
  *
  * @param <T>
  */
-public interface IterableIterable<T> extends Iterable<T> {
+public interface IterableIterable<K, V> extends Iterable<K> {
 	@Override
-	public IteratorIterator<T> iterator();
+	public MapIterator<K, V> iterator();
 }

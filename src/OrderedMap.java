@@ -3,41 +3,87 @@ import java.util.Iterator;
 /**
  * Stellt ein geordnetes Map dar.
  *
- * @param <T>
+ * @param <K> Key Typ
+ * @param <V> Value Typ
  */
-public class OrderedMap<T extends Shorter<T>> extends OrderedSet<T> implements IterableIterable<T> {
-	private class OrderedMapIteratorIterator implements IteratorIterator<T> {
-		public OrderedMapIteratorIterator(OrderedMap map) {
-			
+public class OrderedMap<K extends Shorter<K>, V> extends OrderedSet<K> implements IterableIterable<K, V> {
+	class Item implements Shorter<Item> {
+		private Set<V> items;
+		private K value;
+		
+		public Set<V> getItems() {
+			return items;
+		}
+
+		public K getValue() {
+			return value;
+		}
+
+		public Item(K value) {
+			this.items = new Set<V>();
+			this.value = value;
+		}
+
+		@Override
+		public boolean shorter(Item other) {
+			return this.value.shorter(other.value);
+		}
+	}
+	
+	private class OrderedMapIteratorIterator implements MapIterator<K, V> {
+		private Iterator<Item> it;
+		private Item current;
+		
+		public OrderedMapIteratorIterator(Iterator<Item> it) {
+			this.it = it;
 		}
 		
 		@Override
 		public boolean hasNext() {
-			// TODO Auto-generated method stub
-			return false;
+			return it.hasNext();
 		}
 
 		@Override
-		public T next() {
-			// TODO Auto-generated method stub
-			return null;
+		public K next() {
+			current = it.next();
+			return current.getValue();
 		}
 
 		@Override
 		public void remove() {
-			
+			it.remove();
 		}
 
 		@Override
-		public Iterator<T> iterator() {
-			// TODO Auto-generated method stub
-			return null;
+		public InsertIterator<V> iterator() {
+			return current.getItems().insertIterator();
 		}
-		
+	}
+	
+	private OrderedSet<Item> map;
+	
+	public OrderedMap() {
+		this.map = new OrderedSet<Item>();
 	}
 	
 	@Override
-	public IteratorIterator<T> iterator() {
-		return new OrderedMapIteratorIterator(this);
+	public boolean insert(K item) {
+		return map.insert(new Item(item));
+	}
+	
+	@Override
+	public boolean remove(K item) {
+		for(Item i : map) {
+			if(i.getValue() == item) {
+				return map.remove(i);
+			}
+		}
+		
+		return false;
+	}
+	
+	@Override
+	public MapIterator<K, V> iterator() {
+		return new OrderedMapIteratorIterator(map.iterator());
 	}
 }

@@ -5,10 +5,10 @@ import java.util.Iterator;
  *
  * @param <E>
  */
-public interface IteratorIterator<E> extends Iterator<E> {
+public interface MapIterator<K, V> extends Iterator<K> {
 	/**
 	 * Gibt einen Iterator fuer das aktuelle Item zurueck.
 	 * @return
 	 */
-	public Iterator<E> iterator();
+	public InsertIterator<V> iterator();
 }
