@@ -34,15 +34,24 @@ public class MeanElapsedTime extends ElapsedTime {
 	}
 	
 	/**
-	 * @return den groessten Wert im Set
+	 * @return den groessten Messwert im Set
 	 */
-	public Double highestValue() {
-		return null;
+	public double highestValue() {
+		
+		double current = 0.0;
+		
+		for(Double d : data) {
+			if(d > current) {
+				current = d;
+			}	
+		}
+		
+		return current;
 	}
 	
 	@Override
 	public int count() {
-		return 0;
+		return data.count();
 	}
 	
 	/*

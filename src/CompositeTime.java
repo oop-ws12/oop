@@ -15,6 +15,22 @@ public class CompositeTime extends ElapsedTime {
 		super.setTime(totalTime);
 	}
 	
+	/**
+	 * Liefert die kuerzeste Einzelzeit
+	 * @return die kuerzeste Einzelzeit
+	 */
+	public double getShortestTime() {
+		
+		double min = times[0];
+		
+		for(Double d : times) {
+			if( d < min	) {
+				min = d;
+			}
+		}
+		return min;
+	}
+	
 	@Override
 	public int count() {
 		return times.length;
