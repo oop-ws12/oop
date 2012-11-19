@@ -93,7 +93,11 @@ public class Set<T> implements Iterable<T> {
 		private Entry next;
 		
 		public SetIterator(Entry first) {
-			this.next = first;
+			this.e = first;
+			
+			if(first != null) {
+				this.next = first.getNext();
+			}
 		}
 		
 		@Override
@@ -118,12 +122,13 @@ public class Set<T> implements Iterable<T> {
 		}
 		
 		public boolean add(T item) {
-			e.getBefore().insert(new Entry(item));
+			e.insert(new Entry(item));
 			return true;
 		}
 	}
 	
 	private Entry head;
+	private int count;
 	
 	/**
 	 * @return the head
@@ -133,20 +138,43 @@ public class Set<T> implements Iterable<T> {
 	}
 	
 	public Set() {
+		count = 0;
 		head = new Entry(null);
 	}
+	
+	/**
+	 * Liefert die Anzahl der Elemente.
+	 * @return
+	 */
+	public int count() {
+		return count;
+	}
 
+	protected boolean insertElement(T element)
+	{
+		return head.add(element);
+	}
+	
+	protected boolean removeElement(T element) {
+		Entry found = head.find(element);
+		if(found == null) return false;
+		
+		found.remove();
+		return true;
+	}
+	
 	/**
 	 * Loescht ein Item aus dem Set.
 	 * @param item != null, das zu loeschende Item.
 	 * @return true falls es erfolgreich geloescht wurde.
 	 */
 	public boolean remove(T item) {
-		Entry found = head.find(item);
-		if(found == null) return false;
+		if(removeElement(item)) {
+			count--;
+			return true;
+		}
 		
-		found.remove();
-		return true;
+		return false;
 	}
 	
 	/**
@@ -157,7 +185,12 @@ public class Set<T> implements Iterable<T> {
 	 * @return true falls es eingefuegt wurde
 	 */
 	public boolean insert(T item) {
-		return head.add(item);
+		if(insertElement(item)) {
+			count++;
+			return true;
+		}
+		
+		return false;
 	}
 	
 	@Override
@@ -166,6 +199,6 @@ public class Set<T> implements Iterable<T> {
 	}
 	
 	protected InsertIterator<T> insertIterator() {
-		return new SetIterator(head.getNext());
+		return new SetIterator(head);
 	}
 }
