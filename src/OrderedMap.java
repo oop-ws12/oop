@@ -6,7 +6,7 @@ import java.util.Iterator;
  * @param <K> Key Typ
  * @param <V> Value Typ
  */
-public class OrderedMap<K extends Shorter<K>, V> extends OrderedSet<K> implements IterableIterable<K, V> {
+public class OrderedMap<K extends Shorter<? super K>, V> extends OrderedSet<K> implements IterableIterable<K, V> {
 	class Item implements Shorter<Item> {
 		private Set<V> items;
 		private K value;
