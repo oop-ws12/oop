@@ -67,14 +67,14 @@ public class OrderedMap<K extends Shorter<K>, V> extends OrderedSet<K> implement
 	}
 	
 	@Override
-	public boolean insert(K item) {
-		return map.insert(new Item(item));
+	protected boolean insertElement(K element) {
+		return map.insert(new Item(element));
 	}
 	
 	@Override
-	public boolean remove(K item) {
+	protected boolean removeElement(K element) {
 		for(Item i : map) {
-			if(i.getValue() == item) {
+			if(i.getValue() == element) {
 				return map.remove(i);
 			}
 		}

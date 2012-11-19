@@ -5,12 +5,12 @@
  */
 public class OrderedSet<T extends Shorter<T>> extends Set<T> {
 	@Override
-	public boolean insert(T item) {		
+	protected boolean insertElement(T element) {
 		// sortiert einfuegen, sortierung ueber item.shorter(other)
-		return insert(item, getHead());
+		return insertElement(element, getHead());
 	}
 	
-	private boolean insert(T item, Entry e) {
+	private boolean insertElement(T item, Entry e) {
 		if(item == e.getValue()) return false;
 		
 		if(e.getNext() == null || item.shorter(e.getNext().getValue())) {
@@ -19,6 +19,6 @@ public class OrderedSet<T extends Shorter<T>> extends Set<T> {
 			return true;
 		}
 		
-		return insert(item, e.getNext());
+		return insertElement(item, e.getNext());
 	}
 }
