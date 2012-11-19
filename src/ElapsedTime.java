@@ -1,15 +1,23 @@
 
-//instances of this class represent the measured time from a process
+//Instanzen dieser Klasse stellen die gemessene Zeit eines Vorgangs dar
 public abstract class ElapsedTime implements Shorter<ElapsedTime> {
 
-	//measured time in milliseconds
+	//die gemessene Zeit in Millisekunden
 	private double time;
 	
 	/**
-	 * calculates the number of executed measures
-	 * @return the number of measures
+	 * berechnet die Anzahl der Messungen
+	 * @return die Anzahl der Messungen
 	 */
 	 abstract public int count();
+	 
+	 /**
+	  * Setzt die gemessene Zeit
+	  * @param time, Zeit die gesetzt wird
+	  */
+	 public void setTime(double time) {
+		 this.time = time;
+	 }
 	 
 	 public boolean shorter(ElapsedTime other) {	 
 		 return this.time < other.time;

@@ -1,31 +1,40 @@
-import java.util.Iterator;
 
-//instances of this class represent the average time of a measurement series
+//Instanzen dieser Klasse stellen die durchschnittliche Zeit einer Messreihe dar
 public class MeanElapsedTime extends ElapsedTime {
 
-	//set with the particular measured times of the series
+	//Set mit den einzelnen Messwerten der Reihe
 	private Set<Double> data;
 	
-	//the average time of the series
+	//die durchschnittliche Zeit der Reihe
 	private double average;
 	
-	//initializes the MeanElapsedTime with the given set of measured data
+	//Initialisiert das Objekt mit dem uebergebenen Set
+	//Berechnet danach die durschnittliche Zeit der Reihe und setzt damit die Zeit in der
+	//Superklasse ElapsedTime
 	//data != null
 	public MeanElapsedTime(Set<Double> data) {
 		this.data = data;
+		this.getAverage();
+		super.setTime(average);
 	}
 	
 	/**
-	 * adds a value to the measurement series
+	 * Fuegt der Reihe einen neuen Messwert hinzu
+	 * berechnet nach dem Hinzufuegen die durchschnittliche Zeit neu
 	 * @param value != null
-	 * @return true if the set was changend as a result of the method call
+	 * @return true, wenn das Set nach Methodenaufruf veraendert wurde
 	 */
 	public boolean addMeasuredValue(Double value) {
-		return data.insert(value);
+		
+		if(data.insert(value) == true) {
+			this.getAverage();
+			return true;
+		}
+		return false;
 	}
 	
 	/**
-	 * @return the biggest value of the set
+	 * @return den groessten Wert im Set
 	 */
 	public Double highestValue() {
 		return null;
@@ -33,18 +42,20 @@ public class MeanElapsedTime extends ElapsedTime {
 	
 	@Override
 	public int count() {
-		
-		int number = 0;
-		Iterator<Double> it = data.iterator();
-		
-		while(it.hasNext()) {
-			number++;
-			it.next();
-		}
-		return number;
+		return 0;
 	}
 	
-	public boolean shorter(MeanElapsedTime other) {
-		return false;
+	/*
+	 * Berechnet die durschnittliche Zeit der Messreihe 
+	 * und setzt sie anschliessend
+	 */
+	private void getAverage() {
+		
+		double sum = 0;
+		
+		for(Double d : data) {	
+			sum += d;
+		}
+		this.average = sum/this.count();	
 	}
 }
