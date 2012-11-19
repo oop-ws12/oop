@@ -19,6 +19,7 @@ public abstract class ElapsedTime implements Shorter<ElapsedTime> {
 		 this.time = time;
 	 }
 	 
+	 @Override
 	 public boolean shorter(ElapsedTime other) {	 
 		 return this.time < other.time;
 	 }	
