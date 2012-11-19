@@ -129,6 +129,7 @@ public class Test {
 
 
 	private static void testTimes() {
+		OrderedMap<MeanElapsedTime, CompositeTime> m1 = new OrderedMap<MeanElapsedTime, CompositeTime>();
 		
 	}
 
