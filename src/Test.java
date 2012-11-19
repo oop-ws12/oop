@@ -5,6 +5,7 @@ public class Test {
 	public static void main(String[] args) {
 		testSets();
 		testTimes();
+		testShorter();
 		
 		System.out.println();
 		System.out.println("All tests ok.");
@@ -223,6 +224,36 @@ public class Test {
 		eq(messwerte1[3], current2.getShortestTime());
 		System.out.println(current2.getShortestTime());
 		
+	}
+	
+	private static void testShorter() {
+		
+		//Sets erstellen
+		Set<Double> set1 = new Set<Double>();
+		Set<Double> set2 = new Set<Double>();
+				
+		//Messreihen erstellen
+		Double[] messwerte1 = new Double[] { 13.0, 14.2, 1.4, 0.5 };
+		Double[] messwerte2 = new Double[] { 4.0, 100.4, 20.9, 3.5, 80.2 };
+		Double[] messwerte3 = new Double[] { 4.6, 10.4, 220.9, 33.5, 8.2 };
+				
+		//Sets mit den Messreihen initialisieren
+		for(double d : messwerte1) {
+			set1.insert(d);
+		}
+		for(double d : messwerte2) {
+			set2.insert(d);
+		}
+		
+		MeanElapsedTime t1 = new MeanElapsedTime(set1);
+		MeanElapsedTime t2 = new MeanElapsedTime(set2);
+		
+		CompositeTime t3 = new CompositeTime(messwerte3);
+		ElapsedTime t4 = new CompositeTime(messwerte1);
+		
+		eq(true, t1.shorter(t2));
+		eq(false,t3.shorter(t1));
+		eq(true, t1.shorter(t4));
 	}
 
 	/**
