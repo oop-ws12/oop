@@ -1,34 +1,56 @@
 import java.util.Iterator;
 
 public class Test {
+	private static OrderedMap<MeanElapsedTime, CompositeTime> testMap;
 	
 	public static void main(String[] args) {
+		// Unit Tests
 		testSets();
 		testTimes();
 		testShorter();
+		
+		// Tests laut Angabe
+		testNr1();
+
+		testNr3();
 		
 		System.out.println();
 		System.out.println("All tests ok.");
 	}
 
+	private static void testNr3() {
+		System.out.println("--- Test 3 ---");
+		
+		OrderedSet<MeanElapsedTime> set = testMap;
+		Set<Double> times = new Set<Double>();
+		times.insert(133d);
+		times.insert(123d);
+		times.insert(153d);
+		
+		set.insert(new MeanElapsedTime(times));
+		
+		for(MeanElapsedTime time : set) {
+			System.out.println(time.highestValue());
+		}
+	}
+
 	private static void testSets() {
 		testSet();
-		testOrderedSet();
 		testOrderedMap();
 	}
 	
-	private static void testOrderedMap() {
+	private static void testOrderedMap() {		
 		OrderedMap<Description, String> m = new OrderedMap<Description, String>();
 		Description[] d = new Description[] {
-			new Description("Dhgsdhj"),
-			new Description("Dhjskdaasdjklasd"),
-			new Description("De"),
-			new Description("asdasadsasd")
+			new Description("Dhgsdhj\na"),
+			new Description("Dhjsk\ndaa\nsd\njk\nlasd"),
+			new Description("Deww"),
+			new Description("asdasa\ndsa\nd")
 		};
 		
 		for(Description e : d)
 			m.insert(e);
-	
+		
 		eq(4, m.count());
 		MapIterator<Description, String> it = m.iterator();
 		eq(d[2], it.next());
@@ -46,20 +68,31 @@ public class Test {
 		firstStrs.add("Foo");
 		
 		firstStrs = it.iterator();
-		eq(2, count(firstStrs));		
+		eq(2, count(firstStrs));	
+		
+		for(Description e : m) {
+			System.out.println(e.lineCount());
+		}
 	}
 
-	private static void testOrderedSet() {
+	private static void testNr1() {
+		System.out.println("--- Test 1 ---");
+		
 		Set<Description> s = new OrderedSet<Description>();
 		Description[] d = new Description[] {
-			new Description("Dhgsdhj"),
-			new Description("Dhjskdaasdjklasd"),
-			new Description("De"),
-			new Description("asdasadsasd")
+			new Description("Dhgsdhj\na"),
+			new Description("Dhjsk\ndaa\nsd\njk\nlasd"),
+			new Description("Deww"),
+			new Description("asdasa\ndsa\nd")
 		};
 		
 		for(Description e : d)
 			s.insert(e);
+		
+		for(Description e : s) {
+			System.out.println(e.lineCount());
+		}
+		System.out.println("---");
 		
 		eq(4, s.count());
 		Iterator<Description> it = s.iterator();
@@ -68,6 +101,23 @@ public class Test {
 		eq(d[3], it.next());
 		eq(d[1], it.next());
 		eq(false, it.hasNext());
+		
+		// Aenderungen
+		s.remove(d[1]);
+		Description n = new Description("jsdhk\nja");
+		s.insert(n);
+		
+		eq(4, s.count());
+		it = s.iterator();
+		eq(d[2], it.next());
+		eq(n, it.next());
+		eq(d[0], it.next());
+		eq(d[3], it.next());
+		eq(false, it.hasNext());
+		
+		for(Description e : s) {
+			System.out.println(e.lineCount());
+		}
 	}
 
 	private static void testSet() {
@@ -132,7 +182,7 @@ public class Test {
 	private static void testTimes() {
 		
 		//Map erstellen
-		OrderedMap<MeanElapsedTime, CompositeTime> m1 = new OrderedMap<MeanElapsedTime, CompositeTime>();
+		testMap = new OrderedMap<MeanElapsedTime, CompositeTime>();
 		
 		//Sets erstellen
 		Set<Double> set1 = new Set<Double>();
@@ -160,7 +210,7 @@ public class Test {
 		
 		//Map mit den Zeiten initialisieren
 		for(MeanElapsedTime t : times) {
-			m1.insert(t);
+			testMap.insert(t);
 		}
 		
 		//Objekte erzeugen und mit Messwerten initialisieren
@@ -172,7 +222,7 @@ public class Test {
 		};
 		
 		//Iterator ueber die Map
-		MapIterator<MeanElapsedTime, CompositeTime> it = m1.iterator();
+		MapIterator<MeanElapsedTime, CompositeTime> it = testMap.iterator();
 		//Auf das erste Element der Map gehen
 		it.next();
 		//Iterator vom ersten Element ueber die Objekte 
@@ -188,7 +238,7 @@ public class Test {
 		//Objekte, auf welche das zweite Element verweist, einfuegen
 		insertTimes.add(comps[1]);
 		
-		it = m1.iterator();
+		it = testMap.iterator();
 		
 		//Erstes Element in der Map
 		MeanElapsedTime current = it.next();
@@ -223,7 +273,6 @@ public class Test {
 	
 		eq(messwerte1[3], current2.getShortestTime());
 		System.out.println(current2.getShortestTime());
-		
 	}
 	
 	private static void testShorter() {
