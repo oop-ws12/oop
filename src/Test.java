@@ -5,17 +5,37 @@ public class Test {
 	
 	public static void main(String[] args) {
 		// Unit Tests
-		testSets();
-		testTimes();
 		testShorter();
+		testSet();
+		testOrderedMap();
 		
 		// Tests laut Angabe
 		testNr1();
-
+		testNr2();
 		testNr3();
+		testNr4();
+		
 		
 		System.out.println();
 		System.out.println("All tests ok.");
+	}
+
+	private static void testNr4() {
+		System.out.println("--- Test 4 ---");
+
+		OrderedSet<ElapsedTime> set = new OrderedSet<ElapsedTime>();
+		MapIterator<MeanElapsedTime, CompositeTime> it = testMap.iterator();
+		while(it.hasNext()) {
+			set.insert(it.next());
+			Iterator<CompositeTime> compIt = it.iterator();
+			while(compIt.hasNext()) {
+				set.insert(compIt.next());
+			}
+		}
+		
+		for(ElapsedTime e : set) {
+			System.out.println(e.count());
+		}
 	}
 
 	private static void testNr3() {
@@ -32,11 +52,6 @@ public class Test {
 		for(MeanElapsedTime time : set) {
 			System.out.println(time.highestValue());
 		}
-	}
-
-	private static void testSets() {
-		testSet();
-		testOrderedMap();
 	}
 	
 	private static void testOrderedMap() {		
@@ -68,11 +83,7 @@ public class Test {
 		firstStrs.add("Foo");
 		
 		firstStrs = it.iterator();
-		eq(2, count(firstStrs));	
-		
-		for(Description e : m) {
-			System.out.println(e.lineCount());
-		}
+		eq(2, count(firstStrs));
 	}
 
 	private static void testNr1() {
@@ -179,7 +190,8 @@ public class Test {
 	}
 
 
-	private static void testTimes() {
+	private static void testNr2() {
+		System.out.println("--- Test 2 ---");
 		
 		//Map erstellen
 		testMap = new OrderedMap<MeanElapsedTime, CompositeTime>();
