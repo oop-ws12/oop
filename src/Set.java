@@ -178,7 +178,7 @@ public class Set<T> implements Iterable<T> {
 	}
 	
 	/**
-	 * Nimmt ein Argument, das in die Menge eingefügt wird, 
+	 * Nimmt ein Argument, das in die Menge eingefuegt wird, 
 	 * wenn nicht bereits ein identisches Element vorhanden war.
 	 * 
 	 * @param item != null, das hinzuzufuegende Item.
