@@ -1,6 +1,6 @@
 /**
  * Bediener sind leichtgewichtige, flinke und ausdauernde Androiden, 
- * die normalerweise in der Nähe von und in direktem Kontakt zu Menschen 
+ * die normalerweise in der Naehe von und in direktem Kontakt zu Menschen 
  * eingesetzt werden.
  */
 public abstract class Bediener extends Android {

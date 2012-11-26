@@ -59,7 +59,7 @@ public class AusgelieferteAndroiden {
 	
 	/**
 	 * Fuegt einen Androiden mit eindeutiger Seriennummer und allen Ausstattungsdetails in die Liste ein 
-	 * und prueft die Bedingungen der Androide-Verordnung. Sind die Bedingungen nicht erfüllt, bleibt die 
+	 * und prueft die Bedingungen der Androide-Verordnung. Sind die Bedingungen nicht erfuellt, bleibt die 
 	 * Liste unveraendert, und false wird zurueckgegeben. 
 	 * Kommt ein Androide mit derselben Seriennummer bereits in der Liste vor, so handelt es sich um eine 
 	 * Aenderung, sonst um die Auslieferung eines neuen Androiden. Als Ausstattungsdetails bekommt jeder 
@@ -118,7 +118,7 @@ public class AusgelieferteAndroiden {
 	}
 	
 	/**
-	 * Erzeugt einen Iterator über den ausgelieferten Androiden in der Reihenfolge der ersten Auslieferung 
+	 * Erzeugt einen Iterator ueber den ausgelieferten Androiden in der Reihenfolge der ersten Auslieferung 
 	 * (das ist die Reihenfolge des Einfuegens neuer Androiden).
 	 * @return
 	 */
