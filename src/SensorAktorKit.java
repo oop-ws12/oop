@@ -28,7 +28,7 @@ public class SensorAktorKit extends ArrayList<Bauteil> {
 	private static final long serialVersionUID = -2573176409685688411L;
 	
 	public <A extends Android> boolean validate(A a, Software<A> s) {
-		return new SensorAktorKitValidator(s).visit(a);
+		return a.dispatch(new SensorAktorKitValidator(s));
 	}
 	
 	private double getLeistungSum() {

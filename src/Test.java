@@ -68,8 +68,7 @@ public class Test {
 		 */
 		//ok(!protokoll.insert(new Kaempfer(), gep, kit1, new BedienerSoftwareSS2())));
 		
-		//Sollte nicht gehen in meinen Augen
-		//ok(protokoll.insert(g1, behr, kit1, new GesellschafterSoftwareSS1()));
+		ok(!protokoll.insert(g1, behr, kit1, new GesellschafterSoftwareSS1()));
 		
 		
 		ok(protokoll.insert(l1, hochf, kit1, new LeibwaechterSoftwareSS4()));
@@ -79,8 +78,6 @@ public class Test {
 	}
 	
 	public static void testSkins() {
-	
-		
 		BehruerungssenstiverSkin behr = new BehruerungssenstiverSkin();
 		HochfesterSkin hochf = new HochfesterSkin();
 		GepanzerterSkin gep = new GepanzerterSkin();
@@ -102,6 +99,8 @@ public class Test {
 	 * @param o2
 	 */
 	private static <T> void eq(T o1, T o2) {
+		tests++;
+
 		if(!o1.equals(o2)) {
 			throw new RuntimeException(String.format("\"%s\" != \"%s\"", o1, o2) + String.format(" %s/%s", success, tests) + " tests ok!" );
 		} else {
@@ -115,7 +114,6 @@ public class Test {
 	 * @param o2
 	 */
 	private static <T> void ok(boolean cond) {
-		tests++;
 		eq(true, cond);
 	}
 

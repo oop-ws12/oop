@@ -11,7 +11,7 @@ public class Gesellschafter extends Bediener {
 	}
 	
 	@Override
-	public <T> T visit(AndroidVisitor<T> v) {
+	public <T> T dispatch(AndroidVisitor<T> v) {
 		return v.visit(this);
 	}
 }

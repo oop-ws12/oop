@@ -5,7 +5,7 @@
  */
 public abstract class Beschuetzer extends Android {
 	@Override
-	public <T> T visit(AndroidVisitor<T> v) {
+	public <T> T dispatch(AndroidVisitor<T> v) {
 		return v.visit(this);
 	}
 }

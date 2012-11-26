@@ -32,7 +32,7 @@ public abstract class Android {
 		return String.format("%s(%s)", getClass().getName(), getSerial());
 	}
 	
-	public <T> T visit(AndroidVisitor<T> v) {
+	public <T> T dispatch(AndroidVisitor<T> v) {
 		return v.visit(this);
 	}
 }

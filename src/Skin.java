@@ -25,6 +25,6 @@ public abstract class Skin {
 	}
 	
 	public boolean validate(Android a, Validator v) {
-		return a.visit(v);
+		return a.dispatch(v);
 	}
 }
