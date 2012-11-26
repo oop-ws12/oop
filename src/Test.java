@@ -4,22 +4,37 @@ public class Test {
 	public static int tests = 0;
 	public static int success = 0;
 	
-	class GesellschafterSoftwareSS1 extends Gesellschafter.BasicSoftware {
+	static class GesellschafterSoftwareSS1 extends Gesellschafter.BasicSoftware {
 		@Override
 		public int getStufe() {
 			return 1;
 		}
 	}
-	class BedienerSoftwareSS2 extends Bediener.BasicSoftware {
+	static class BedienerSoftwareSS2 extends Bediener.BasicSoftware {
 		@Override
 		public int getStufe() {
 			return 2;
 		}
 	}
 	
+	static class KaempferSoftwareSS5 extends Kaempfer.BasicSoftware {
+		@Override
+		public int getStufe() {
+			return 5;
+		}
+	}
+	
+	static class LeibwaechterSoftwareSS4 extends Leibwaechter.BasicSoftware {
+		@Override
+		public int getStufe() {
+			return 4;
+		}
+	}
+	
 	public static void main(String[] args) {
 		
 		testSkins();
+		testAuslieferungsListe();
 		
 		System.out.println();
 		System.out.println(String.format("%s/%s", success, tests) + " tests ok! :-)");
@@ -40,7 +55,26 @@ public class Test {
 		HochfesterSkin hochf = new HochfesterSkin();
 		GepanzerterSkin gep = new GepanzerterSkin();
 		
-		//ok(protokoll.insert(new Kaempfer(), gep, kit1, software));
+		Kaempfer k1 = new Kaempfer();
+		Gesellschafter g1 = new Gesellschafter();
+		Leibwaechter l1 = new Leibwaechter();
+		
+		ok(protokoll.insert(k1, gep, kit1, new KaempferSoftwareSS5()));
+		
+		/**
+		 * In diesem Fall laesst sich der Code gar nicht kompilieren
+		 * wird schon zur Compilezeit ueberprueft
+		 * diese Kombination wird ueber Wildcards schon verhindert!
+		 */
+		//ok(!protokoll.insert(new Kaempfer(), gep, kit1, new BedienerSoftwareSS2())));
+		
+		//Sollte nicht gehen in meinen Augen
+		//ok(protokoll.insert(g1, behr, kit1, new GesellschafterSoftwareSS1()));
+		
+		
+		ok(protokoll.insert(l1, hochf, kit1, new LeibwaechterSoftwareSS4()));
+		
+		System.out.println(protokoll.find(l1.getSerial()));
 				
 	}
 	
@@ -69,7 +103,7 @@ public class Test {
 	 */
 	private static <T> void eq(T o1, T o2) {
 		if(!o1.equals(o2)) {
-			throw new RuntimeException(String.format("\"%s\" != \"%s\"", o1, o2));
+			throw new RuntimeException(String.format("\"%s\" != \"%s\"", o1, o2) + String.format(" %s/%s", success, tests) + " tests ok!" );
 		} else {
 			success++;
 		}

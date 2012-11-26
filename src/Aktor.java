@@ -6,6 +6,6 @@ public class Aktor extends Bauteil {
 	
 	@Override
 	public String toString() {
-		return String.format("Aktor (%s) %2d kW", getName(), getLeistungKw());
+		return String.format("Aktor (%s) %s kW", getName(), getLeistungKw());
 	}
 }

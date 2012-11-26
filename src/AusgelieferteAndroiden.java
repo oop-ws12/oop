@@ -51,7 +51,7 @@ public class AusgelieferteAndroiden {
 		
 		@Override
 		public String toString() {
-			return skin.toString() + kit.toString();
+			return skin.toString() + '\n' + kit.toString();
 		}
 	}
 	
