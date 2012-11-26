@@ -77,26 +77,37 @@ public class AusgelieferteAndroiden {
 		return new Conditional(a.validate()).foldTrue(new Conditional.Action<Boolean>() {
 			@Override
 			public Boolean map() {
-				ListIterator<AusgelieferterAndroid<?>> it = list.listIterator();
-				boolean updated = false;
+				final ListIterator<AusgelieferterAndroid<?>> it = list.listIterator();
 				
-				while(it.hasNext()) {
-					AusgelieferterAndroid<?> item = it.next();
-					if(item.getAndroid().getSerial().equals(a.getAndroid().getSerial())) {
-						it.remove();
-						it.add(a);
-						updated = true;
+				boolean updated = new Conditional(it.hasNext()).foldTrue(new Conditional.Action<Boolean>() {
+					@Override
+					public Boolean map() {
+						boolean updated = false;
+
+						while(it.hasNext()) {
+							AusgelieferterAndroid<?> item = it.next();
+							boolean cond = item.getAndroid().getSerial().equals(a.getAndroid().getSerial());
+							
+							updated |= new Conditional(cond).foldTrue(new Conditional.Action<Boolean>() {
+								@Override
+								public Boolean map() {
+									it.remove();
+									it.add(a);
+									return true;
+								}
+							}); 
+						}
+						
+						return updated;
 					}
-				}
+				});
 				
-				new Conditional(updated).foldFalse(new Conditional.Action<Boolean>() {
+				return new Conditional(updated).foldFalse(new Conditional.Action<Boolean>() {
 					@Override
 					public Boolean map() {
 						return list.add(a);
 					}
-				});
-				
-				return true;
+				});				
 			}
 		});
 	}
