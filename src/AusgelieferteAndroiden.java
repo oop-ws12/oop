@@ -1,6 +1,6 @@
-import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.ListIterator;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 
 public class AusgelieferteAndroiden {
@@ -55,7 +55,7 @@ public class AusgelieferteAndroiden {
 		}
 	}
 	
-	private ArrayList<AusgelieferterAndroid<?>> list = new ArrayList<AusgelieferteAndroiden.AusgelieferterAndroid<?>>();
+	private Map<String, AusgelieferterAndroid<?>> list = new LinkedHashMap<String, AusgelieferterAndroid<?>>();
 	
 	/**
 	 * Fuegt einen Androiden mit eindeutiger Seriennummer und allen Ausstattungsdetails in die Liste ein 
@@ -70,32 +70,15 @@ public class AusgelieferteAndroiden {
 			A android, 
 			Skin skin, 
 			SensorAktorKit kit, 
-			S software) 
+			S software)
 	{
 		final AusgelieferterAndroid<A> a = new AusgelieferterAndroid<A>(android, skin, kit, software);
-	
-		return new Conditional(a.validate()).foldTrue(new Conditional.Action<Boolean>() {
+		Conditional c = new Conditional(a.validate());
+		
+		return c.foldTrue(new Conditional.Action<Boolean>() {
 			@Override
 			public Boolean map() {
-				ListIterator<AusgelieferterAndroid<?>> it = list.listIterator();
-				boolean updated = false;
-				
-				while(it.hasNext()) {
-					AusgelieferterAndroid<?> item = it.next();
-					if(item.getAndroid().getSerial().equals(a.getAndroid().getSerial())) {
-						it.remove();
-						it.add(a);
-						updated = true;
-					}
-				}
-				
-				new Conditional(updated).foldFalse(new Conditional.Action<Boolean>() {
-					@Override
-					public Boolean map() {
-						return list.add(a);
-					}
-				});
-				
+				list.put(a.getAndroid().getSerial(), a);
 				return true;
 			}
 		});
@@ -108,10 +91,9 @@ public class AusgelieferteAndroiden {
 	 * @return
 	 */
 	public String find(String serialNr) {
-		for(AusgelieferterAndroid<?> a : list) {
-			if(a.getAndroid().getSerial().equals(serialNr)) {
-				return a.toString();
-			}
+		AusgelieferterAndroid<?> a = list.get(serialNr);
+		if(a != null) {
+			return a.toString();
 		}
 		
 		return null;
@@ -123,6 +105,6 @@ public class AusgelieferteAndroiden {
 	 * @return
 	 */
 	public Iterator<AusgelieferterAndroid<?>> iterator() {
-		return list.iterator();
+		return list.values().iterator();
 	}
 }

@@ -1,5 +1,5 @@
 
-public class Bauteil {
+public abstract class Bauteil {
 	private String name;
 	double leistungKw;
 	

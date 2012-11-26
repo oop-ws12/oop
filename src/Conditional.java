@@ -3,19 +3,19 @@ import java.util.Map;
 
 public class Conditional {
 	public static abstract class Action<R> {
-		public static class TrueAction extends Action<Boolean> {
+		public static Action<Boolean> TRUE = new Action<Boolean>() {
 			@Override
 			public Boolean map() {
 				return true;
 			}
-		}
+		};
 		
-		public static class FalseAction extends Action<Boolean> {
+		public static Action<Boolean> FALSE = new Action<Boolean>() {			
 			@Override
 			public Boolean map() {
 				return false;
 			}
-		}
+		};
 		
 		public abstract R map();
 	}
@@ -35,10 +35,10 @@ public class Conditional {
 	}
 	
 	public boolean foldTrue(Action<Boolean> fTrue) {
-		return fold(fTrue, new Action.FalseAction());
+		return fold(fTrue, Action.FALSE);
 	}
 	
 	public boolean foldFalse(Action<Boolean> fFalse) {
-		return fold(new Action.TrueAction(), fFalse);
+		return fold(Action.TRUE, fFalse);
 	}
 }
