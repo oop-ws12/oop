@@ -73,7 +73,9 @@ public class AusgelieferteAndroiden {
 			S software)
 	{
 		final AusgelieferterAndroid<A> a = new AusgelieferterAndroid<A>(android, skin, kit, software);
-		return new Conditional(a.validate()).foldTrue(new Conditional.Action<Boolean>() {
+		Conditional c = new Conditional(a.validate());
+		
+		return c.foldTrue(new Conditional.Action<Boolean>() {
 			@Override
 			public Boolean map() {
 				list.put(a.getAndroid().getSerial(), a);
