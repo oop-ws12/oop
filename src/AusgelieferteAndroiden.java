@@ -2,7 +2,9 @@ import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-
+/**
+ * Stellt eine Liste aller ausgelieferten Androiden dar
+ */
 public class AusgelieferteAndroiden {
 	public static class AusgelieferterAndroid<A extends Android> {
 		private A android;
