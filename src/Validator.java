@@ -1,4 +1,8 @@
-
+/**
+ * Stellt einen Validator dar, der ein bestimtes Zubehoerteil fuer einen Android validiert.
+ * 
+ * Liefter fuer jede Methode true falls die keine Fehler aufgetreten sind (der Android zu dem Teil passt)
+ */
 public abstract class Validator implements AndroidVisitor<Boolean> {
 	protected abstract boolean defaultValue();
 	protected boolean value(Beschuetzer a) {

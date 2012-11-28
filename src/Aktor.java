@@ -1,4 +1,6 @@
-
+/**
+ * Ein Aktor mit einer bestimmten Leistung
+ */
 public class Aktor extends Bauteil {
 	public Aktor(String name, double leistungKw) {
 		super(name, leistungKw);

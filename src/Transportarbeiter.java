@@ -1,5 +1,4 @@
 public class Transportarbeiter extends Schwerarbeiter {
-	
 	public static abstract class BasicSoftware extends Software<Transportarbeiter>
 			implements AndroidVerordnung {
 		@Override

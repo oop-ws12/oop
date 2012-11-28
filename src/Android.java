@@ -1,8 +1,16 @@
 /**
- * Ein Android
+ * Ein Android.
  */
 public abstract class Android {
+	/**
+	 * Die Seriennummer
+	 */
 	private static int serialNr = 0;
+	
+	/**
+	 * Generiert eine eindeutige Seriennumer
+	 * @return
+	 */
 	private static String generateSerial() {
 		serialNr++;
 		return "SN" + serialNr;

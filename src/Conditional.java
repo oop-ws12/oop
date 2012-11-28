@@ -1,7 +1,8 @@
 import java.util.HashMap;
 import java.util.Map;
 
-public class Conditional {
+
+class Conditional {
 	public static abstract class Action<R> {
 		public static Action<Boolean> TRUE = new Action<Boolean>() {
 			@Override

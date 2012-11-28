@@ -1,5 +1,5 @@
 /**
- * Kennzeichnet diese Klasse als konform laut der Android Verordung.
+ * Kennzeichnet diese Software als konform laut der Android Verordung.
  */
 public interface AndroidVerordnung {
 

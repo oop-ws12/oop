@@ -6,6 +6,10 @@ import java.util.Map;
  * Stellt eine Liste aller ausgelieferten Androiden dar
  */
 public class AusgelieferteAndroiden {
+	/**
+	 * Stellt einen Ausgelieferter Androiden mit einer bestimmten Konfiguration dar.
+	 * @param <A>
+	 */
 	public static class AusgelieferterAndroid<A extends Android> {
 		private A android;
 		private Skin skin;
@@ -47,10 +51,17 @@ public class AusgelieferteAndroiden {
 			this.software = software;
 		}
 		
+		/**
+		 * Validiert alle Zubehoerteile.
+		 * @return true falls ok
+		 */
 		public boolean validate() {
 			return skin.validate(android) && kit.validate(android, software) && software.validate(android);
  		}
 		
+		/**
+		 * Liefert die Konfiguration als String.
+		 */
 		@Override
 		public String toString() {
 			return skin.toString() + '\n' + kit.toString();
@@ -66,6 +77,8 @@ public class AusgelieferteAndroiden {
 	 * Kommt ein Androide mit derselben Seriennummer bereits in der Liste vor, so handelt es sich um eine 
 	 * Aenderung, sonst um die Auslieferung eines neuen Androiden. Als Ausstattungsdetails bekommt jeder 
 	 * Android ein Sensoren-Aktoren-Kit, eine Skin und eine Software mit.
+	 * 
+	 * Eine Software muss konform der Android-Verodnung sein (implementiert AndroidVerordnung Interface).
 	 * @return true falls erfolgreich hinzugefuegt/aktualisiert
 	 */
 	public <A extends Android, S extends Software<A>&AndroidVerordnung> boolean insert(

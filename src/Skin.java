@@ -20,11 +20,12 @@ public abstract class Skin {
 		return validator;
 	}
 	
+	/**
+	 * Validiert die Instanz nach der Android Verordnung.
+	 * @param a der Android
+	 * @return
+	 */
 	public boolean validate(Android a) {
-		return validate(a, getValidator());
-	}
-	
-	public boolean validate(Android a, Validator v) {
-		return a.dispatch(v);
+		return a.dispatch(getValidator());
 	}
 }
