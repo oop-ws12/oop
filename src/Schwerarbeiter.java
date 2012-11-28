@@ -1,6 +1,6 @@
 /**
  * Schwerarbeiter sind kraeftige, ausdauernde Androiden, 
- * die mit schweren Lasten umgehen können und den Kontakt zu 
+ * die mit schweren Lasten umgehen koennen und den Kontakt zu 
  * Menschen aus Sicherheitsgruenden meiden.
  */
 public abstract class Schwerarbeiter extends Android {
