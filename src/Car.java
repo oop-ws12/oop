@@ -2,47 +2,80 @@
  * Stellt ein Auto dar.
  */
 public abstract class Car implements Runnable {
+	/**
+	 * Das zugehoerige Spiel
+	 */
 	private Game game;
+	
+	/**
+	 * Die aktuelle Position
+	 */
 	private Point position;
+	
+	/**
+	 * Die aktuele Richtung (Winkel) des Autos.
+	 * Invariante: Es muss gelten angle % 90 == 0.
+	 */
 	private int angle;
+	
+	/**
+	 * Eine Bewegungsstrategie
+	 */
 	private MoveStrategy strategy;
+	
+	/**
+	 * Die aktuelle Punkteanzahl
+	 */
 	private int points;
 
+	/**
+	 * @return Die aktuelle Punkteanzahl
+	 */
 	public int getPoints() {
 		return points;
 	}
 
 	/**
-	 * @return the angle
+	 * @return Die aktuele Richtung (Winkel) des Autos.
 	 */
 	public int getAngle() {
 		return angle;
 	}
 
 	/**
-	 * @param angle
-	 *            the angle to set
+	 * Setzt sie aktuele Richtung (Winkel) des Autos.
+	 * @param Vorbed: angle % 90 == 0
 	 */
 	public void setAngle(int angle) {
 		this.angle = angle;
 	}
 
 	/**
-	 * @param position
-	 *            the position to set
+	 * @param position Setzt die Position des Autos.
 	 */
 	public void setPosition(Point position) {
 		this.position = position;
 	}
 
+	/**
+	 * @return die Position des Autos im Spielfeld.
+	 */
 	public Point getPosition() {
 		return position;
 	}
 
+	/**
+	 * @return das zugehoerige Game.
+	 */
 	public Game getGame() {
 		return game;
 	}
 
+	/**
+	 * Erzeugt eine Car Instanz.
+	 * @param game das zugehoerige Spiel(-brett)
+	 * @param strategy eine Bewegungsstrategie
+	 */
 	public Car(Game game, MoveStrategy strategy) {
 		this.game = game;
 		this.strategy = strategy;
@@ -51,6 +84,9 @@ public abstract class Car implements Runnable {
 		game.add(this);
 	}
 
+	/**
+	 * Startet das Auto.
+	 */
 	@Override
 	public void run() {
 		try {
@@ -63,23 +99,38 @@ public abstract class Car implements Runnable {
 		}
 	}
 
+	/**
+	 * Pausiert das Auto bzw. den Thread (nach getSpeed()).
+	 * @throws InterruptedException
+	 */
 	protected void pause() throws InterruptedException {
 		Thread.sleep(getSpeed());
 	}
 
 	/**
-	 * Gets the speed in Moves/sec.
+	 * Liefert die Geschwindigkeit des Autos.
 	 */
 	protected abstract int getSpeed();
 
+	/**
+	 * Bewegt das Auto einen Move vorwaerts.
+	 */
 	protected void drive() {
 		game.drive(this, strategy.getNextMove());
 	}
 
-	public synchronized void addPoints(int i) {
-		points += i;
+	/**
+	 * Addiert Punkte.
+	 * @param points die Punkte
+	 */
+	public synchronized void addPoints(int points) {
+		points += points;
 	}
 	
+	
+	/**
+	 * Liefert eine Beschreibung des Autos.
+	 */
 	@Override
 	public String toString() {
 		return String.format("Car(pos=(%d, %d), angle=%d, points=%d)", position.getX(), position.getY(), angle, points);

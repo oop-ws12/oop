@@ -1,5 +1,11 @@
-
+/**
+ * Stellt ein schnelles Auto dar.
+ */
 public class FastCar extends Car {
+	/**
+	 * Liefert alle erlaubten Moves.
+	 * @return
+	 */
 	public static Move[] getValidMoves() {
 		return new Move[] {
 			Move.FWDLEFT,
@@ -8,12 +14,18 @@ public class FastCar extends Car {
 		};
 	}
 	
+	/**
+	 * @see Car
+	 */
 	public FastCar(Game game, MoveStrategy strategy) {
 		super(game, strategy);
 	}
 
+	/**
+	 * @see Car
+	 */
 	@Override
 	protected int getSpeed() {
-		return 100;
+		return 50;
 	}
 }

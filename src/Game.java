@@ -9,19 +9,37 @@ import java.util.Random;
  */
 public class Game {
 	/**
-	 * Diese Klasse wird benoetigt sonst schafft es der arme
-	 * Java-Compiler nicht ein List array zu erstellen.
+	 * Benoetigt um Compiler-Warnung zu umgehen (fuer das Array)
 	 */
 	private class CarList extends ArrayList<Car> {
 		private static final long serialVersionUID = 6089283717839076193L;
 	}
 	
+	/**
+	 * Thread Map
+	 */
 	private Map<Car, Thread> threads;
+	
+	/**
+	 * Das Spielfeld
+	 */
 	private CarList[][] table;
 	
+	/**
+	 * Hoehe des Spielfeldes
+	 */
 	private int height;
+	
+	/**
+	 * Breite des Spielfeldes
+	 */
 	private int width;
 	
+	/**
+	 * Erzeugt eine Game Instanz.
+	 * @param height hoehe > 0
+	 * @param width breite > 0
+	 */
 	public Game(int height, int width) {
 		this.table = new CarList[width][height];
 		this.threads = new HashMap<Car, Thread>();
@@ -37,6 +55,12 @@ public class Game {
 		add(car, new Point(r.nextInt(height), r.nextInt(width)));
 	}
 	
+	/**
+	 * Normiert eine Array-Index position - Helper Methode.
+	 * @param i index
+	 * @param max max-index
+	 * @return den normierten Index.
+	 */
 	private int norm(int i, int max) {
 		while(i < 0) i += max;
 		return i % max;
@@ -60,12 +84,19 @@ public class Game {
 		car.setPosition(position);
 	}
 	
+	/**
+	 * Startet die Simulation.
+	 */
 	public void start() {
 		for(Thread t : threads.values()) {
 			t.start();
 		}
 	}
 	
+	/**
+	 * Entfernt ein Car vom Spielfeld.
+	 * @param car
+	 */
 	private void remove(Car car) {
 		CarList field = table[norm(car.getPosition().getX(), height)][norm(car.getPosition().getY(), width)];
 		if(field != null) {
@@ -75,6 +106,13 @@ public class Game {
 		}
 	}
 	
+	/**
+	 * Diese Methode wird bei einer Methode aufgerufen.
+	 * Verteilt die Punkte nach den Spielregeln.
+	 * 
+	 * @param car das kollidierende Auto
+	 * @param with Autos mit denen kolidiert wird
+	 */
 	private void collision(Car car, Collection<Car> with) {
 		for(Car w : with) {
 			if((180 + w.getAngle())%360 == car.getAngle()) {
@@ -91,12 +129,20 @@ public class Game {
 		}
 	}
 	
+	/**
+	 * Beendet das Spiel.
+	 */
 	private void finish() {
 		for(Thread t : threads.values()) {
 			t.interrupt();
 		}
 	}
 
+	/**
+	 * Bewegt ein Auto.
+	 * @param car das Auto
+	 * @param move ein erlaubter Move
+	 */
 	public synchronized void drive(Car car, Move move) {
 		Point delta = move.getPositionDelta(car.getAngle());
 		
@@ -108,6 +154,9 @@ public class Game {
 		System.out.println(toString());
 	}
 	
+	/**
+	 * Gibt das Spielfeld mit den Autos aus.
+	 */
 	@Override
 	public String toString() {
 		StringBuilder b = new StringBuilder();
