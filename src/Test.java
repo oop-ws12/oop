@@ -5,7 +5,6 @@ public class Test {
 	public static int success = 0;
 	
 	public static void main(String[] args) {
-		
 		long zstVorher;
 		long zstNachher;
 		

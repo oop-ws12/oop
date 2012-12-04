@@ -52,7 +52,8 @@ public class Game {
 	 */
 	public void add(Car car) {
 		Random r = new Random();
-		add(car, new Point(r.nextInt(height), r.nextInt(width)));
+		move(car, new Point(r.nextInt(height), r.nextInt(width)));
+		threads.put(car, new Thread(car));
 	}
 	
 	/**
@@ -70,9 +71,7 @@ public class Game {
 	 * Fuegt ein Car an einer bestimmten Position zum Spiel hinzu, 
 	 * falls es noch nicht im Spiel exisitiert.
 	 */
-	private void add(Car car, Point position) {
-		threads.put(car, new Thread(car));
-		
+	private void move(Car car, Point position) {		
 		CarList field = table[norm(position.getX(), height)][norm(position.getY(), width)];
 		if(field == null) {
 			field = table[norm(position.getX(), height)][norm(position.getY(), width)] = new CarList();
@@ -132,7 +131,7 @@ public class Game {
 	/**
 	 * Beendet das Spiel.
 	 */
-	private void finish() {
+	private synchronized void finish() {
 		System.out.println("ich bin in finish");
 		for(Thread t : threads.values()) {
 			t.interrupt();
@@ -152,7 +151,7 @@ public class Game {
 		
 		remove(car);
 		car.setAngle(move.getNewAngle(car.getAngle()));	
-		add(car, Point.add(car.getPosition(), delta));
+		move(car, Point.add(car.getPosition(), delta));
 		
 		// DEBUG
 		System.out.println(toString());

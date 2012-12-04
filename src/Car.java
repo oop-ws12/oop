@@ -6,23 +6,23 @@ public abstract class Car implements Runnable {
 	 * Das zugehoerige Spiel
 	 */
 	private Game game;
-	
+
 	/**
 	 * Die aktuelle Position
 	 */
 	private Point position;
-	
+
 	/**
-	 * Die aktuele Richtung (Winkel) des Autos.
-	 * Invariante: Es muss gelten angle % 90 == 0.
+	 * Die aktuele Richtung (Winkel) des Autos. Invariante: Es muss gelten angle
+	 * % 90 == 0.
 	 */
 	private int angle;
-	
+
 	/**
 	 * Eine Bewegungsstrategie
 	 */
 	private MoveStrategy strategy;
-	
+
 	/**
 	 * Die aktuelle Punkteanzahl
 	 */
@@ -49,14 +49,17 @@ public abstract class Car implements Runnable {
 
 	/**
 	 * Setzt sie aktuele Richtung (Winkel) des Autos.
-	 * @param Vorbed: angle % 90 == 0
+	 * 
+	 * @param Vorbed
+	 *            : angle % 90 == 0
 	 */
 	public void setAngle(int angle) {
 		this.angle = angle;
 	}
 
 	/**
-	 * @param position Setzt die Position des Autos.
+	 * @param position
+	 *            Setzt die Position des Autos.
 	 */
 	public void setPosition(Point position) {
 		this.position = position;
@@ -78,8 +81,11 @@ public abstract class Car implements Runnable {
 
 	/**
 	 * Erzeugt eine Car Instanz.
-	 * @param game das zugehoerige Spiel(-brett)
-	 * @param strategy eine Bewegungsstrategie
+	 * 
+	 * @param game
+	 *            das zugehoerige Spiel(-brett)
+	 * @param strategy
+	 *            eine Bewegungsstrategie
 	 */
 	public Car(Game game, MoveStrategy strategy) {
 		this.game = game;
@@ -93,8 +99,8 @@ public abstract class Car implements Runnable {
 	 * Startet das Auto.
 	 */
 	@Override
-	public void run() {
-		while (!Thread.interrupted()) {
+	public void run() {		
+		while (!Thread.currentThread().isInterrupted()) {
 			drive();
 			pause();
 		}
@@ -102,13 +108,14 @@ public abstract class Car implements Runnable {
 
 	/**
 	 * Pausiert das Auto bzw. den Thread (nach getSpeed()).
+	 * 
 	 * @throws InterruptedException
 	 */
 	protected void pause() {
 		try {
 			Thread.sleep(getSpeed());
 		} catch (InterruptedException e) {
-			
+			Thread.currentThread().interrupt();
 		}
 	}
 
@@ -127,13 +134,14 @@ public abstract class Car implements Runnable {
 
 	/**
 	 * Addiert Punkte.
-	 * @param points die Punkte
+	 * 
+	 * @param points
+	 *            die Punkte
 	 */
 	public synchronized void addPoints(int points) {
 		points += points;
 	}
 
-	
 	/**
 	 * Liefert eine Beschreibung des Autos.
 	 */
