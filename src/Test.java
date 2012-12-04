@@ -5,6 +5,7 @@ public class Test {
 	public static int success = 0;
 	
 	public static void main(String[] args) {
+		
 		long zstVorher;
 		long zstNachher;
 		
@@ -12,6 +13,8 @@ public class Test {
 		
 		testMove();
 		testlauf1();
+		testlauf2();
+		testlauf3();
 		
 		zstNachher = System.currentTimeMillis();
 		
@@ -39,6 +42,44 @@ public class Test {
 		game1.start();
 		success++;
 		
+	}
+	
+	private static void testlauf2() {
+	
+		System.out.println("Starte Testlauf 2: ");
+		tests++;
+		Game game2 = new Game(10, 10);
+		
+		for(int i = 0; i < 20; i++) {
+			new FastCar(game2, new MoveStrategy.Always(Move.FWD));
+		}
+		
+		for(int i = 0; i < 10; i++) {
+			Car c2 = new MoveCar(game2, new MoveStrategy.Always(Move.FWD));
+			c2.setAngle(180);
+		}
+			
+		game2.start();
+		success++;
+	}
+	
+	private static void testlauf3() {
+		
+		System.out.println("Starte Testlauf 3: ");
+		tests++;
+		Game game3 = new Game(30, 40);
+		
+		for(int i = 0; i < 30; i++) {
+			Car c1 = new FastCar(game3, new MoveStrategy.Random(FastCar.getValidMoves()));
+			c1.setAngle(90);
+		}
+		
+		for(int i = 0; i < 10; i++) {
+			Car c = new MoveCar(game3, new MoveStrategy.Always(Move.FWD));
+			c.setAngle(270);
+		}
+		game3.start();
+		success++;
 	}
 	
 	private static void testMove() {

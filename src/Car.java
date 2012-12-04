@@ -138,8 +138,8 @@ public abstract class Car implements Runnable {
 	 * @param points
 	 *            die Punkte
 	 */
-	public synchronized void addPoints(int points) {
-		points += points;
+	public void addPoints(int points) {
+		this.points += points;
 	}
 
 	/**
