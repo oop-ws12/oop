@@ -100,22 +100,16 @@ public abstract class Car implements Runnable {
 		}
 	}
 
-<<<<<<< HEAD
 	/**
 	 * Pausiert das Auto bzw. den Thread (nach getSpeed()).
 	 * @throws InterruptedException
 	 */
-	protected void pause() throws InterruptedException {
-		Thread.sleep(getSpeed());
-=======
 	protected void pause() {
 		try {
 			Thread.sleep(getSpeed());
-
 		} catch (InterruptedException e) {
-			Thread.currentThread().interrupt();
+			
 		}
->>>>>>> c0b2b63ce4a45161ddd2e668d69cb3963bc8b701
 	}
 
 	/**
@@ -127,7 +121,6 @@ public abstract class Car implements Runnable {
 	 * Bewegt das Auto einen Move vorwaerts.
 	 */
 	protected void drive() {
-
 		feldwechsel++;
 		game.drive(this, strategy.getNextMove());
 	}
@@ -139,15 +132,11 @@ public abstract class Car implements Runnable {
 	public synchronized void addPoints(int points) {
 		points += points;
 	}
-<<<<<<< HEAD
-	
+
 	
 	/**
 	 * Liefert eine Beschreibung des Autos.
 	 */
-=======
-
->>>>>>> c0b2b63ce4a45161ddd2e668d69cb3963bc8b701
 	@Override
 	public String toString() {
 		return String.format("Car(pos=(%d, %d), angle=%d, points=%d)",

@@ -145,7 +145,6 @@ public class Game {
 	 * @param move ein erlaubter Move
 	 */
 	public synchronized void drive(Car car, Move move) {
-		
 		if(car.getFeldwechsel() > 2) {
 			finish();
 		}
