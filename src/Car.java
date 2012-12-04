@@ -12,7 +12,7 @@ public abstract class Car implements Runnable {
 	public int getPoints() {
 		return points;
 	}
-	
+
 	public int getFeldwechsel() {
 		return feldwechsel;
 	}
@@ -58,18 +58,19 @@ public abstract class Car implements Runnable {
 
 	@Override
 	public void run() {
-		try {
-			for (;;) {
-				drive();
-				pause();
-			}
-		} catch (InterruptedException e) {
-			System.out.println(toString());
+		while (!Thread.interrupted()) {
+			drive();
+			pause();
 		}
 	}
 
-	protected void pause() throws InterruptedException {
-		Thread.sleep(getSpeed());
+	protected void pause() {
+		try {
+			Thread.sleep(getSpeed());
+
+		} catch (InterruptedException e) {
+			Thread.currentThread().interrupt();
+		}
 	}
 
 	/**
@@ -78,19 +79,18 @@ public abstract class Car implements Runnable {
 	protected abstract int getSpeed();
 
 	protected void drive() {
+
+		feldwechsel++;
 		game.drive(this, strategy.getNextMove());
 	}
 
 	public synchronized void addPoints(int i) {
 		points += i;
 	}
-	
-	public synchronized void addFeldwechsel() {
-		feldwechsel++;
-	}
-	
+
 	@Override
 	public String toString() {
-		return String.format("Car(pos=(%d, %d), angle=%d, points=%d)", position.getX(), position.getY(), angle, points);
+		return String.format("Car(pos=(%d, %d), angle=%d, points=%d)",
+				position.getX(), position.getY(), angle, points);
 	}
 }

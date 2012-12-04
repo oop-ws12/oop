@@ -86,24 +86,23 @@ public class Game {
 			}
 		}
 		
-		if(car.getPoints() > 2 || car.getPoints() < -2) {
+		if(car.getPoints() > 2) {
 			finish();
 		}
 	}
 	
 	private void finish() {
-		for(Car c : threads.keySet()) {
-			System.out.println(c);
-			threads.get(c).interrupt();
+		System.out.println("ich bin in finish");
+		for(Thread t : threads.values()) {
+			t.interrupt();
 		}
 	}
 
 	public synchronized void drive(Car car, Move move) {
 		
-		if(car.getFeldwechsel() > 10) {
+		if(car.getFeldwechsel() > 2) {
 			finish();
 		}
-		car.addFeldwechsel();
 		Point delta = move.getPositionDelta(car.getAngle());
 		
 		remove(car);
