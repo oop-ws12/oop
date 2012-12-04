@@ -78,26 +78,32 @@ public class Game {
 	private void collision(Car car, Collection<Car> with) {
 		for(Car w : with) {
 			if((180 + w.getAngle())%360 == car.getAngle()) {
-				System.out.println("Collison +1");
+				System.out.println("Collision +1");
 				car.addPoints(1);
 			} else {
-				System.out.println("Collison -1");
+				System.out.println("Collision -1");
 				w.addPoints(-1);
 			}
 		}
 		
-		if(car.getPoints() > 3) {
+		if(car.getPoints() > 2 || car.getPoints() < -2) {
 			finish();
 		}
 	}
 	
 	private void finish() {
-		for(Thread t : threads.values()) {
-			t.interrupt();
+		for(Car c : threads.keySet()) {
+			System.out.println(c);
+			threads.get(c).interrupt();
 		}
 	}
 
 	public synchronized void drive(Car car, Move move) {
+		
+		if(car.getFeldwechsel() > 10) {
+			finish();
+		}
+		car.addFeldwechsel();
 		Point delta = move.getPositionDelta(car.getAngle());
 		
 		remove(car);

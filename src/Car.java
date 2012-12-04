@@ -7,9 +7,14 @@ public abstract class Car implements Runnable {
 	private int angle;
 	private MoveStrategy strategy;
 	private int points;
+	private int feldwechsel;
 
 	public int getPoints() {
 		return points;
+	}
+	
+	public int getFeldwechsel() {
+		return feldwechsel;
 	}
 
 	/**
@@ -78,6 +83,10 @@ public abstract class Car implements Runnable {
 
 	public synchronized void addPoints(int i) {
 		points += i;
+	}
+	
+	public synchronized void addFeldwechsel() {
+		feldwechsel++;
 	}
 	
 	@Override
