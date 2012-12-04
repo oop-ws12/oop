@@ -1,23 +1,49 @@
 
 public class Test {
+	
+	public static int tests = 0;
+	public static int success = 0;
+	
 	public static void main(String[] args) {
+		
+		long zstVorher;
+		long zstNachher;
+		
+		zstVorher = System.currentTimeMillis();
+		
 		testMove();
+		testlauf1();
 		
-		Game game = new Game(30, 25);
+		zstNachher = System.currentTimeMillis();
 		
-		for(int i = 0; i < 50; i++) {
-			new FastCar(game, new MoveStrategy.Random(FastCar.getValidMoves()));
+		System.out.println(String.format("Tests nach %s Millisekunden terminiert", zstNachher - zstVorher));
+		System.out.println(String.format("%s/%s Tests erfolgreich!", success, tests));
+		
+	}
+	
+	private static void testlauf1() {
+		
+		System.out.println("Starte Testlauf 1: ");
+		
+		tests++;
+		Game game1 = new Game(10, 5);
+		
+		for(int i = 0; i < 1; i++) {
+			new FastCar(game1, new MoveStrategy.Random(FastCar.getValidMoves()));
 		}
 		
-		for(int i = 0; i < 50; i++) {
-			Car f = new FastCar(game, new MoveStrategy.Always(Move.FWD));
+		for(int i = 0; i < 3; i++) {
+			Car f = new FastCar(game1, new MoveStrategy.Always(Move.FWD));
 			f.setAngle(new java.util.Random().nextBoolean() ? 90: 180);
 		}
 		
-		game.start();
+		game1.start();
+		success++;
+		
 	}
 	
 	private static void testMove() {
+		
 		eq(Move.FWD.getPositionDelta(0).toString(), "Point(1, 0)");
 		eq(Move.FWD.getPositionDelta(90).toString(), "Point(0, -1)");
 		
@@ -32,20 +58,12 @@ public class Test {
 	 * @param o1
 	 * @param o2
 	 */
-	private static <T> void eq(T o1, T o2) {
+	private static <T> void eq(T o1, T o2) {	
+		tests++;
 		if(!o1.equals(o2)) {
 			throw new RuntimeException(String.format("\"%s\" != \"%s\"", o1, o2));
 		} else {
-			System.out.print(".");
+			success++;
 		}
-	}
-
-	/**
-	 * Prueft eine Bedingung.
-	 * @param o1
-	 * @param o2
-	 */
-	private static <T> void ok(boolean cond) {
-		eq(true, cond);
 	}
 }

@@ -116,15 +116,15 @@ public class Game {
 	private void collision(Car car, Collection<Car> with) {
 		for(Car w : with) {
 			if((180 + w.getAngle())%360 == car.getAngle()) {
-				System.out.println("Collison +1");
+				System.out.println("Collision +1");
 				car.addPoints(1);
 			} else {
-				System.out.println("Collison -1");
+				System.out.println("Collision -1");
 				w.addPoints(-1);
 			}
 		}
 		
-		if(car.getPoints() > 3) {
+		if(car.getPoints() > 2) {
 			finish();
 		}
 	}
@@ -133,6 +133,7 @@ public class Game {
 	 * Beendet das Spiel.
 	 */
 	private void finish() {
+		System.out.println("ich bin in finish");
 		for(Thread t : threads.values()) {
 			t.interrupt();
 		}
@@ -144,6 +145,10 @@ public class Game {
 	 * @param move ein erlaubter Move
 	 */
 	public synchronized void drive(Car car, Move move) {
+		
+		if(car.getFeldwechsel() > 2) {
+			finish();
+		}
 		Point delta = move.getPositionDelta(car.getAngle());
 		
 		remove(car);
