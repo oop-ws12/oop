@@ -5,7 +5,6 @@ public class Test {
 	public static int success = 0;
 	
 	public static void main(String[] args) {
-		
 		long zstVorher;
 		long zstNachher;
 		
@@ -20,7 +19,6 @@ public class Test {
 		
 		System.out.println(String.format("Tests nach %s Millisekunden terminiert", zstNachher - zstVorher));
 		System.out.println(String.format("%s/%s Tests erfolgreich!", success, tests));
-		
 	}
 	
 	private static void testlauf1() {
@@ -40,6 +38,7 @@ public class Test {
 		}
 		
 		game1.start();
+		game1.waitForFinish();
 		success++;
 		
 	}
@@ -60,6 +59,8 @@ public class Test {
 		}
 			
 		game2.start();
+		game2.waitForFinish();
+
 		success++;
 	}
 	
@@ -79,6 +80,8 @@ public class Test {
 			c.setAngle(270);
 		}
 		game3.start();
+		game3.waitForFinish();
+
 		success++;
 	}
 	

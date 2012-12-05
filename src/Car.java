@@ -147,7 +147,7 @@ public abstract class Car implements Runnable {
 	 */
 	@Override
 	public String toString() {
-		return String.format("Car(pos=(%d, %d), angle=%d, points=%d)",
-				position.getX(), position.getY(), angle, points);
+		return String.format("Car(pos=(%d, %d), points=%d)",
+				position.getX(), position.getY(), points);
 	}
 }

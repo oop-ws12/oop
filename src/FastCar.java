@@ -26,6 +26,6 @@ public class FastCar extends Car {
 	 */
 	@Override
 	protected int getSpeed() {
-		return 50;
+		return 5;
 	}
 }

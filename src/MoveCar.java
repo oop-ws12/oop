@@ -28,7 +28,7 @@ public class MoveCar extends Car {
 	 */
 	@Override
 	protected int getSpeed() {
-		return 70;
+		return 7;
 	}
 
 }

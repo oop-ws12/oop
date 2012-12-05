@@ -81,6 +81,12 @@ public class Game {
 		
 		field.add(car);
 		car.setPosition(position);
+		
+		if(car.getPoints() > 10) {
+			finish(car, true);
+		} else if(car.getFeldwechsel() > 100) {
+			finish(car, false);
+		}
 	}
 	
 	/**
@@ -89,6 +95,18 @@ public class Game {
 	public void start() {
 		for(Thread t : threads.values()) {
 			t.start();
+		}
+	}
+	
+	/**
+	 * Wartet solange bis das Spiel vorbei ist.
+	 */
+	public void waitForFinish() {
+		for(Thread t : threads.values()) {
+			try {
+				t.join();
+			} catch (InterruptedException e) {
+			}
 		}
 	}
 	
@@ -115,26 +133,25 @@ public class Game {
 	private void collision(Car car, Collection<Car> with) {
 		for(Car w : with) {
 			if((180 + w.getAngle())%360 == car.getAngle()) {
-				//System.out.println("Collision +1");
 				car.addPoints(1);
 			} else {
-				//System.out.println("Collision -1");
 				w.addPoints(-1);
 			}
 		}
-		
-		if(car.getPoints() > 0) {
-			System.out.println("SIEGER: " + car);
-			finish();
-		}
 	}
+
 	
 	/**
 	 * Beendet das Spiel.
+	 * @param winner Winner-Car oder null falls kein gewinner.
 	 */
-	private void finish() {
+	private void finish(Car winner, boolean isWinner) {
+		if(isWinner)
+			System.out.println("Sieger nach Punktezahl: " + winner);
+		else
+			System.out.println("Ende: Max Feldwechsel bei " + winner);
+		
 		for(Car c : threads.keySet()) {
-			//System.out.println(c);
 			threads.get(c).interrupt();
 		}
 	}
@@ -145,17 +162,11 @@ public class Game {
 	 * @param move ein erlaubter Move
 	 */
 	public synchronized void drive(Car car, Move move) {
-		if(car.getFeldwechsel() > 100) {
-			finish();
-		}
 		Point delta = move.getPositionDelta(car.getAngle());
 		
 		remove(car);
 		car.setAngle(move.getNewAngle(car.getAngle()));	
 		move(car, Point.add(car.getPosition(), delta));
-		
-		// DEBUG
-		//System.out.println(toString());
 	}
 	
 	/**
