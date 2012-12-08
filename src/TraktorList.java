@@ -76,10 +76,12 @@ public class TraktorList {
 			this.node = node;
 		}
 		
+		@Override
 		public boolean hasNext() {
 			return node != null;
 		}
 
+		@Override
 		public Traktor next() {
 			
 			if(node != null) {
@@ -211,8 +213,8 @@ public class TraktorList {
 	}
 		
 	/**
-	 * Gibt einen Iterator ueber die TraktorList zurueck
-	 * @return TraktorListIterator
+	 * Gibt einen TraktorIterator ueber die TraktorList zurueck
+	 * @return TraktorIterator
 	 * @author Alexander Prennsberger
 	 */
 	public TraktorIterator iterator() {
