@@ -1,10 +1,8 @@
-import java.util.Iterator;
-
 /**
  * Instanzen dieser Klasse stellen eine verkettete Liste von Traktoren dar
  * @author Alexander Prennsberger
  */
-public class TraktorList implements Iterable<Traktor> {
+public class TraktorList {
 	
 	/**
 	 * Instanzen dieser Klasse stellen einen Knoten in der TraktorList dar
@@ -66,7 +64,7 @@ public class TraktorList implements Iterable<Traktor> {
 	 * Instanzen dieser Klasse stellen einen Iterator ueber die TraktorList dar
 	 * @author Alexander Prennsberger
 	 */
-	private class TraktorListIterator implements Iterator<Traktor> {
+	protected class TraktorListIterator implements TraktorIterator {
 
 		private Node node;
 		
@@ -78,12 +76,10 @@ public class TraktorList implements Iterable<Traktor> {
 			this.node = node;
 		}
 		
-		@Override
 		public boolean hasNext() {
 			return node != null;
 		}
 
-		@Override
 		public Traktor next() {
 			
 			if(node != null) {
@@ -95,12 +91,6 @@ public class TraktorList implements Iterable<Traktor> {
 			}
 			return null;
 		}
-
-		//NOT SUPPORTED
-		@Override
-		public void remove() {
-			
-		}	
 	}
 	
 	/**
@@ -149,10 +139,14 @@ public class TraktorList implements Iterable<Traktor> {
 	 */
 	protected Traktor get(int id) {
 		
-		for(Traktor elem : this) {
+		TraktorIterator it = this.iterator();
 		
-			if(elem.getSerial() == id) {
-				return elem;
+		while(it.hasNext()) {
+			
+			Traktor t = it.next();
+			
+			if(t.getSerial() == id) {
+				return t;
 			}
 		}
 		return null;
@@ -172,7 +166,11 @@ public class TraktorList implements Iterable<Traktor> {
 			return this;
 		}
 		
-		for(Traktor t : this) {
+		TraktorIterator it = this.iterator();
+		
+		while(it.hasNext()) {
+			
+			Traktor t = it.next();
 			
 			if(filter.apply(t)) {
 				result.add(t);
@@ -199,7 +197,11 @@ public class TraktorList implements Iterable<Traktor> {
 			return temp;
 		}
 		
-		for(Traktor t : temp) {
+		TraktorIterator it = this.iterator();
+		
+		while(it.hasNext()) {
+			
+			Traktor t = it.next();
 			
 			if(filter2.apply(t.getEinsatzzweck())) {
 				result.add(t);
@@ -210,10 +212,10 @@ public class TraktorList implements Iterable<Traktor> {
 		
 	/**
 	 * Gibt einen Iterator ueber die TraktorList zurueck
-	 * @retrun TraktorListIterator
+	 * @return TraktorListIterator
 	 * @author Alexander Prennsberger
 	 */
-	public Iterator<Traktor> iterator() {
+	public TraktorIterator iterator() {
 		return new TraktorListIterator(head);
 	}
 

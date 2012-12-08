@@ -71,9 +71,13 @@ public class Bauernhof {
 		
 		TraktorList result = traktoren.filter(motortyp, einsatz);
 		
-		for(Traktor t : result) {	
+		TraktorIterator it = result.iterator();
+		
+		while(it.hasNext()) {
+			
+			Traktor t = it.next();
 			sum += t.getBetriebsstunden();
-			anzahl++;
+			anzahl++;	
 		}
 		
 		if (anzahl == 0) {
@@ -101,10 +105,13 @@ public class Bauernhof {
 				
 		TraktorList result = traktoren.filter(motortyp, einsatz);
 		
-		for(Traktor t : result) {
+		TraktorIterator it = result.iterator();
 		
+		while(it.hasNext()) {
+			
+			Traktor t = it.next();
 			sum += t.getSpritVerbrauch();
-			anzahl++;	
+			anzahl++;
 		}
 		
 		if (anzahl == 0) {
@@ -126,11 +133,14 @@ public class Bauernhof {
 		TraktorList result = traktoren.filter(motortyp, new Driller(0));
 		
 		wert = getMaxAnzahlSaeschare(motortyp);
+		
+		TraktorIterator it = result.iterator();
+		
+		while(it.hasNext()) {
 			
-		for(Traktor t : result) {
-				
+			Traktor t = it.next();
 			int temp = (int)t.getEinsatzSpezDaten();
-				
+			
 			if(temp < wert) {
 				wert = temp;
 			}
@@ -151,8 +161,11 @@ public class Bauernhof {
 		
 		TraktorList result = traktoren.filter(motortyp, new Driller(0));
 		
-		for(Traktor t : result) {
+		TraktorIterator it = result.iterator();
+		
+		while(it.hasNext()) {
 			
+			Traktor t = it.next();
 			int temp = (int)t.getEinsatzSpezDaten();
 			
 			if(temp > wert) {
@@ -177,12 +190,15 @@ public class Bauernhof {
 		
 		TraktorList result = traktoren.filter(motortyp, new Duenger(0));
 		
-		for(Traktor t : result) {
+		TraktorIterator it = result.iterator();
+		
+		while(it.hasNext()) {
 			
+			Traktor t = it.next();
 			sum += t.getEinsatzSpezDaten();
 			anzahl++;
-		}
-		
+		}	
+			
 		if(anzahl == 0) {
 			throw new IllegalArgumentException("Division durch 0: Anzahl der Traktoren gleich 0!");
 		}
@@ -190,63 +206,95 @@ public class Bauernhof {
 	}
 	
 	/**
-	 * Erhoeht die Betriebsstunden des angegebenen Traktors
+	 * Erhoeht die Betriebsstunden des angegebenen Traktors, falls der Traktor nicht existiert geschieht nichts
 	 * @param id der Traktor
 	 * @param stunden darf nicht negativ sein, die Stunden, um welche erhoeht werden sollen
 	 * @author Alexander Prennsberger
 	 */
 	protected void erhoeheBetriebsstunden(int id, int stunden) {
-		traktoren.get(id).setBetriebsstunden(stunden);
+		
+		Traktor t = traktoren.get(id);
+		
+		if(t != null) {
+			t.setBetriebsstunden(stunden);
+		}
 	}
 	
 	/**
 	 * Liefert die Betriebsstunden des angegebenen Traktors
 	 * @param id der Traktor
-	 * @return die Betriebsstunden
+	 * @return die Betriebsstunden, und -1 falls der Traktor nicht existiert
 	 * @author Alexander Prennsberger
 	 */
 	protected int getBetriebsstunden(int id) {
-		return traktoren.get(id).getBetriebsstunden();
+		
+		Traktor t = traktoren.get(id);
+		
+		if(t != null)
+			return traktoren.get(id).getBetriebsstunden();
+		
+		else return -1;
 	}
 	
 	/**
-	 * Erhoeht den Spritverbrauch des angegebenen Traktors
+	 * Erhoeht den Spritverbrauch des angegebenen Traktors, falls der Traktor nicht existiert geschieht nichts
 	 * @param id der Traktor
 	 * @param sprit darf nich negativ sein, der Spritverbrauch, um welchen erhoeht werden soll
 	 * @author Alexander Prennsberger
 	 */
 	protected void erhoeheSpritVerbrauch(int id, double sprit) {
-		traktoren.get(id).setSpritVerbrauch(sprit);
+		
+		Traktor t = traktoren.get(id);
+		
+		if(t != null)
+			t.setSpritVerbrauch(sprit);
 	}
 	
 	/**
 	 * Liefert den Spritverbrauch des angegebenen Traktors
 	 * @param id der Traktor
-	 * @return den Spritverbrauch
+	 * @return den Spritverbrauch und -1 falls der Traktor nicht existiert
 	 * @author Alexander Prennsberger
 	 */
 	protected double getSpritVerbrauch(int id) {
-		return traktoren.get(id).getSpritVerbrauch();
+		
+		Traktor t = traktoren.get(id);
+		
+		if(t != null)
+			return t.getSpritVerbrauch();
+		
+		else return -1;
 	}
 	
 	/**
-	 * Aendert die Einsatzart des angegebenen Traktors
+	 * Aendert die Einsatzart des angegebenen Traktors, falls der Traktor nicht existiert oder der Einsatzzweck null ist 
+	 * geschieht nichts
 	 * @param id der Traktor
 	 * @param neu != null die neue Einsatzart
 	 * @author Alexander Prennsberger
 	 */
 	protected void changeEinatzart(int id, Einsatzzweck neu) {
-		traktoren.get(id).changeEinsatzzweck(neu);
+		
+		Traktor t = traktoren.get(id);
+		
+		if(t != null && neu != null)
+			t.changeEinsatzzweck(neu);
 	}
 	
 	/**
 	 * Liefert die Einsatzzweck spezifischen Daten des angegebenen Traktors
 	 * @param id der Traktor
-	 * @return spezifische Einsatzdaten
+	 * @return spezifische Einsatzdaten, -1 falls der Traktor nicht existiert
 	 * @author Alexander Prennsberger
 	 */
 	protected double getDaten(int id) {
-		return traktoren.get(id).getEinsatzSpezDaten();
+		
+		Traktor t = traktoren.get(id);
+		
+		if(t != null)
+			return t.getEinsatzSpezDaten();
+		
+		else return -1;
 	}
 
 	
@@ -266,9 +314,13 @@ public class Bauernhof {
 		
 		String result = name + "\n";
 		
-		for(Traktor T : traktoren) {	
-			result += T.toString() + "\n";
-		}	
+		TraktorIterator it = traktoren.iterator();
+		
+		while(it.hasNext()) {
+			
+			Traktor t = it.next();
+			result += t.toString() + "\n";
+		}
 		return result;
 	}
 	
