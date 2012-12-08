@@ -23,7 +23,7 @@ public class DieselTraktor extends Traktor {
 	}
 	
 	@Override
-	public boolean apply(Traktor type) {
+	public boolean apply(Object type) {
 		
 		if(type.getClass().equals(DieselTraktor.class)) {
 			return true;

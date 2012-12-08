@@ -3,7 +3,7 @@
  * Jeder Traktor bestitzt eine eindeutige, unveraenderliche Seriennummer
  * @author Alexander Prennsberger
  */
-public abstract class Traktor implements Filter<Traktor> {
+public abstract class Traktor implements Filter {
 	
 	private static int serial;
 	

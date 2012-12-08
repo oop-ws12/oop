@@ -22,7 +22,7 @@ public class BiogasTraktor extends Traktor {
 	}
 	
 	@Override
-	public boolean apply(Traktor type) {
+	public boolean apply(Object type) {
 		
 		if(type.getClass().equals(BiogasTraktor.class)) {
 			return true;

@@ -24,7 +24,7 @@ public class Driller extends Einsatzzweck {
 	}
 	
 	@Override
-	public boolean apply(Einsatzzweck type) {
+	public boolean apply(Object type) {
 	
 		if(type.getClass().equals(Driller.class)) {
 			return true;

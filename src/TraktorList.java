@@ -4,7 +4,7 @@ import java.util.Iterator;
  * Instanzen dieser Klasse stellen eine verkettete Liste von Traktoren dar
  * @author Alexander Prennsberger
  */
-public class TraktorList<T extends Traktor> implements Iterable<T> {
+public class TraktorList implements Iterable<Traktor> {
 	
 	/**
 	 * Instanzen dieser Klasse stellen einen Knoten in der TraktorList dar
@@ -13,7 +13,7 @@ public class TraktorList<T extends Traktor> implements Iterable<T> {
 	 */
 	private class Node {
 		
-		private T traktor;
+		private Traktor traktor;
 		private Node next;
 		
 		/**
@@ -22,7 +22,7 @@ public class TraktorList<T extends Traktor> implements Iterable<T> {
 		 * @param next der Folgeknoten, ist beim ersten Element der Liste gleich null
 		 * @author Alexander Prennsberger
 		 */
-		private Node(T traktor, Node next) {
+		private Node(Traktor traktor, Node next) {
 			this.traktor = traktor;
 			this.next = next;
 		}
@@ -31,7 +31,7 @@ public class TraktorList<T extends Traktor> implements Iterable<T> {
 		 * @return den Traktor, der in diesem Knoten gespeichert ist
 		 * @author Alexander Prennsberger
 		 */
-		private T getElem() {
+		private Traktor getElem() {
 			return traktor;
 		}
 		
@@ -50,7 +50,7 @@ public class TraktorList<T extends Traktor> implements Iterable<T> {
 		 * wird this zurueckgegeben
 		 * @author Alexander Prennsberger
 		 */
-		private Node remove(T target) {
+		private Node remove(Traktor target) {
 			
 			if(target.equals(traktor)) {
 				return next;
@@ -66,7 +66,7 @@ public class TraktorList<T extends Traktor> implements Iterable<T> {
 	 * Instanzen dieser Klasse stellen einen Iterator ueber die TraktorList dar
 	 * @author Alexander Prennsberger
 	 */
-	private class TraktorListIterator implements Iterator<T> {
+	private class TraktorListIterator implements Iterator<Traktor> {
 
 		private Node node;
 		
@@ -84,7 +84,7 @@ public class TraktorList<T extends Traktor> implements Iterable<T> {
 		}
 
 		@Override
-		public T next() {
+		public Traktor next() {
 			
 			if(node != null) {
 				
@@ -114,7 +114,7 @@ public class TraktorList<T extends Traktor> implements Iterable<T> {
 	 * @return true falls die Liste nach Aufruf der Methode geaendert wurde, false sonst
 	 * @author Alexander Prennsberger
 	 */
-	protected boolean add(T traktor) {
+	protected boolean add(Traktor traktor) {
 		
 		if(traktor != null) {
 			head = new Node(traktor, head);
@@ -132,7 +132,7 @@ public class TraktorList<T extends Traktor> implements Iterable<T> {
 	 */
 	protected boolean remove(int id) {
 		
-		T t = this.get(id);	
+		Traktor t = this.get(id);	
 		
 		if(t != null && head != null) {
 			head = head.remove(t);
@@ -147,9 +147,9 @@ public class TraktorList<T extends Traktor> implements Iterable<T> {
 	 * @return den Traktor falls er existiert, null sonst
 	 * @author Alexander Prennsberger
 	 */
-	protected T get(int id) {
+	protected Traktor get(int id) {
 		
-		for(T elem : this) {
+		for(Traktor elem : this) {
 		
 			if(elem.getSerial() == id) {
 				return elem;
@@ -164,15 +164,15 @@ public class TraktorList<T extends Traktor> implements Iterable<T> {
 	 * @return eine neuen TraktorList, welche nur Elemente enthealt, welche dem Filter entsprechen
 	 * @author Alexander Prennsberger
 	 */
-	private TraktorList<T> filter(Filter<T> filter) {
+	private TraktorList filter(Filter filter) {
 		
-		TraktorList<T> result = new TraktorList<T>();
+		TraktorList result = new TraktorList();
 		
 		if(filter == null) {
 			return this;
 		}
 		
-		for(T t : this) {
+		for(Traktor t : this) {
 			
 			if(filter.apply(t)) {
 				result.add(t);
@@ -188,10 +188,10 @@ public class TraktorList<T extends Traktor> implements Iterable<T> {
 	 * @return eine neue TraktorList, welche nur mehr Elemente enthealt, nach denen gefiltert wurde
 	 * @author Alexander Prennsberger
 	 */
-	protected TraktorList<T> filter(Filter<T> filter1, Filter<Einsatzzweck> filter2) {
+	protected TraktorList filter(Filter filter1, Filter filter2) {
 		
-		TraktorList<T> temp = new TraktorList<T>();
-		TraktorList<T> result = new TraktorList<T>();
+		TraktorList temp = new TraktorList();
+		TraktorList result = new TraktorList();
 		
 		temp = filter(filter1);
 		
@@ -199,7 +199,7 @@ public class TraktorList<T extends Traktor> implements Iterable<T> {
 			return temp;
 		}
 		
-		for(T t : temp) {
+		for(Traktor t : temp) {
 			
 			if(filter2.apply(t.getEinsatzzweck())) {
 				result.add(t);
@@ -213,7 +213,7 @@ public class TraktorList<T extends Traktor> implements Iterable<T> {
 	 * @retrun TraktorListIterator
 	 * @author Alexander Prennsberger
 	 */
-	public Iterator<T> iterator() {
+	public Iterator<Traktor> iterator() {
 		return new TraktorListIterator(head);
 	}
 

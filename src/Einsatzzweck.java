@@ -3,7 +3,7 @@
  * welche die Daten einer bestimmeten Rolle eines Traktors liefert
  * @author Alexander Prennsberger
  */
-public abstract class Einsatzzweck implements Filter<Einsatzzweck> {
+public abstract class Einsatzzweck implements Filter {
 	
 	/**
 	 * Ueber diese Mehtode wird einheitlich auf die Daten der einzelnen

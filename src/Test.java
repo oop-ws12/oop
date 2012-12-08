@@ -42,10 +42,11 @@ public class Test {
 		b1.addTraktor(T);
 		
 		System.out.println(b1);
-		System.out.println("Anzahl der durchschn. Betriebsstunden von Duengstreuer: " + b1.getAverageBetrieb(null, d3));
+		System.out.println("Anzahl der durchschn. Betriebsstunden von Duengstreuer: " + b1.getAverageBetrieb(null, d1));
 		System.out.println("Anzahl des durchschn. DieselVerbauch von Duengstreuer: " + b1.getAverageSpritVerbrauch(t1,d3));
 		System.out.println("Anzahl des durchschn. DieselVerbauch von Duengstreuer: " + b1.getMinAnzahlSaeschare(null));
 		System.out.println("Anzahl des durchschn. DieselVerbauch von Duengstreuer: " + b1.getMaxAnzahlSaeschare(null));
+		
 	}
 
 }

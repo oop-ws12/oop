@@ -22,7 +22,7 @@ public class Bauernhof {
 	/**
 	 * Beinhaltet alle Traktoren des Bauernhofs
 	 */
-	private TraktorList<Traktor> traktoren;
+	private TraktorList traktoren;
 	
 	/**
 	 * Initialisiert einen neuen Bauernhof mit dem uebergebenen Namen + einer einzigartigen id
@@ -32,7 +32,7 @@ public class Bauernhof {
 	public Bauernhof(String name) {
 		id++;
 		this.name = name + id;
-		this.traktoren = new TraktorList<Traktor>();	
+		this.traktoren = new TraktorList();	
 	}
 	
 	/**
@@ -64,12 +64,12 @@ public class Bauernhof {
 	 * @throws IllegalArgumentException bei einer Division durch 0
 	 * @author Alexander Prennsberger
 	 */
-	protected double getAverageBetrieb(Filter<Traktor> motortyp, Filter<Einsatzzweck> einsatz) throws IllegalArgumentException {
+	protected double getAverageBetrieb(Traktor motortyp, Einsatzzweck einsatz) throws IllegalArgumentException {
 
 		double sum = 0;
 		double anzahl = 0;
 		
-		TraktorList<Traktor> result = traktoren.filter(motortyp, einsatz);
+		TraktorList result = traktoren.filter(motortyp, einsatz);
 		
 		for(Traktor t : result) {	
 			sum += t.getBetriebsstunden();
@@ -90,7 +90,7 @@ public class Bauernhof {
 	 * @throws IllegalArgumentException bei Division durch 0 und falls motortyp == null
 	 * @author Alexander Prennsberger
 	 */
-	protected double getAverageSpritVerbrauch(Filter<Traktor> motortyp, Filter<Einsatzzweck> einsatz) throws IllegalArgumentException {
+	protected double getAverageSpritVerbrauch(Traktor motortyp, Einsatzzweck einsatz) throws IllegalArgumentException {
 	
 		double sum = 0; 
 		double anzahl = 0;
@@ -99,7 +99,7 @@ public class Bauernhof {
 			throw new IllegalArgumentException("Spritverbauch von Biogastraktoren und Dieseltraktoren kann nicht gemeinsam berechnet werden!");
 		}
 				
-		TraktorList<Traktor> result = traktoren.filter(motortyp, einsatz);
+		TraktorList result = traktoren.filter(motortyp, einsatz);
 		
 		for(Traktor t : result) {
 		
@@ -120,10 +120,10 @@ public class Bauernhof {
 	 * @return die minimale Anazahl der Saescharen am Bauernhof
 	 * @author Alexander Prennsberger
 	 */
-	protected int getMinAnzahlSaeschare(Filter<Traktor> motortyp) {
+	protected int getMinAnzahlSaeschare(Traktor motortyp) {
 		
 		int wert = 0;
-		TraktorList<Traktor> result = traktoren.filter(motortyp, new Driller(0));
+		TraktorList result = traktoren.filter(motortyp, new Driller(0));
 		
 		wert = getMaxAnzahlSaeschare(motortyp);
 			
@@ -145,11 +145,11 @@ public class Bauernhof {
 	 * @return die maximale Anazahl der Saescharen am Bauernhof
 	 * @author Alexander Prennsberger
 	 */
-	protected int getMaxAnzahlSaeschare(Filter<Traktor> motortyp) {
+	protected int getMaxAnzahlSaeschare(Traktor motortyp) {
 		
 		int wert = 0;
 		
-		TraktorList<Traktor> result = traktoren.filter(motortyp, new Driller(0));
+		TraktorList result = traktoren.filter(motortyp, new Driller(0));
 		
 		for(Traktor t : result) {
 			
@@ -170,12 +170,12 @@ public class Bauernhof {
 	 * @throws IllegalArgumentException bei Division durch 0
 	 * @author Alexander Prennsberger
 	 */
-	protected double getAverageFassung(Filter<Traktor> motortyp) throws IllegalArgumentException {
+	protected double getAverageFassung(Traktor motortyp) throws IllegalArgumentException {
 		
 		double sum = 0;
 		double anzahl = 0;
 		
-		TraktorList<Traktor> result = traktoren.filter(motortyp, new Duenger(0));
+		TraktorList result = traktoren.filter(motortyp, new Duenger(0));
 		
 		for(Traktor t : result) {
 			

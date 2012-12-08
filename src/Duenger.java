@@ -24,7 +24,7 @@ public class Duenger extends Einsatzzweck {
 	}
 	
 	@Override
-	public boolean apply(Einsatzzweck type) {
+	public boolean apply(Object type) {
 		
 		if(type.getClass().equals(Duenger.class)) {
 			return true;
