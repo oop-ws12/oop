@@ -12,12 +12,12 @@ public class BiogasTraktor extends Traktor {
 	private double gasVerbrauch = 0;
 	
 	@Override
-	protected void setSpritVerbrauch(double gas) {
+	public void setSpritVerbrauch(double gas) {
 		this.gasVerbrauch += gas;
 	}
 
 	@Override
-	protected double getSpritVerbrauch() {
+	public double getSpritVerbrauch() {
 		return gasVerbrauch;
 	}
 	

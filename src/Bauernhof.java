@@ -41,7 +41,7 @@ class Bauernhof {
 	 * @return true falls der Traktor hinzugefuegt wurde, false sonst
 	 */
 	@Author("Alexander Prennsberger")
-	protected boolean addTraktor(Traktor t) {
+	public boolean addTraktor(Traktor t) {
 		 return traktoren.add(t);
 	}
 	
@@ -51,7 +51,7 @@ class Bauernhof {
 	 * @return true falls der Traktor entfernt wurde, false sonst
 	 */
 	@Author("Alexander Prennsberger")
-	protected boolean removeTraktor(int id) {
+	public boolean removeTraktor(int id) {
 		return traktoren.remove(id);
 	}
 	
@@ -64,7 +64,7 @@ class Bauernhof {
 	 * @throws IllegalArgumentException bei einer Division durch 0
 	 */
 	@Author("Alexander Prennsberger")
-	protected double getAverageBetrieb(Traktor motortyp, Einsatzzweck einsatz) throws IllegalArgumentException {
+	public double getAverageBetrieb(Traktor motortyp, Einsatzzweck einsatz) throws IllegalArgumentException {
 
 		double sum = 0;
 		double anzahl = 0;
@@ -94,7 +94,7 @@ class Bauernhof {
 	 * @throws IllegalArgumentException bei Division durch 0 und falls motortyp == null
 	 */
 	@Author("Alexander Prennsberger")
-	protected double getAverageSpritVerbrauch(Traktor motortyp, Einsatzzweck einsatz) throws IllegalArgumentException {
+	public double getAverageSpritVerbrauch(Traktor motortyp, Einsatzzweck einsatz) throws IllegalArgumentException {
 	
 		double sum = 0; 
 		double anzahl = 0;
@@ -127,7 +127,7 @@ class Bauernhof {
 	 * @return die minimale Anazahl der Saescharen am Bauernhof
 	 */
 	@Author("Alexander Prennsberger")
-	protected int getMinAnzahlSaeschare(Traktor motortyp) {
+	public int getMinAnzahlSaeschare(Traktor motortyp) {
 		
 		int wert = getMaxAnzahlSaeschare(motortyp);
 		ObjectList result = traktoren.filter(motortyp, new Driller(0));
@@ -153,7 +153,7 @@ class Bauernhof {
 	 * @return die maximale Anazahl der Saescharen am Bauernhof
 	 */
 	@Author("Alexander Prennsberger")
-	protected int getMaxAnzahlSaeschare(Traktor motortyp) {
+	public int getMaxAnzahlSaeschare(Traktor motortyp) {
 		
 		int wert = 0;
 		
@@ -181,7 +181,7 @@ class Bauernhof {
 	 * @throws IllegalArgumentException bei Division durch 0
 	 */
 	@Author("Alexander Prennsberger")
-	protected double getAverageFassung(Traktor motortyp) throws IllegalArgumentException {
+	public double getAverageFassung(Traktor motortyp) throws IllegalArgumentException {
 		
 		double sum = 0;
 		double anzahl = 0;
@@ -209,7 +209,7 @@ class Bauernhof {
 	 * @param stunden darf nicht negativ sein, die Stunden, um welche erhoeht werden sollen
 	 */
 	@Author("Alexander Prennsberger")
-	protected void erhoeheBetriebsstunden(int id, int stunden) {
+	public void erhoeheBetriebsstunden(int id, int stunden) {
 		
 		Traktor t = (Traktor)traktoren.get(id);
 		
@@ -224,7 +224,7 @@ class Bauernhof {
 	 * @return die Betriebsstunden, und -1 falls der Traktor nicht existiert
 	 */
 	@Author("Alexander Prennsberger")
-	protected int getBetriebsstunden(int id) {
+	public int getBetriebsstunden(int id) {
 		
 		Traktor t = (Traktor)traktoren.get(id);
 		
@@ -240,7 +240,7 @@ class Bauernhof {
 	 * @param sprit darf nich negativ sein, der Spritverbrauch, um welchen erhoeht werden soll
 	 */
 	@Author("Alexander Prennsberger")
-	protected void erhoeheSpritVerbrauch(int id, double sprit) {
+	public void erhoeheSpritVerbrauch(int id, double sprit) {
 		
 		Traktor t = (Traktor)traktoren.get(id);
 		
@@ -254,7 +254,7 @@ class Bauernhof {
 	 * @return den Spritverbrauch und -1 falls der Traktor nicht existiert
 	 */
 	@Author("Alexander Prennsberger")
-	protected double getSpritVerbrauch(int id) {
+	public double getSpritVerbrauch(int id) {
 		
 		Traktor t = (Traktor)traktoren.get(id);
 		
@@ -271,7 +271,7 @@ class Bauernhof {
 	 * @param neu != null die neue Einsatzart
 	 */
 	@Author("Alexander Prennsberger")
-	protected void changeEinatzart(int id, Einsatzzweck neu) {
+	public void changeEinatzart(int id, Einsatzzweck neu) {
 		
 		Traktor t = (Traktor)traktoren.get(id);
 		
@@ -285,7 +285,7 @@ class Bauernhof {
 	 * @return spezifische Einsatzdaten, -1 falls der Traktor nicht existiert
 	 */
  	@Author("Alexander Prennsberger")
-	protected double getDaten(int id) {
+	public double getDaten(int id) {
 		
 		Traktor t = (Traktor)traktoren.get(id);
 		
@@ -299,7 +299,7 @@ class Bauernhof {
 	 * @return den Namen des Bauernhofs
 	 */
  	@Author("Alexander Prennsberger")
-	protected String getName() {
+	public String getName() {
 		return name;
 	}
  	
@@ -307,7 +307,7 @@ class Bauernhof {
  	 * @return eine neue TraktorList mit allen Traktoren des Bauernhofs
  	 */
  	@Author("Alexander Prennsberger")
- 	protected TraktorList getTraktorList() {
+ 	public TraktorList getTraktorList() {
  		
  		TraktorList result = new TraktorList();
  		

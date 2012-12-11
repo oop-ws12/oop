@@ -13,12 +13,13 @@ public class DieselTraktor extends Traktor {
 		
 	
 	@Override
-	protected void setSpritVerbrauch(double diesel) {
-		this.dieselVerbrauch += (int)diesel;
+	public void setSpritVerbrauch(double diesel) {
+		
+		this.dieselVerbrauch += Math.round(diesel);
 	}
 	
 	@Override
-	protected double getSpritVerbrauch() {
+	public double getSpritVerbrauch() {
 		return dieselVerbrauch;
 	}
 	

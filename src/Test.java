@@ -1,3 +1,5 @@
+import java.lang.reflect.Method;
+
 public class Test {
 	
 	private static int tests = 0;
@@ -5,64 +7,15 @@ public class Test {
 
 	public static void main(String[] args) {
 	
-		//test1();
+
 		testBauernhof();
+		testStatistiken();
+		testAnnotation();
 		
 		System.out.println(String.format("%s/%s Tests erfolgreich!", success, tests));
 	}
 	
-	private static void test1() {
-		
-		Driller d1 = new Driller(10);
-		Driller d2 = new Driller(20);
-		
-		Duenger d3 = new Duenger(12.5);
-		Duenger d4 = new Duenger(20.2);
-		
-		DieselTraktor t1 = new DieselTraktor();
-		DieselTraktor t5 = new DieselTraktor();
-		BiogasTraktor t2 = new BiogasTraktor();
-		BiogasTraktor t3 = new BiogasTraktor();
-		
-		t1.changeEinsatzzweck(d1);
-		t2.changeEinsatzzweck(d4);
-		
-		t1.setBetriebsstunden(20);
-		t2.setBetriebsstunden(380);
-
-		t1.changeEinsatzzweck(d3);
-		t2.changeEinsatzzweck(d2);
-
-	
-	
-		t3.setBetriebsstunden(500);
-		
-		Bauernhof b1 = new Bauernhof("EdisHof");
-
-		b1.addTraktor(t1);
-		b1.addTraktor(t2);
-		b1.addTraktor(t3);
-		b1.addTraktor(t5);
-		
-		Traktor T = new BiogasTraktor();
-		b1.addTraktor(T);
-
-		b1.erhoeheSpritVerbrauch(t1.getSerial(),200);
-		b1.erhoeheSpritVerbrauch(t5.getSerial(),240);
-
-	
-		b1.removeTraktor(4);
-		b1.removeTraktor(2);
-		
-		System.out.println(b1);
-		System.out.println("Anzahl der durchschn. Betriebsstunden von Duengstreuer: " + b1.getAverageBetrieb(null, d1));
-		ok(b1.getAverageBetrieb(null, d1) == 250.0);
-		System.out.println("Anzahl des durchschn. DieselVerbauch von Duengstreuer: " + b1.getAverageSpritVerbrauch(t1,d3));
-		System.out.println("Anzahl des durchschn. DieselVerbauch von Duengstreuer: " + b1.getMinAnzahlSaeschare(null));
-		System.out.println("Anzahl des durchschn. DieselVerbauch von Duengstreuer: " + b1.getMaxAnzahlSaeschare(null));
-	}
-	
-	private static void testBauernhof() {
+	private static BauernhofList testBauernhof() {
 		
 		BauernhofList hoefe = createBauernhoefe();
 		
@@ -98,6 +51,143 @@ public class Test {
 				a.changeEinatzart(t.getSerial(), u1);
 			}
 		}
+		
+		DieselTraktor t1 = new DieselTraktor();
+		DieselTraktor t2 = new DieselTraktor();
+		BiogasTraktor t3 = new BiogasTraktor();
+		BiogasTraktor t4 = new BiogasTraktor();
+		
+		t1.changeEinsatzzweck(d2);
+		t2.changeEinsatzzweck(u2);
+		t3.changeEinsatzzweck(d3);
+		t4.changeEinsatzzweck(u3);
+		
+		it = hoefe.iterator();
+		
+		for(int i = 0; i < hoefe.size(); i++) {
+			
+			Bauernhof b = (Bauernhof) it.next();
+			
+			b.addTraktor(t1);
+			b.addTraktor(t2);
+			b.addTraktor(t3);
+			b.addTraktor(t4);
+	
+		}
+		
+		it = hoefe.iterator();
+		
+		while(it.hasNext()) {
+			
+			Bauernhof b = (Bauernhof) it.next();
+			
+			ok(b.getTraktorList().size() == 14);
+		}
+		
+		it = hoefe.iterator();
+		
+		for(int i = 0; i < hoefe.size(); i++) {
+			
+			Bauernhof b = (Bauernhof) it.next();
+			
+			b.removeTraktor(t1.getSerial());
+			b.removeTraktor(t2.getSerial());
+			b.removeTraktor(t3.getSerial());
+			b.removeTraktor(t4.getSerial());
+		}
+		
+		it = hoefe.iterator();
+		
+		while(it.hasNext()) {
+			
+			Bauernhof b = (Bauernhof) it.next();
+			
+			ok(b.getTraktorList().size() == 10);
+		}
+		
+		it = hoefe.iterator();
+		
+		for(int i = 0; i < hoefe.size(); i++) {
+			
+			Bauernhof b = (Bauernhof) it.next();
+			
+			b.addTraktor(t1);
+			b.addTraktor(t2);
+			b.addTraktor(t3);
+			b.addTraktor(t4);
+			
+			ObjectIterator ot = b.getTraktorList().iterator();
+			
+			while(ot.hasNext()) {
+				
+				Traktor t = (Traktor) ot.next();
+				
+				b.erhoeheBetriebsstunden(t.getSerial(), 230);
+				b.erhoeheSpritVerbrauch(t.getSerial(), 49.80);
+			}	
+		}
+		
+		return hoefe;
+	}
+	
+	private static void testStatistiken() {
+		
+		BauernhofList hoefe = testBauernhof();
+		
+		ObjectIterator it = hoefe.iterator();
+		
+		Bauernhof b = (Bauernhof) it.next();
+		
+		DieselTraktor t1 = new DieselTraktor();
+		BiogasTraktor t2 = new BiogasTraktor();
+		
+		Driller d1 = new Driller(0);
+		Duenger d2 = new Duenger(0);
+		
+		b.addTraktor(t1);
+		
+		ok(b.getAverageBetrieb(t1, d1) == 431.25);
+		
+		ok(b.getAverageBetrieb(t1, d2) == 492.85714285714283 );
+
+		ok(b.getAverageBetrieb(null, null) == 460.0);
+		
+		//Alle Werte gleich, da gleich viele DieselTraktoren und BiogasTraktoren im 
+		//Bauernhof sind und alle die gleiche Kapaziteat haben
+		ok(b.getAverageFassung(t1) == 28.47142857142857);
+		ok(b.getAverageFassung(t2) == 28.47142857142857);
+		ok(b.getAverageFassung(null) == 28.47142857142857);
+		
+		ok(b.getAverageSpritVerbrauch(t1, d1) == 93.575);
+		ok(b.getAverageSpritVerbrauch(t1, d2) == 106.91428571428571);
+		ok(b.getAverageSpritVerbrauch(t2, d1) == 93.575);
+		ok(b.getAverageSpritVerbrauch(t1, null) == 93.75);
+		
+		ok(b.getMaxAnzahlSaeschare(t1) == 88);
+		ok(b.getMinAnzahlSaeschare(t1) == 0);
+	}
+
+	private static void testAnnotation() {
+			
+		Method[] as = Bauernhof.class.getMethods();
+		
+		for(Method m : as) {
+			
+			Author a = m.getAnnotation(Author.class);
+			if(a != null) {
+				System.out.println(m.getName() + " von " + a.value());
+			}
+		}	
+		
+		Method[] bs = Traktor.class.getMethods();
+		
+		for(Method m : bs) {
+			
+			Author a = m.getAnnotation(Author.class);
+			if(a != null) {
+				System.out.println(m.getName() + " von " + a.value());
+			}
+		}	
 	}
 	
 	private static BauernhofList createBauernhoefe() {

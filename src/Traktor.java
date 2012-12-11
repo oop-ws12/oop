@@ -41,7 +41,7 @@ abstract class Traktor implements Filter {
 	 * @return die Anzahl der Betriebsstunden
 	 */
 	@Author("Lukas Steinbrecher")
-	protected int getBetriebsstunden() {
+	public int getBetriebsstunden() {
 		return inBetrieb;
 	}
 	
@@ -50,7 +50,7 @@ abstract class Traktor implements Filter {
 	 * @param stunden darf nicht negativ sein
 	 */
 	@Author("Lukas Steinbrecher")
-	protected void setBetriebsstunden(int stunden) {
+	public void setBetriebsstunden(int stunden) {
 		this.inBetrieb += stunden;
 	}
 	
@@ -58,7 +58,7 @@ abstract class Traktor implements Filter {
 	 * @return die Seriennummer des Traktors
 	 */
 	@Author("Lukas Steinbrecher")
-	protected int getSerial() {
+	public int getSerial() {
 		return id;
 	}
 	
@@ -68,7 +68,7 @@ abstract class Traktor implements Filter {
 	 * @param neu neuer Einsatzzweck des Traktors, neu != null
 	 */
 	@Author("Lukas Steinbrecher")
-	protected void changeEinsatzzweck(Einsatzzweck neu) {
+	public void changeEinsatzzweck(Einsatzzweck neu) {
 		this.zweck = neu;
 	}
 	
@@ -76,7 +76,7 @@ abstract class Traktor implements Filter {
 	 * @return den Einsatzzweck des Traktors
 	 */
 	@Author("Lukas Steinbrecher")
-	protected Einsatzzweck getEinsatzzweck() {
+	public Einsatzzweck getEinsatzzweck() {
 		return zweck;
 	}
 	
@@ -86,7 +86,7 @@ abstract class Traktor implements Filter {
 	 * bei einem Duengstreuer
 	 */
 	@Author("Lukas Steinbrecher")
-	protected double getEinsatzSpezDaten() {
+	public double getEinsatzSpezDaten() {
 		return zweck.getDaten();
 	}
 	
@@ -94,7 +94,7 @@ abstract class Traktor implements Filter {
 	 * @return den Spritverbrauch des Traktors seit Betriebsbeginn
 	 */
 	@Author("Lukas Steinbrecher")
-	protected abstract double getSpritVerbrauch();
+	public abstract double getSpritVerbrauch();
 	
 	
 	/**
@@ -102,7 +102,7 @@ abstract class Traktor implements Filter {
 	 * @param sprit darf nicht negativ sein
 	 */
 	@Author("Lukas Steinbrecher")
-	protected abstract void setSpritVerbrauch(double sprit);
+	public abstract void setSpritVerbrauch(double sprit);
 	
 	/**
 	 * @return eine lesbare Form des Traktors 
