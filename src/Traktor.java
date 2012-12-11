@@ -1,9 +1,9 @@
 /**
  * Instanzen dieser Klasse stellen einen Traktor dar
  * Jeder Traktor bestitzt eine eindeutige, unveraenderliche Seriennummer
- * @author Alexander Prennsberger
  */
-public abstract class Traktor implements Filter {
+@Author("Lukas Steinbrecher")
+abstract class Traktor implements Filter {
 	
 	private static int serial;
 	
@@ -29,18 +29,18 @@ public abstract class Traktor implements Filter {
 	/**
 	 * Initialisiert einen neuen Traktor, weist ihm eine eindeutige Seriennummer zu
 	 * und einem Standardmaessigen Einsatzzweck als Driller
-	 * @author Alexander Prennsberger
 	 */
+	@Author("Lukas Steinbrecher")
 	public Traktor() {
-		this.id = serial++;	
+		this.id = Traktor.serial++;	
 		zweck = new Driller(0);
 	}
 	
 	/**
 	 * Liefert die Anzahl der Stunden, welche der Traktor schon in Betrieb ist
 	 * @return die Anzahl der Betriebsstunden
-	 * @author Alexander Prennsberger
 	 */
+	@Author("Lukas Steinbrecher")
 	protected int getBetriebsstunden() {
 		return inBetrieb;
 	}
@@ -48,16 +48,16 @@ public abstract class Traktor implements Filter {
 	/**
 	 * Erhoeht die Betriebsstunden des Traktors um den uebergebenen Wert
 	 * @param stunden darf nicht negativ sein
-	 * @author Alexander Prennsberger
 	 */
+	@Author("Lukas Steinbrecher")
 	protected void setBetriebsstunden(int stunden) {
 		this.inBetrieb += stunden;
 	}
 	
 	/**
 	 * @return die Seriennummer des Traktors
-	 * @author Alexander Prennsberger
 	 */
+	@Author("Lukas Steinbrecher")
 	protected int getSerial() {
 		return id;
 	}
@@ -66,16 +66,16 @@ public abstract class Traktor implements Filter {
 	 * Aendert den Einsatzzweck des Traktors
 	 * Dabei gehen Informationen ueber fruehere Einsatzzwecke verloren
 	 * @param neu neuer Einsatzzweck des Traktors, neu != null
-	 * @author Alexander Prennsberger
 	 */
+	@Author("Lukas Steinbrecher")
 	protected void changeEinsatzzweck(Einsatzzweck neu) {
 		this.zweck = neu;
 	}
 	
 	/**
 	 * @return den Einsatzzweck des Traktors
-	 * @author Alexander Prennsberger
 	 */
+	@Author("Lukas Steinbrecher")
 	protected Einsatzzweck getEinsatzzweck() {
 		return zweck;
 	}
@@ -84,30 +84,30 @@ public abstract class Traktor implements Filter {
 	 * Liefert die dem Einsatzzweck ensprechenden Daten des Traktors
 	 * @return entweder die Anzahl der Saeschare bei einer Drillmaschine oder die Fassungskapaziteat
 	 * bei einem Duengstreuer
-	 * @author Alexander Prennsberger
 	 */
+	@Author("Lukas Steinbrecher")
 	protected double getEinsatzSpezDaten() {
 		return zweck.getDaten();
 	}
 	
 	/**
 	 * @return den Spritverbrauch des Traktors seit Betriebsbeginn
-	 * @author Alexander Prennsberger
 	 */
+	@Author("Lukas Steinbrecher")
 	protected abstract double getSpritVerbrauch();
 	
 	
 	/**
 	 * Erhoeht den Spritverbrauch des Traktors um den uebergebenen Wert
 	 * @param sprit darf nicht negativ sein
-	 * @author Alexander Prennsberger
 	 */
+	@Author("Lukas Steinbrecher")
 	protected abstract void setSpritVerbrauch(double sprit);
 	
 	/**
-	 * @return eine lesbare Form des Traktors
-	 * @author Alexander Prennsberger
+	 * @return eine lesbare Form des Traktors 
 	 */
+	@Author("Lukas Steinbrecher")
 	public String toString() {
 		
 		String result = "Seriennummer: " + id + "\n"

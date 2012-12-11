@@ -1,8 +1,8 @@
 /**
  * Instanzen dieser Klasse stellen eine Rolle als Duengsteuer dar
- * @author Alexander Prennsberger
  */
-public class Duenger extends Einsatzzweck {
+@Author("Lukas Steinbrecher")
+class Duenger implements Einsatzzweck {
 
 	/**
 	 * Die Fassungskapazitaet vom Behealter des Duengstreuers in Liter
@@ -12,30 +12,26 @@ public class Duenger extends Einsatzzweck {
 	/**
 	 * Initialisiert die Fassungskapaziteat des Behealters
 	 * @param fassung die Fassungskapaziteat
-	 * @author Alexander Prennsberger
 	 */
+	@Author("Lukas Steinbrecher")
 	public Duenger(double fassung){
 		this.fassung = fassung;
 	}
 
-	@Override
 	public double getDaten() {
 		return fassung;
 	}
 	
-	@Override
 	public boolean apply(Object type) {
 		
-		if(type.getClass().equals(Duenger.class)) {
-			return true;
-		}
-		return false;
+		return type.getClass().equals(Duenger.class);
+		
 	}
 	
 	/**
 	 * @return eine lesbare Form des Duengstreuers
-	 * @author Alexander Prennsberger
 	 */
+	@Author("Lukas Steinbrecher")
 	public String toString() {
 		return "als Duengstreuer mit " + fassung + " Liter Fassungskapaziteat";
 	}
