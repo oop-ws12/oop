@@ -1,8 +1,8 @@
 /**
  * Instanzen dieser Klasse stellen eine Rolle als Drillmaschine dar
- * @author Alexander Prennsberger
  */
-public class Driller extends Einsatzzweck {
+@Author("Lukas Steinbrecher")
+class Driller implements Einsatzzweck {
 
 	/*
 	 * Die Anzahl der Saeschare der Drillmaschine
@@ -12,30 +12,25 @@ public class Driller extends Einsatzzweck {
 	/**
 	 * Initialsiert die Drillmaschine mit der uebergebenen Anzahl an Saescharen
 	 * @param saschare Anzahl der Saeschare
-	 * @author Alexander Prennsberger
 	 */
+	@Author("Lukas Steinbrecher")
 	public Driller(int saschare) {
 		this.saschare = saschare;
 	}
-
-	@Override
+	
 	public double getDaten() {
-		return (double) saschare;
+		return saschare;
 	}
 	
-	@Override
 	public boolean apply(Object type) {
-	
-		if(type.getClass().equals(Driller.class)) {
-			return true;
-		}
-		return false;
+		
+		return type.getClass().equals(Driller.class);
 	}
 	
 	/**
 	 * @retrun eine lesbare Form der Drillmaschine
-	 * @author Alexander Prennsberger
 	 */
+	@Author("Lukas Steinbrecher")
 	public String toString() {
 		return "als Drillmaschine mit " + saschare + " Saescharen";
 	}	

@@ -1,15 +1,23 @@
 /**
- * Das Interface berschreibt eine Mehtode getDaten(), 
- * welche die Daten einer bestimmeten Rolle eines Traktors liefert
- * @author Alexander Prennsberger
+ * Dieses Interafce beschreibt die Methoden getDaten() und toString()
+ * Ueber die Methode getDaten() werden die spezifischen Daten der jeweilgen
+ * Rollen ausgelesen
+ * Ein Einsatzzweck stellt eine Rolle des Traktors dar
  */
-public abstract class Einsatzzweck implements Filter {
+@Author("Lukas Steinbrecher")
+interface Einsatzzweck extends Filter {
 	
 	/**
 	 * Ueber diese Mehtode wird einheitlich auf die Daten der einzelnen
 	 * Einsatzzwecke zugegriffen
 	 * @return Einsatzzweck spezifische Daten
-	 * @author Alexander Prennsberger
 	 */
-	public abstract double getDaten();
+	@Author("Lukas Steinbrecher")
+	double getDaten();
+	
+	/**
+	 * @return eine lesbare Form des Einsatzzwecks
+	 */
+	@Author("Lukas Steinbrecher")
+	String toString();
 }

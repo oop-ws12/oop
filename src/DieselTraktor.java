@@ -1,40 +1,39 @@
 
 /**
  * Instanzen dieser Klasse Stellen einen Traktor mit Dieselmotor dar
- * @author Alexander Prennsberger
  */
+@Author("Lukas Steinbrecher")
 public class DieselTraktor extends Traktor {
 
 	/**
 	 * Gibt an, wie viel Liter Diesel der Traktor seit
 	 * Betriebsbeginn verbraucht hat
 	 */
-	private int dieselVerbrauch;
+	private int dieselVerbrauch = 0;
 		
 	
 	@Override
-	protected void setSpritVerbrauch(double diesel) {
-		this.dieselVerbrauch += (int)diesel;
+	public void setSpritVerbrauch(double diesel) {
+		
+		this.dieselVerbrauch += Math.round(diesel);
 	}
 	
 	@Override
-	protected double getSpritVerbrauch() {
-		return (double) dieselVerbrauch;
+	public double getSpritVerbrauch() {
+		return dieselVerbrauch;
 	}
 	
 	@Override
 	public boolean apply(Object type) {
 		
-		if(type.getClass().equals(DieselTraktor.class)) {
-			return true;
-		}
-		return false;
+		return type.getClass().equals(DieselTraktor.class);
+	
 	}
 	
 	/**
 	 * @return eine lesbare Form des DieselTraktors
-	 * @author Alexander Prennsberger
 	 */
+	@Author("Lukas Steinbrecher")
 	public String toString() {
 		return super.toString() + "Dieselverbrauch seit Betriebsbeginn: " + dieselVerbrauch + " Liter \n";
 	}
