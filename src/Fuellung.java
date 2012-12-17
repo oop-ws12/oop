@@ -1,2 +1,4 @@
-interface Fuellung {
+enum Fuellung {
+    Marmelade,
+    Schokolade
 }

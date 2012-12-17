@@ -1,2 +1,5 @@
-interface Teigart {
+enum Teigart {
+    Muerb,
+    Schokolade,
+    Zimtstern
 }

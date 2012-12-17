@@ -19,4 +19,13 @@ class Bestellung implements Iterable<Position> {
     public Iterator<Position> iterator() {
         return positions.iterator();
     }
+
+    /**
+     * Gibt alle Positionen auf stdout aus.
+     */
+    public void drucke() {
+        for(Position position : positions) {
+            System.out.println(position);
+        }
+    }
 }

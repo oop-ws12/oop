@@ -22,4 +22,22 @@ class DoppelKeksPosition extends Position {
         super(count, form, teigart);
         this.fuellung = fuellung;
     }
+
+    /**
+     * @return Beschreibung der Position
+     */
+    @Override
+    public String toString() {
+        return String.format("%d x Doppelkeks(%s, %s, %s)", getCount(), getForm(), getTeigart(), getFuellung());
+    }
+
+    @Override
+    public DoppelKeks prototype() {
+        return new DoppelKeks(getForm(), getTeigart(), getFuellung());
+    }
+
+    @Override
+    public <T> T visit(PositionVisitor<T> visitor) {
+        return visitor.dispatch(this);
+    }
 }

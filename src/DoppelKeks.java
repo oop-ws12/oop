@@ -1,14 +1,13 @@
-class DoppelKeks<F extends Form, T extends Teigart, V extends Fuellung>
-        extends Keks<F, T> implements Cloneable {
+class DoppelKeks extends Keks {
     /**
      * Die Fuellung des Keks.
      */
-    private V fuellung;
+    private Fuellung fuellung;
 
     /**
      * @return die Fuellung
      */
-    public V getFuellung() {
+    public Fuellung getFuellung() {
         return fuellung;
     }
 
@@ -18,7 +17,7 @@ class DoppelKeks<F extends Form, T extends Teigart, V extends Fuellung>
      * @param keks != null der alte Keks
      * @param f != null dei Fuellung
      */
-    DoppelKeks(Keks<F, T> keks, V f) {
+    DoppelKeks(Keks keks, Fuellung f) {
         this(keks.getForm(), keks.getTeigart(), f);
     }
 
@@ -26,7 +25,9 @@ class DoppelKeks<F extends Form, T extends Teigart, V extends Fuellung>
      * Kopiert einen Keks.
      * @param keks != null der alte Keks
      */
-    DoppelKeks(DoppelKeks<F, T, V> keks) {
+    DoppelKeks(DoppelKeks keks) {
+        // Kein deep copy noetig weil die zu kopierenden
+        // member immutable sind
         this(keks.getForm(), keks.getTeigart(), keks.getFuellung());
     }
 
@@ -37,7 +38,7 @@ class DoppelKeks<F extends Form, T extends Teigart, V extends Fuellung>
      * @param teigart != die Teigart
      * @param fuellung != null die Fuellung
      */
-    DoppelKeks(F form, T teigart, V fuellung) {
+    DoppelKeks(Form form, Teigart teigart, Fuellung fuellung) {
         super(form, teigart);
         this.fuellung = fuellung;
     }

@@ -2,24 +2,24 @@ class Keks {
     /**
      * Die Form des Kekses
      */
-    private F form;
+    private Form form;
 
     /**
      * Die Teigart des Kekses
      */
-    private T teigart;
+    private Teigart teigart;
 
     /**
      * @return die Form
      */
-    public F getForm() {
+    public Form getForm() {
         return form;
     }
 
     /**
      * @return die Teigart
      */
-    public T getTeigart() {
+    public Teigart getTeigart() {
         return teigart;
     }
 
@@ -27,7 +27,9 @@ class Keks {
      * Kopierkonstruktor
      * @param keks != null
      */
-    Keks(Keks<F, T> keks) {
+    Keks(Keks keks) {
+        // Kein deep copy noetig weil die zu kopierenden
+        // member immutable sind
         this(keks.getForm(), keks.getTeigart());
     }
 
@@ -37,7 +39,7 @@ class Keks {
      * @param form != null die Form
      * @param teigart != die Teigart
      */
-    Keks(F form, T teigart) {
+    Keks(Form form, Teigart teigart) {
         this.form = form;
         this.teigart = teigart;
     }

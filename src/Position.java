@@ -49,4 +49,23 @@ class Position {
         this.form = form;
         this.teigart = teigart;
     }
+
+    /**
+     * @return Beschreibung der Position
+     */
+    @Override
+    public String toString() {
+        return String.format("%d x Keks(%s, %s)", getCount(), getForm(), getTeigart());
+    }
+
+    /**
+     * @return Einen Prototyp Keks.
+     */
+    public Keks prototype() {
+        return new Keks(form, teigart);
+    }
+
+    public <T> T visit(PositionVisitor<T> visitor) {
+        return visitor.dispatch(this);
+    }
 }
