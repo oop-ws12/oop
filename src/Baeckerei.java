@@ -13,12 +13,12 @@ class Baeckerei {
             return position.visit(this);
         }
 
-        public Keks dispatch(Position p) {
-            return einfacheKeksbackMaschine.backe(p.prototype());
+        public Keks dispatch(Keks p) {
+            return einfacheKeksbackMaschine.backe(p);
         }
 
-        public Keks dispatch(DoppelKeksPosition p) {
-            return doppelKeksbackMaschine.backe(p.prototype());
+        public Keks dispatch(DoppelKeks p) {
+            return doppelKeksbackMaschine.backe(p);
         }
     }
 

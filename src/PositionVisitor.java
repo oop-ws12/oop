@@ -1,4 +1,4 @@
 interface PositionVisitor<T> {
-    T dispatch(Position p);
-    T dispatch(DoppelKeksPosition p);
+    T dispatch(Keks p);
+    T dispatch(DoppelKeks p);
 }

@@ -2,6 +2,50 @@
  * Position fuer einen einfachen Keks.
  */
 class Position {
+    static class DoppelKeksPosition extends Position {
+        /**
+         * Fuellung
+         */
+        private Fuellung fuellung;
+
+        /**
+         * @return die Fuellung
+         */
+        public Fuellung getFuellung() {
+            return fuellung;
+        }
+
+        /**
+         * Erzeugt eine Postion fuer Doppelkekse
+         * @param count > 0
+         * @param form != null
+         * @param teigart != null
+         * @param fuellung != null
+         */
+        protected DoppelKeksPosition(int count, Form form, Teigart teigart, Fuellung fuellung) {
+            super(count, form, teigart);
+            this.fuellung = fuellung;
+        }
+
+        /**
+         * @return Beschreibung der Position
+         */
+        @Override
+        public String toString() {
+            return String.format("%d x Doppelkeks(%s, %s, %s)", getCount(), getForm(), getTeigart(), getFuellung());
+        }
+
+        @Override
+        public DoppelKeks prototype() {
+            return new DoppelKeks(getForm(), getTeigart(), getFuellung());
+        }
+
+        @Override
+        public <T> T visit(PositionVisitor<T> visitor) {
+            return visitor.dispatch(this.prototype());
+        }
+    }
+
     /**
      * Anzahl > 0
      */
@@ -44,7 +88,7 @@ class Position {
      * @param form != null
      * @param teigart != null
      */
-    Position(int count, Form form, Teigart teigart) {
+    protected Position(int count, Form form, Teigart teigart) {
         this.count = count;
         this.form = form;
         this.teigart = teigart;
@@ -66,6 +110,28 @@ class Position {
     }
 
     public <T> T visit(PositionVisitor<T> visitor) {
-        return visitor.dispatch(this);
+        return visitor.dispatch(this.prototype());
+    }
+
+    /**
+     * Erezugt eine Position.
+     * @param count Anzahl
+     * @param form Form
+     * @param teigart Teigart
+     * @return die Position
+     */
+    public static Position create(int count, Form form, Teigart teigart) {
+        return new Position(count, form, teigart);
+    }
+
+    /**
+     * Erezugt eine Position.
+     * @param count Anzahl
+     * @param form Form
+     * @param teigart Teigart
+     * @return die Position
+     */
+    public static Position create(int count, Form form, Teigart teigart, Fuellung fuellung) {
+        return new DoppelKeksPosition(count, form, teigart, fuellung);
     }
 }
