@@ -1,3 +1,6 @@
+/**
+ * Instanzen dieser Klasse stellen einen Keks dar
+ */
 class Keks {
     /**
      * Die Form des Kekses

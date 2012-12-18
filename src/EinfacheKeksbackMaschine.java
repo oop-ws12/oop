@@ -1,3 +1,7 @@
+/**
+ * Instanzen dieser Klasse stellen eine Keksbackmaschine dar, welche
+ * nur einfach Kekse backen kann
+ */
 class EinfacheKeksbackMaschine
         implements BackMaschine<Keks>
 {

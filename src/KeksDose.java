@@ -2,8 +2,14 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 
+/*
+ * Instanzen dieser Klasse stellen eine Keksdose dar
+ * Die Keksdose enthaelt eine Collection von Keksen
+ */
 class KeksDose implements Iterable<Keks> {
-    private Collection<Keks> kekse = new ArrayList<Keks>();
+   
+	private Collection<Keks> kekse = new ArrayList<Keks>();
+	private int size = 0;
 
     /**
      * Fuegt einen Keks zur Dose hinzu.
@@ -11,6 +17,7 @@ class KeksDose implements Iterable<Keks> {
      */
     public void add(Keks keks) {
         kekse.add(keks);
+        size++;
     }
 
     /**
@@ -27,5 +34,12 @@ class KeksDose implements Iterable<Keks> {
         for(Keks keks : kekse) {
             System.out.println(keks);
         }
+    }
+    
+    /**
+     * @return die Anzahl der Kekse in der Keksdose
+     */
+    public int getSize() {
+    	return size;
     }
 }

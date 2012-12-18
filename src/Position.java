@@ -1,8 +1,9 @@
 /**
- * Position fuer einen einfachen Keks.
+ * Instanzen dieser Klasse stellen eine Position fuer einen Keks dar.
  */
 class Position {
-    static class DoppelKeksPosition extends Position {
+    
+	static class DoppelKeksPosition extends Position {
         /**
          * Fuellung
          */
@@ -28,7 +29,7 @@ class Position {
         }
 
         /**
-         * @return Beschreibung der Position
+         * @return die Beschreibung der Position
          */
         @Override
         public String toString() {
@@ -114,10 +115,10 @@ class Position {
     }
 
     /**
-     * Erezugt eine Position.
-     * @param count Anzahl
-     * @param form Form
-     * @param teigart Teigart
+     * Erezugt eine Position fuer einen einfachen Keks
+     * @param count > 0 Anzahl
+     * @param form != null Form
+     * @param teigart != null Teigart
      * @return die Position
      */
     public static Position create(int count, Form form, Teigart teigart) {
@@ -126,9 +127,10 @@ class Position {
 
     /**
      * Erezugt eine Position.
-     * @param count Anzahl
-     * @param form Form
-     * @param teigart Teigart
+     * @param count > 0 Anzahl
+     * @param form != null Form
+     * @param teigart != null Teigart
+     * @param fuellung != null Fuellung
      * @return die Position
      */
     public static Position create(int count, Form form, Teigart teigart, Fuellung fuellung) {

@@ -1,3 +1,6 @@
+/**
+ * Instanzen dieser Klasse stellen einen Doppelkeks dar
+ */
 class DoppelKeks extends Keks {
     /**
      * Die Fuellung des Keks.

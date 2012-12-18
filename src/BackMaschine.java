@@ -1,5 +1,5 @@
 /**
- * Stellt eine Backmaschine die eine bestimmte Art von Keks baeckt.
+ * Stellt eine Backmaschine die eine bestimmte Art von Keks baeckt dar.
  */
 interface BackMaschine<K extends Keks> {
     /**
