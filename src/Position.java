@@ -36,11 +36,17 @@ class Position {
             return String.format("%d x Doppelkeks(%s, %s, %s)", getCount(), getForm(), getTeigart(), getFuellung());
         }
 
+        /**
+         * @see Position
+         */
         @Override
         public DoppelKeks prototype() {
             return new DoppelKeks(getForm(), getTeigart(), getFuellung());
         }
 
+        /**
+         * @see Position
+         */
         @Override
         public <T> T visit(PositionVisitor<T> visitor) {
             return visitor.dispatch(this.prototype());
@@ -110,6 +116,9 @@ class Position {
         return new Keks(form, teigart);
     }
 
+    /**
+     * Visit nach dem Visitor Pattern.
+     */
     public <T> T visit(PositionVisitor<T> visitor) {
         return visitor.dispatch(this.prototype());
     }
